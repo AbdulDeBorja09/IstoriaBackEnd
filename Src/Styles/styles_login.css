@@ -1,0 +1,377 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+:root {
+  --browncolor: #231f20;
+}
+
+.signup {
+  display: flex;
+  justify-content: space-between;
+}
+.signup .column1 {
+  width: 50%;
+  margin: 100px -45px 50px 130px;
+}
+.signup .column2 {
+  width: 50%;
+  display: flex;
+  justify-content: end;
+}
+.brandings {
+  text-align: center;
+}
+.brandings img {
+  width: 70px;
+}
+.brandings .img2 {
+  margin-left: -15px;
+}
+.singupform h1 {
+  font-weight: 700;
+  text-align: center;
+  margin-top: 40px;
+}
+.singupform .col-6 label,
+.singupform .col-12 label {
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 30px;
+  margin-left: 3px;
+}
+.singupform textarea {
+  width: 95%;
+  border: 1px solid var(--browncolor);
+  border-radius: 7px;
+  padding: 10px;
+  font-size: 13px;
+  color: var(--browncolor);
+  font-weight: 500;
+  margin-top: 7px;
+}
+.singupform input {
+  width: 90%;
+  border: 1px solid var(--browncolor);
+  border-radius: 7px;
+  padding: 10px;
+  font-size: 13px;
+  color: var(--browncolor);
+  margin-top: 7px;
+  font-weight: 500;
+  padding-right: 35px;
+}
+
+.singupform input::placeholder,
+.singupform textarea::placeholder {
+  font-weight: 700;
+  font-size: 9px;
+  color: var(--browncolor);
+}
+.toggle-password {
+  cursor: pointer;
+  margin-left: -38px;
+  font-size: 18px;
+  color: #666;
+}
+
+.singupform button {
+  display: inline-block;
+  margin-top: 10px;
+  width: 10em;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--browncolor);
+  background-color: #231f20;
+  transition: color 0.2s;
+  z-index: 1;
+  padding: 15px;
+  border-radius: 6px;
+  color: var(--color);
+  text-align: center;
+  color: white;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.singupform button:before {
+  content: "";
+  color: var(--browncolor);
+  position: absolute;
+  z-index: -1;
+  background: white;
+  height: 110px;
+  width: 555px;
+  border-radius: 50%;
+}
+
+.singupform button:hover {
+  color: var(--browncolor);
+  border: 1px solid var(--browncolor);
+  background-color: #231f20;
+}
+
+.singupform button:before {
+  top: 100%;
+  left: 100%;
+  transition: all 0.7s;
+}
+
+.singupform button:hover:before {
+  top: -30px;
+  left: -30px;
+}
+
+.singupform button:active:before {
+  background: #231f20;
+  transition: background 0s;
+}
+.agree {
+  display: flex;
+  margin-left: 3px;
+  margin-top: -20px;
+}
+.agree input:hover {
+  color: var(--browncolor);
+}
+.agree label {
+  font-weight: 400px;
+  margin-left: 10px;
+  margin-top: 26px;
+  font-size: 10px;
+  font-weight: 600;
+}
+input[type="checkbox"] {
+  width: 15px;
+  color: var(--browncolor);
+}
+.loginform {
+  display: flex;
+}
+.loginform .column1 {
+  width: 50%;
+}
+.loginform #password {
+  margin-left: -13px;
+}
+
+.loginform .column2 {
+  width: 50%;
+  padding: 100px 200px 100px 50px;
+}
+.loginbox {
+  padding: 80px 50px 100px 50px;
+  border: 1px solid #231f20;
+  border-radius: 10px;
+  margin-top: 40px;
+}
+
+.loginbox h1 {
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.loginbox input {
+  border: 1px solid var(--browncolor);
+  border-radius: 7px;
+  width: 100%;
+  padding: 15px 40px 15px 15px;
+  font-size: 15px;
+  margin-top: 40px;
+}
+.loginbox {
+  text-align: center;
+}
+.loginbox .button h1 {
+  font-size: 11px;
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.loginbox .agree {
+  display: flex;
+  margin-top: -10px;
+}
+.loginbox .agree .check {
+  width: 15px;
+  margin-top: 0px;
+  margin-bottom: -12px;
+  margin-left: 0px;
+}
+
+.loginbox .button {
+  margin-top: 50px;
+}
+
+.loginbox a {
+  color: var(--browncolor);
+  font-weight: 800;
+}
+.loginbox button {
+  display: inline-block;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--browncolor);
+  background-color: #231f20;
+  transition: color 0.2s;
+  z-index: 1;
+  padding: 10px;
+  border-radius: 6px;
+  color: var(--color);
+  text-align: center;
+  color: white;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.loginbox button:before {
+  content: "";
+  color: var(--browncolor);
+  position: absolute;
+  z-index: -1;
+  background: white;
+  height: 110px;
+  width: 555px;
+  border-radius: 50%;
+}
+
+.loginbox button:hover {
+  color: var(--browncolor);
+  border: 1px solid var(--browncolor);
+  background-color: #231f20;
+}
+
+.loginbox button:before {
+  top: 100%;
+  left: 100%;
+  transition: all 0.7s;
+}
+
+.loginbox button:hover:before {
+  top: -30px;
+  left: -30px;
+}
+
+.loginbox button:active:before {
+  background: #231f20;
+  transition: background 0s;
+}
+.haveanacc {
+  font-size: 11px;
+  margin-top: 50px;
+}
+.haveanacc a {
+  font-weight: 700;
+  color: var(--browncolor);
+}
+.terms {
+  color: var(--browncolor);
+  font-weight: 700;
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  border-radius: 1px;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur 1px;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+#termsmodal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  overflow: auto;
+}
+
+.modal-content-term {
+  background-color: #ffffff;
+  margin: 7% auto;
+  padding: 0px 20px;
+  height: 750px;
+  border: 1px solid #888;
+  width: 50%;
+}
+.closediv {
+  display: flex;
+  justify-content: end;
+}
+.closediv .close {
+  font-size: 30px;
+  cursor: pointer;
+}
+.modal-content-term h1 {
+  font-weight: 700;
+  font-size: 30px;
+  text-align: center;
+  margin-top: 20px;
+}
+.modal-content-term .termsdiv {
+  height: 450px;
+  border: 1px solid gray;
+  margin: 20px 30px;
+}
+.modal-content-term .termsdiv .content {
+  height: 100%;
+  overflow-y: auto;
+  padding: 20px 40px;
+  text-transform: uppercase;
+}
+.modal-content-term .termsdiv .content h6 {
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+}
+.modal-content-term .termsdiv .content h5 {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+}
+.modal-content-term .termsdiv .content a {
+  color: var(--browncolor);
+  font-weight: 700;
+}
+.modal-content-term .termsdiv .content p {
+  font-size: 12px;
+  font-weight: 500;
+  text-align: inherit;
+  text-indent: 30px;
+  padding-left: 0;
+}
+.modal-content-term .termsdiv .content ul li {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.9;
+}
+.termsbutton .close {
+  margin-top: 20px;
+  font-size: 15px;
+  font-weight: 500;
+  border: 1px solid var(--browncolor);
+}
+.termsbutton .close:hover {
+  background-color: var(--browncolor);
+  color: white;
+}
