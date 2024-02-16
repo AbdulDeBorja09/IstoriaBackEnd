@@ -6,7 +6,20 @@
     if (!isset($user_id)){
         header('location:../login/login.php');
     }
+    if(isset($_POST['message'])){
+      $name = mysqli_real_escape_string($conn, $_POST['name']);
+      $email = mysqli_real_escape_string($conn, $_POST['email']);
+      $phone =  mysqli_real_escape_string($conn, $_POST['phone']);
+      $messages = mysqli_real_escape_string($conn, $_POST['messages']);
 
+
+      $select_message = mysqli_query($conn, "SELECT * FROM `message` WHERE name = '$name' AND email = '$email' AND message = '$messages'") or die ('query failed');
+      if(mysqli_num_rows($select_message)>0){
+        echo 'message already send';
+      }else{
+        mysqli_query($conn, "INSERT INTO `message` (`user_id`, `name`, `email`, `phone`, `message` ) VALUES ('$user_id', '$name', '$email', '$phone', '$messages')") or die ('query failed');
+      }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,12 +41,12 @@
         <h1 class="contact-gettouch">GET IN TOUCH</h1>
         <div class="contact-flex">
             <div class="contact-col1">
-                <form action="post">
+                <form method="post">
                     <input type="text" name="name" placeholder="NAME" required />
                     <input type="text" name="email" placeholder="EMAIL" required />
-                    <input type="number" name="number" placeholder="PHONE NUMBER" required />
-                    <textarea name="" id="" cols="30" rows="7" placeholder="MESSAGE" required></textarea>
-                    <button class="fancy" type="submit">
+                    <input type="number" name="phone" placeholder="PHONE NUMBER" required />
+                    <textarea name="messages" id="" cols="30" rows="7" placeholder="MESSAGE" required></textarea>
+                    <button name="message" class="fancy" type="submit">
                         <span class="top-key"></span>
                         <span class="text">SEND A MESSAGE</span>
                         <span class="bottom-key-1"></span>

@@ -1,3 +1,15 @@
+<?php
+    include '../connection.php';
+    session_start();
+    $user_id = $_SESSION['user_id'];
+    
+    if (!isset($user_id)){
+        header('location:../login/login.php');
+    }
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +35,11 @@
                 <button class="btn">
                     <ion-icon name="chevron-back-circle" onclick="history.back()"></ion-icon>
                 </button>
-                <h1>6 PRODUCTS</h1>
+                <?php
+                $select_prodcut = mysqli_query($conn, "SELECT * FROM `products` WHERE category ='coffee'") or die ('queryfailed');
+                $num_of_product = mysqli_num_rows($select_prodcut);
+                ?>
+                <h1><?php echo $num_of_product; ?> PRODUCTS</h1>
             </div>
 
             <button class="sortby btn btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -38,144 +54,57 @@
         </div>
 
         <div class="coffe-flex">
+            <?php 
+          $select_prodcuts = mysqli_query($conn, "SELECT * FROM `products` WHERE category ='coffee' ") or die ('query failed');
+          if(mysqli_num_rows($select_prodcuts)>0){
+              while($fetch_products = mysqli_fetch_assoc($select_prodcuts)){
+          ?>
             <div class="box">
-                <div class="enlargebox">
-                    <button class="enlarge btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <ion-icon name="search"></ion-icon>
-                    </button>
-                </div>
-                <br />
-                <a class="viewpagelink" href="user_viewpage.php">
-                    <img src="../assets/Images/5.png" alt="coffee" />
-                    <div class="description">
-                        <h5>AMERICANO</h5>
-                        <h6>₱69.00 - ₱79.00</h6>
-                        <div class="star">
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                        </div>
+                <form method="post">
+                    <input type="hidden" name="product_id" value="<?php echo $fetch_products['id']; ?>">
+                    <div class="enlargebox">
+                        <button class="enlarge btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <ion-icon name="search"></ion-icon>
+                        </button>
                     </div>
-                </a>
-            </div>
-            <div class="box">
-                <div class="enlargebox">
-                    <button class="enlarge btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <ion-icon name="search"></ion-icon>
-                    </button>
-                </div>
-                <br />
-                <a class="viewpagelink" href="user_viewpage.php">
-                    <img src="../assets/Images/5.png" alt="coffee" />
-                    <div class="description">
-                        <h5>AMERICANO</h5>
-                        <h6>₱69.00 - ₱79.00</h6>
-                        <div class="star">
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
+                    <br />
+                    <a class="viewpagelink" href="user_viewpage.php?pid=<?php echo $fetch_products['id']; ?>">
+                        <input name="product_id" type="hidden" value="<?php echo $fetch_products['id']; ?>">
+                        <input name="product_name" type="hidden" value="<?php echo $fetch_products['name']; ?>">
+                        <input name="product_category" type="hidden" value="<?php echo $fetch_products['image']; ?>">
+                        <input name="product_range type=" hidden value="<?php echo $fetch_products['price_range']; ?>">
+                        <img src="../products/<?php echo $fetch_products['image']; ?>" alt="coffee" />
+                        <div class="description">
+                            <h5><?php echo $fetch_products['name']; ?></h5>
+                            <h6><?php echo $fetch_products['price_range']; ?></h6>
+                            <div class="star">
+                                <ion-icon name="star"></ion-icon>
+                                <ion-icon name="star"></ion-icon>
+                                <ion-icon name="star"></ion-icon>
+                                <ion-icon name="star"></ion-icon>
+                                <ion-icon name="star"></ion-icon>
+                            </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </form>
             </div>
-            <div class="box">
-                <div class="enlargebox">
-                    <button class="enlarge btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <ion-icon name="search"></ion-icon>
-                    </button>
-                </div>
-                <br />
-                <a class="viewpagelink" href="user_viewpage.php">
-                    <img src="../assets/Images/5.png" alt="coffee" />
-                    <div class="description">
-                        <h5>AMERICANO</h5>
-                        <h6>₱69.00 - ₱79.00</h6>
-                        <div class="star">
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="box">
-                <div class="enlargebox">
-                    <button class="enlarge btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <ion-icon name="search"></ion-icon>
-                    </button>
-                </div>
-                <br />
-                <a class="viewpagelink" href="user_viewpage.php">
-                    <img src="../assets/Images/5.png" alt="coffee" />
-                    <div class="description">
-                        <h5>AMERICANO</h5>
-                        <h6>₱69.00 - ₱79.00</h6>
-                        <div class="star">
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="box">
-                <div class="enlargebox">
-                    <button class="enlarge btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <ion-icon name="search"></ion-icon>
-                    </button>
-                </div>
-                <br />
-                <a class="viewpagelink" href="user_viewpage.php">
-                    <img src="../assets/Images/5.png" alt="coffee" />
-                    <div class="description">
-                        <h5>AMERICANO</h5>
-                        <h6>₱69.00 - ₱79.00</h6>
-                        <div class="star">
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="box">
-                <div class="enlargebox">
-                    <button class="enlarge btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <ion-icon name="search"></ion-icon>
-                    </button>
-                </div>
-                <br />
-                <a class="viewpagelink" href="user_viewpage.php">
-                    <img src="../assets/Images/5.png" alt="coffee" />
-                    <div class="description">
-                        <h5>AMERICANO</h5>
-                        <h6>₱69.00 - ₱79.00</h6>
-                        <div class="star">
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                        </div>
-                    </div>
-                </a>
-            </div>
+            <?php  
+            }
+              }else{
+              echo '
+              <div class="container text-center" style="padding: 100px;">
+                  <h1>No Available Products yet</h1>
+              </div>
+              ';
+            }
+            ?>
         </div>
     </div>
-    <div style="padding: 150px"></div>
+    <div style=" padding: 150px">
+    </div>
     <?php include 'footer.php' ?>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true" aria-labelledby="exampleModalLabel">
+    <div class="modal fade" class="exampleModal" tabindex="-1" aria-hidden="true" aria-labelledby="exampleModalLabel">
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content" style="background-color: white">
                 <div class="row">
@@ -259,6 +188,36 @@
             </div>
         </div>
     </div>
+    <script>
+    // Get the modal
+    var modal = document.getElementById("exampleModal");
+
+    // Add event listener to all buttons with class "enlarge"
+    var enlargeButtons = document.querySelectorAll(".enlarge");
+    enlargeButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            // Get product ID from data attribute
+            var productId = this.getAttribute("data-product-id");
+
+            // Make AJAX call to retrieve product details based on ID
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    // Parse response as JSON
+                    var product = JSON.parse(xhr.responseText);
+
+                    // Populate modal with product details
+                    modal.querySelector(".modal-coffee-img").src = "../assets/Images/" + product
+                        .image;
+                    modal.querySelector("h1").innerText = product.name;
+                    modal.querySelector("h5").innerText = "₱ " + product.price;
+                }
+            };
+            xhr.open("GET", "get_product_details.php?id=" + productId, true);
+            xhr.send();
+        });
+    });
+    </script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

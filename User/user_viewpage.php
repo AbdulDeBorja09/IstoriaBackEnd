@@ -1,3 +1,13 @@
+<?php
+    include '../connection.php';
+    session_start();
+    $user_id = $_SESSION['user_id'];
+    
+    if (!isset($user_id)){
+        header('location:../login/login.php');
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,87 +32,102 @@
                 <ion-icon name="chevron-back-circle" onclick="history.back()"></ion-icon>
             </button>
         </div>
-        <div class="viewpagediv row">
-            <div class="col-lg-6">
-                <img class="modal-coffee-img" src="../assets/Images/5.png" alt="coffee" />
+        <?php 
+          if(isset($_GET['pid'])){
+              $pid = $_GET['pid'];
+              $select_products = mysqli_query($conn, "SELECT * FROM `products` WHERE id = '$pid'") or die ('query failed');
+              if(mysqli_num_rows($select_products)>0){
+                  while($fetch_products = mysqli_fetch_assoc($select_products)){
+          ?>
+        <form method="post">
+            <div class="viewpagediv row">
+                <div class="col-lg-6">
+                    <img class="modal-coffee-img" src="../products/<?php echo $fetch_products['image']; ?>"
+                        alt="coffee" />
+                </div>
+                <div class="view-div-2 col-lg-6">
+                    <h1><?php echo $fetch_products['name']; ?></h1>
+                    <div class="star">
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                    </div>
+                    <h5>₱<?php echo $fetch_products['price']; ?></h5>
+                    <h6>CHOICES</h6>
+                    <input type="radio" class="btn-check" name="options-base" id="option5" autocomplete="off" checked />
+                    <label class="radiolabel btn" for="option5">HOT</label>
+
+                    <input type="radio" class="btn-check" name="options-base" id="option6" autocomplete="off" />
+                    <label class="btn" for="option6">ICED</label>
+                    <h6>SIZE</h6>
+                    <input type="radio" class="btn-check" name="size" id="small" autocomplete="off" checked />
+                    <label class="btn" for="small">16 OZ</label>
+
+                    <input type="radio" class="btn-check" name="size" id="large" autocomplete="off" />
+                    <label class="btn" for="large">22 OZ</label>
+
+                    <h6>ADD ONS</h6>
+
+                    <table class="viewaddonts-table w-50" style="background-color: #f6f3f1">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="btn-check" id="espresso" autocomplete="off" />
+                                    <label class="btn" for="espresso">ESPRESSO SHOT</label>
+                                </td>
+                                <td>
+                                    <h5>₱ 79.00</h5>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="btn-check" id="sauce" autocomplete="off" />
+                                    <label class="btn" for="sauce">SAUCE </label>
+                                </td>
+                                <td>
+                                    <h5>₱ 79.00</h5>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="btn-check" id="syrup" autocomplete="off" />
+                                    <label class="btn" for="syrup">SYRUP </label>
+                                </td>
+                                <td>
+                                    <h5>₱ 79.00</h5>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="btn-check" id="drizzle" autocomplete="off" />
+                                    <label class="btn" for="drizzle">DRIZZLE </label>
+                                </td>
+                                <td>
+                                    <h5>₱ 79.00</h5>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="quantity">
+                        <button id="minusBtn">-</button>
+                        <input type="number" id="quantityInput" class="quantity-input" value="1" min="1" max="10"
+                            disabled />
+                        <button id="addBtn">+</button>
+                    </div>
+                    <div class="viewbtn">
+                        <button class="add-to-traybtn w-100 btn">ADD TO TRAY</button>
+                        <a href="user_tray.php " class="view btn w-100">VIEW TRAY</a>
+                    </div>
+                </div>
             </div>
-            <div class="view-div-2 col-lg-6">
-                <h1>CAPUCCINO</h1>
-                <div class="star">
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                </div>
-                <h5>₱ 79.00</h5>
-                <h6>CHOICES</h6>
-                <input type="radio" class="btn-check" name="options-base" id="option5" autocomplete="off" checked />
-                <label class="radiolabel btn" for="option5">HOT</label>
-
-                <input type="radio" class="btn-check" name="options-base" id="option6" autocomplete="off" />
-                <label class="btn" for="option6">ICED</label>
-                <h6>SIZE</h6>
-                <input type="radio" class="btn-check" name="size" id="small" autocomplete="off" checked />
-                <label class="btn" for="small">16 OZ</label>
-
-                <input type="radio" class="btn-check" name="size" id="large" autocomplete="off" />
-                <label class="btn" for="large">22 OZ</label>
-
-                <h6>ADD ONS</h6>
-
-                <table class="viewaddonts-table w-50" style="background-color: #f6f3f1">
-                    <tbody>
-                        <tr>
-                            <td>
-                                <input type="checkbox" class="btn-check" id="espresso" autocomplete="off" />
-                                <label class="btn" for="espresso">ESPRESSO SHOT</label>
-                            </td>
-                            <td>
-                                <h5>₱ 79.00</h5>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" class="btn-check" id="sauce" autocomplete="off" />
-                                <label class="btn" for="sauce">SAUCE </label>
-                            </td>
-                            <td>
-                                <h5>₱ 79.00</h5>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" class="btn-check" id="syrup" autocomplete="off" />
-                                <label class="btn" for="syrup">SYRUP </label>
-                            </td>
-                            <td>
-                                <h5>₱ 79.00</h5>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" class="btn-check" id="drizzle" autocomplete="off" />
-                                <label class="btn" for="drizzle">DRIZZLE </label>
-                            </td>
-                            <td>
-                                <h5>₱ 79.00</h5>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="quantity">
-                    <button id="minusBtn">-</button>
-                    <input type="number" id="quantityInput" class="quantity-input" value="1" min="1" max="10"
-                        disabled />
-                    <button id="addBtn">+</button>
-                </div>
-                <div class="viewbtn">
-                    <button class="add-to-traybtn w-100 btn">ADD TO TRAY</button>
-                    <a href="user_tray.php " class="view btn w-100">VIEW TRAY</a>
-                </div>
-            </div>
-        </div>
+        </form>
+        <?php
+                        }
+                    }
+                }
+            ?>
     </div>
     <div style="padding: 50px"></div>
     <hr />
