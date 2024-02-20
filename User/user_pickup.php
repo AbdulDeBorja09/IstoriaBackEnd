@@ -1,3 +1,15 @@
+<?php
+    include '../connection.php';
+    session_start();
+    $user_id = $_SESSION['user_id'];
+    
+    if (!isset($user_id)){
+        header('location:../login/login.php');
+    }
+    $grand_total = isset($_SESSION['grand_total']) ? $_SESSION['grand_total'] : 0;
+    $tray_items = isset($_SESSION['tray_items']) ? $_SESSION['tray_items'] : array();
+    $addons_data = isset($_SESSION['addons_data']) ? unserialize($_SESSION['addons_data']) : array();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,124 +60,39 @@
             </div>
             <div class="checkout-products">
                 <div class="inner">
+                    <?php foreach ($tray_items as $tray_item): ?>
                     <div class="products">
                         <div class="counter">
-                            <h6>0</h6>
+                            <h6><?php echo $tray_item['quantity']; ?></h6>
                         </div>
                         <div class="col1">
-                            <img src="../assets/Images/5.png" alt="coffee" />
+                            <img src="../products/<?php echo $tray_item['image']; ?>" alt="coffee" />
                             <div class="details">
-                                <h1>COFFEE</h1>
-                                <h2>CAPPUCCINO</h2>
-                                <h3>SIZE: 16 OZ</h3>
-                                <h4>ADD ONS: ESPRESSO SHOT</h4>
+                                <h1><?php echo $tray_item['category']; ?></h1>
+                                <h2><?php echo $tray_item['name']; ?></h2>
+                                <h3>SIZE: <?php echo $tray_item['size']; ?></h3>
+                                <h4>Addon
+                                <?php 
+                                    if(isset($addons_data[$tray_item['id']])): 
+                                        foreach ($addons_data[$tray_item['id']] as $addon): 
+                                            $cleaned_addon = trim($addon, '[]"');
+                                ?> 
+                                     <?php echo $cleaned_addon . ", "; ?>
+                                <?php 
+                                        endforeach; 
+                                    endif; 
+                                ?></h4>
+                                <h5>PRICE: <?php echo $tray_item['price']; ?></h5>
                             </div>
                         </div>
                     </div>
+                    <?php endforeach; ?>
 
-                    <div class="products">
-                        <div class="counter">
-                            <h6>0</h6>
-                        </div>
-                        <div class="col1">
-                            <img src="../assets/Images/5.png" alt="coffee" />
-                            <div class="details">
-                                <h1>COFFEE</h1>
-                                <h2>CAPPUCCINO</h2>
-                                <h3>SIZE: 16 OZ</h3>
-                                <h4>ADD ONS: ESPRESSO SHOT</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div class="counter">
-                            <h6>0</h6>
-                        </div>
-                        <div class="col1">
-                            <img src="../assets/Images/5.png" alt="coffee" />
-                            <div class="details">
-                                <h1>COFFEE</h1>
-                                <h2>CAPPUCCINO</h2>
-                                <h3>SIZE: 16 OZ</h3>
-                                <h4>ADD ONS: ESPRESSO SHOT</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div class="counter">
-                            <h6>0</h6>
-                        </div>
-                        <div class="col1">
-                            <img src="../assets/Images/5.png" alt="coffee" />
-                            <div class="details">
-                                <h1>COFFEE</h1>
-                                <h2>CAPPUCCINO</h2>
-                                <h3>SIZE: 16 OZ</h3>
-                                <h4>ADD ONS: ESPRESSO SHOT</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div class="counter">
-                            <h6>0</h6>
-                        </div>
-                        <div class="col1">
-                            <img src="../assets/Images/5.png" alt="coffee" />
-                            <div class="details">
-                                <h1>COFFEE</h1>
-                                <h2>CAPPUCCINO</h2>
-                                <h3>SIZE: 16 OZ</h3>
-                                <h4>ADD ONS: ESPRESSO SHOT</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div class="counter">
-                            <h6>0</h6>
-                        </div>
-                        <div class="col1">
-                            <img src="../assets/Images/5.png" alt="coffee " />
-                            <div class="details">
-                                <h1>COFFEE</h1>
-                                <h2>CAPPUCCINO</h2>
-                                <h3>SIZE: 16 OZ</h3>
-                                <h4>ADD ONS: ESPRESSO SHOT</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div class="counter">
-                            <h6>0</h6>
-                        </div>
-                        <div class="col1">
-                            <img src="../assets/Images/5.png" alt="coffee" />
-                            <div class="details">
-                                <h1>COFFEE</h1>
-                                <h2>CAPPUCCINO</h2>
-                                <h3>SIZE: 16 OZ</h3>
-                                <h4>ADD ONS: ESPRESSO SHOT</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div class="counter">
-                            <h6>0</h6>
-                        </div>
-                        <div class="col1">
-                            <img src="../assets/Images/5.png" alt="coffee" />
-                            <div class="details">
-                                <h1>COFFEE</h1>
-                                <h2>CAPPUCCINO</h2>
-                                <h3>SIZE: 16 OZ</h3>
-                                <h4>ADD ONS: ESPRESSO SHOT</h4>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="outer-div">
                     <div class="sub">
                         <h1>SUBTOTAL</h1>
-                        <h1><b>164.00</b></h1>
+                        <h1><b><?php echo $grand_total ?></b></h1>
                     </div>
                     <div class="del">
                         <h1>DELIVERY FEE:</h1>

@@ -6,7 +6,45 @@
     if (!isset($user_id)){
         header('location:../login/login.php');
     }
-
+    
+    if (isset($_POST['add_to_tray'])){
+        $product_id = $_POST['product_id'];
+        $product_name = $_POST['product_name'];
+        $product_category = $_POST['product_category'];
+        $product_price = $_POST['product_price'];
+        $product_type = $_POST['product_type'];
+        $product_size = $_POST['product_size'];
+        $product_image = $_POST['product_image' ];
+        $product_quantity = $_POST['product_quantity'];
+        
+        $selected_addons = [];
+        $total_price = 0; 
+    
+    
+        if (isset($_POST['addons']) && is_array($_POST['addons'])) {
+            foreach ($_POST['addons'] as $addon_name => $addon_price) {
+                
+                $selected_addons[] = $addon_name;
+                // Add addon price to the total price
+                $total_price += $addon_price;
+            }
+        }
+        $total_price += $product_price;
+        $tray_num = mysqli_query($conn, "SELECT * FROM `tray` 
+        WHERE size = '$product_size'
+        AND name = '$product_name' 
+        AND type = '$product_type' 
+        AND user_id = '$user_id'
+        AND addons = '$selected_addons' ") or die ('query failed');
+  
+        if(mysqli_num_rows($tray_num)>0){
+          $message[] = 'Product Already exist in tray';
+        }else{
+            mysqli_query($conn, "INSERT INTO `tray` (`name`, `category`, `price`, `quantity`, `type`, `size`,`addons`,`image`, `user_id`, `pid`) 
+            VALUES ('$product_name', '$product_category', '$total_price', '$product_quantity', '$product_type', '$product_size','" . mysqli_real_escape_string($conn, json_encode($selected_addons)) . "', '$product_image' , '$user_id', '$product_id')");
+          $message[] = 'Product successfuly added in your cart';
+        }
+      }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,22 +62,27 @@
 <body>
     <?php include 'navbar.php' ?>
     <div style="padding: 90px"></div>
+    <?php 
+          if(isset($_GET['pid'])){
+              $pid = $_GET['pid'];
+              $select_products = mysqli_query($conn, "SELECT * FROM `products` WHERE id = '$pid'") or die ('query failed');
 
+              if(mysqli_num_rows($select_products)>0){
+                  while($fetch_products = mysqli_fetch_assoc($select_products)){
+          ?>
     <div class="viewpage-title container">
-        <h1 class="viewpage-title-coffe">COFFEE</h1>
+        <h1 class="viewpage-title-coffe"><?php echo $fetch_products['category']; ?></h1>
         <div class="subnav-global">
             <button class="btn">
                 <ion-icon name="chevron-back-circle" onclick="history.back()"></ion-icon>
             </button>
         </div>
-        <?php 
-          if(isset($_GET['pid'])){
-              $pid = $_GET['pid'];
-              $select_products = mysqli_query($conn, "SELECT * FROM `products` WHERE id = '$pid'") or die ('query failed');
-              if(mysqli_num_rows($select_products)>0){
-                  while($fetch_products = mysqli_fetch_assoc($select_products)){
-          ?>
         <form method="post">
+            <input type="hidden" name="product_id" value="<?php echo $fetch_products['id']; ?>">
+            <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
+            <input type="hidden" name="product_price" value="<?php echo $fetch_products['price']; ?>">
+            <input type="hidden" name="product_image" value="<?php echo $fetch_products['image']; ?>">
+            <input type="hidden" name="product_category" value="<?php echo $fetch_products['category']; ?>">
             <div class="viewpagediv row">
                 <div class="col-lg-6">
                     <img class="modal-coffee-img" src="../products/<?php echo $fetch_products['image']; ?>"
@@ -54,72 +97,93 @@
                         <ion-icon name="star"></ion-icon>
                         <ion-icon name="star"></ion-icon>
                     </div>
-                    <h5>₱<?php echo $fetch_products['price']; ?></h5>
+                    <h5 class="product_price">₱<?php echo $fetch_products['price']; ?>.00</h5>
                     <h6>CHOICES</h6>
-                    <input type="radio" class="btn-check" name="options-base" id="option5" autocomplete="off" checked />
-                    <label class="radiolabel btn" for="option5">HOT</label>
+                    <input type="radio" class="btn-check" name="product_type" id="option5" autocomplete="off" checked value="hot"/>
+                    <label class="radiolabel btn" for="option5" >HOT</label>
 
-                    <input type="radio" class="btn-check" name="options-base" id="option6" autocomplete="off" />
+                    <input type="radio" class="btn-check" name="product_type" id="option6" autocomplete="off" value="iced"/>
                     <label class="btn" for="option6">ICED</label>
                     <h6>SIZE</h6>
-                    <input type="radio" class="btn-check" name="size" id="small" autocomplete="off" checked />
+                    <input type="radio" class="btn-check" name="product_size" id="small" autocomplete="off" checked  value="16oz"/>
                     <label class="btn" for="small">16 OZ</label>
 
-                    <input type="radio" class="btn-check" name="size" id="large" autocomplete="off" />
+                    <input type="radio" class="btn-check" name="product_size" id="large" autocomplete="off" value="22oz"/>
                     <label class="btn" for="large">22 OZ</label>
-
                     <h6>ADD ONS</h6>
-
                     <table class="viewaddonts-table w-50" style="background-color: #f6f3f1">
+                
                         <tbody>
+                            <?php 
+                            $addons_category = $fetch_products['category'];
+                             $select_addons = mysqli_query($conn, "SELECT * FROM `addons` WHERE category = '$addons_category'") or die ('query failed');
+                             if(mysqli_num_rows($select_addons)>0){
+                                while($fetch_addons = mysqli_fetch_assoc($select_addons)){
+                             ?>
                             <tr>
                                 <td>
-                                    <input type="checkbox" class="btn-check" id="espresso" autocomplete="off" />
-                                    <label class="btn" for="espresso">ESPRESSO SHOT</label>
+                                    <input name="addons[<?php echo $fetch_addons['addons1']; ?>]" type="checkbox" class="btn-check" id="addons1" autocomplete="off" data-price="<?php echo $fetch_addons['price1']; ?>" value="<?php echo $fetch_addons['price1']; ?>" />
+                                    <label class="btn" for="addons1"><?php echo $fetch_addons['addons1']; ?></label>
                                 </td>
                                 <td>
-                                    <h5>₱ 79.00</h5>
+                                    <h5><?php echo $fetch_addons['price1']; ?></h5>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="checkbox" class="btn-check" id="sauce" autocomplete="off" />
-                                    <label class="btn" for="sauce">SAUCE </label>
+                                    <input name="addons[<?php echo $fetch_addons['addons2']; ?>]" type="checkbox" class="btn-check" id="addons2" autocomplete="off"  data-price="<?php echo $fetch_addons['price2']; ?>" value="<?php echo $fetch_addons['price2']; ?>"/>
+                                    <label class="btn" for="addons2"><?php echo $fetch_addons['addons2']; ?></label>
                                 </td>
                                 <td>
-                                    <h5>₱ 79.00</h5>
+                                    <h5><?php echo $fetch_addons['price2']; ?></h5>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="checkbox" class="btn-check" id="syrup" autocomplete="off" />
-                                    <label class="btn" for="syrup">SYRUP </label>
+                                    <input name="addons[<?php echo $fetch_addons['addons3']; ?>]" type="checkbox" class="btn-check" id="addons3" autocomplete="off" data-price="<?php echo $fetch_addons['price3']; ?>" value="<?php echo $fetch_addons['price3']; ?>"/>
+                                    <label class="btn" for="addons3"><?php echo $fetch_addons['addons3']; ?></label>
                                 </td>
                                 <td>
-                                    <h5>₱ 79.00</h5>
+                                    <h5><?php echo $fetch_addons['price3']; ?></h5>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="checkbox" class="btn-check" id="drizzle" autocomplete="off" />
-                                    <label class="btn" for="drizzle">DRIZZLE </label>
+                                    <input name="addons[<?php echo $fetch_addons['addons4']; ?>]" type="checkbox" class="btn-check" id="addons4" autocomplete="off" data-price="<?php echo $fetch_addons['price4']; ?>" value="<?php echo $fetch_addons['price4']; ?>"/>
+                                    <label class="btn" for="addons4"><?php echo $fetch_addons['addons4']; ?></label>
                                 </td>
                                 <td>
-                                    <h5>₱ 79.00</h5>
+                                    <h5><?php echo $fetch_addons['price4']; ?></h5>
                                 </td>
                             </tr>
+                            <?php 
+                                }
+                             }
+                            ?>
+                            
                         </tbody>
                     </table>
                     <div class="quantity">
                         <button id="minusBtn">-</button>
-                        <input type="number" id="quantityInput" class="quantity-input" value="1" min="1" max="10"
-                            disabled />
+                        <input name="product_quantity" type="number" id="quantityInput" class="quantity-input" value="1" min="1" max="10"
+                             />
                         <button id="addBtn">+</button>
                     </div>
                     <div class="viewbtn">
-                        <button class="add-to-traybtn w-100 btn">ADD TO TRAY</button>
+                        <button name="add_to_tray" class="add-to-traybtn w-100 btn">ADD TO TRAY</button>
                         <a href="user_tray.php " class="view btn w-100">VIEW TRAY</a>
                     </div>
+                    <?php
+                    if(isset($message)){
+                      foreach ($message as $message) {
+                      echo'
+                          <div class="alert alert-danger" role="alert text-center p-3"  >
+                          '.$message.'
+                          </div>
+                        ';
+                      }
+                    }
+                ?>
                 </div>
             </div>
         </form>
@@ -334,6 +398,56 @@
             </div>
         </div>
     </div>
+    <script>
+    const minusBtn = document.getElementById("minusBtn");
+    const addBtn = document.getElementById("addBtn");
+    const quantityInput = document.getElementById("quantityInput");
+
+    minusBtn.addEventListener("click", () => {
+        event.preventDefault();
+        let currentQuantity = parseInt(quantityInput.value);
+        if (currentQuantity > parseInt(quantityInput.min)) {
+            quantityInput.value = currentQuantity - 1;
+        }
+    });
+
+    addBtn.addEventListener("click", (event) => {
+        event.preventDefault(); 
+        let currentQuantity = parseInt(quantityInput.value);
+        if (currentQuantity < parseInt(quantityInput.max)) {
+            quantityInput.value = currentQuantity + 1;
+        }
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    const totalPriceInput = document.getElementById('total_price');
+
+    // Initialize total price to the product price
+    let totalPrice = parseFloat(totalPriceInput.value) || 0;
+
+    checkboxes.forEach(function (checkbox) {
+        checkbox.addEventListener('change', function () {
+            // Get the addon price
+            const addonPrice = parseFloat(this.dataset.price);
+
+            // Update total price based on whether the checkbox is checked or unchecked
+            if (this.checked) {
+                totalPrice += addonPrice;
+            } else {
+                totalPrice -= addonPrice;
+            }
+
+            // Update the total price input value
+            totalPriceInput.value = totalPrice.toFixed(2);
+        });
+    });
+});
+
+
+
+
+</script>
+
 
     <div style="padding: 50px"></div>
     <?php include 'footer.php' ?>

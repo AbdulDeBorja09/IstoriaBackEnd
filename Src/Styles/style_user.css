@@ -330,7 +330,7 @@ footer a {
 }
 .coffe-flex {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   flex-flow: wrap;
 }
 .coffe-flex .box a {
@@ -340,11 +340,27 @@ footer a {
 .coffe-flex .box {
   padding: 50px;
 }
-
+.coffe-flex .box .unavailable {
+  cursor: not-allowed;
+}
+.coffe-flex .box .unavailable h4 {
+  font-size: 13px;
+  margin-top: -10px;
+  color: red;
+  font-weight: 500;
+}
+.coffe-flex .box .unavailable:hover img {
+  transform: scale(1);
+}
 .coffe-flex .box img {
   width: 250px;
   margin-top: -40px;
   transition: 0.3s ease;
+}
+
+.unavailablediv {
+  position: relative;
+  display: inline-block;
 }
 .enlargebox {
   display: flex;
@@ -404,6 +420,7 @@ footer a {
   text-align: center;
   font-weight: 700;
   font-size: 50px;
+  text-transform: uppercase;
 }
 .view-div-2 {
   padding: 0px 40px 40px 40p;
@@ -981,11 +998,12 @@ footer a {
 }
 .product .col1 .details .text {
   margin-left: 20px;
-  margin-top: 50px;
+  margin-top: 40px;
+  text-transform: uppercase;
 }
 
 .product .col1 .details .text h1 {
-  font-weight: 500;
+  font-weight: 600;
   font-size: 10px;
 }
 .product .col1 .details .text h2 {
@@ -1047,7 +1065,22 @@ footer a {
   cursor: not-allowed;
 }
 .product .col2 .inner .quantity {
-  margin-left: 60px;
+  margin-left: 40px;
+  width: 12%;
+}
+.product .col2 .inner .checkbtn {
+  font-size: 23px;
+  margin-right: -15px;
+  color: var(--browncolor);
+  margin-bottom: -40px;
+  height: 30px;
+  border-radius: 5px;
+  border: 0px;
+  background-color: white;
+}
+.product .col2 .inner .checkbtn:hover {
+  background-color: var(--browncolor);
+  color: white;
 }
 .product .col2 .inner .quantity button {
   background-color: #ddd4cc;
@@ -1057,12 +1090,14 @@ footer a {
   height: 20px;
   padding: 1px 1px 2px 3px;
   font-weight: 500;
+  margin-top: -10px;
 }
 
 .view-div-2 .quantity button {
   background-color: #ddd4cc;
   border-radius: 50%;
   width: 25px;
+
   height: 25px;
 
   /* padding: 0px 3px 10px 5px; */
@@ -1129,6 +1164,11 @@ footer a {
   width: 70%;
   margin-top: 15px;
   margin-left: -3px;
+}
+.lowertray .col2 .lower a:disabled {
+  background-color: #231f20;
+  color: white;
+  cursor: not-allowed;
 }
 
 .stylish1 {
@@ -1327,6 +1367,7 @@ footer a {
 .checkout-products {
   height: 450px;
   margin-top: 20px;
+  text-transform: uppercase;
 }
 .checkout-products .inner {
   height: 100%;
@@ -1381,6 +1422,10 @@ footer a {
   margin-top: 13px;
 }
 .checkout-products .col1 .details h4 {
+  font-size: 10px;
+  font-weight: 600;
+}
+.checkout-products .col1 .details h5 {
   font-size: 10px;
   font-weight: 600;
 }
@@ -2319,4 +2364,102 @@ footer a {
 }
 .loginbox i {
   margin-left: -40px;
+}
+.tray-total-div {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin-top: -10px;
+}
+.tray-total-div .qty_total {
+  margin-top: 10px;
+}
+
+.checkbtn:hover {
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.deleteButton {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.deleteButton svg {
+  width: 44%;
+}
+.deleteButton:hover,
+.checkbtn:hover {
+  background-color: rgb(237, 56, 56);
+  overflow: visible;
+}
+.bin path {
+  transition: all 0.2s;
+}
+.deleteButton:hover .bin path {
+  fill: #fff;
+}
+.deleteButton:active {
+  transform: scale(0.98);
+}
+.checkbtn .tooltip {
+  --tooltip-color: rgb(41, 41, 41);
+  position: absolute;
+  top: -40px;
+  background-color: var(--tooltip-color);
+  color: white;
+  border-radius: 5px;
+  font-size: 12px;
+  padding: 8px 12px;
+  font-weight: 600;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.105);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  margin-top: -10px;
+  margin-left: -20px;
+  transition: all 0.5s;
+}
+.tooltip {
+  --tooltip-color: rgb(41, 41, 41);
+  position: absolute;
+  top: -40px;
+  background-color: var(--tooltip-color);
+  color: white;
+  border-radius: 5px;
+  font-size: 12px;
+  padding: 8px 12px;
+  font-weight: 600;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.105);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  margin-top: -10px;
+  transition: all 0.5s;
+}
+.tooltip::before {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  transform: rotate(45deg);
+  content: "";
+  background-color: var(--tooltip-color);
+  bottom: -10%;
+}
+.deleteButton:hover .tooltip,
+.checkbtn:hover .tooltip {
+  opacity: 1;
 }

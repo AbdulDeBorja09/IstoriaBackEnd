@@ -96,7 +96,7 @@
                 <li><a class="open-modal" href="#">ABOUT US</a></li>
                 <li><a class="open-modal" href="#">ALBUM</a></li>
                 <li>
-                    <a class="open-modal" href="Login/signup.html">JOIN US </a>
+                    <a class="open-modal" href="Login/signup.php">JOIN US </a>
                 </li>
             </ul>
         </div>

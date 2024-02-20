@@ -90,14 +90,43 @@
             </div>
             <?php  
             }
-              }else{
-              echo '
-              <div class="container text-center" style="padding: 100px;">
-                  <h1>No Available Products yet</h1>
-              </div>
-              ';
-            }
+              }
             ?>
+             <?php 
+          $select_prodcuts = mysqli_query($conn, "SELECT * FROM `products` WHERE category ='coffee' AND status = 'unavailable' ") or die ('query failed');
+          if(mysqli_num_rows($select_prodcuts)>0){
+              while($fetch_products = mysqli_fetch_assoc($select_prodcuts)){
+          ?>
+          <div class="box">
+              <div class="unavailable">
+              <input type="hidden" name="product_id" value="<?php echo $fetch_products['id']; ?>">
+              <div class="enlargebox">
+                  <button class="enlarge btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                      <ion-icon name="search"></ion-icon>
+                  </button>
+              </div>
+              <br />
+                  <input name="product_id" type="hidden" value="<?php echo $fetch_products['id']; ?>">
+                  <input name="product_name" type="hidden" value="<?php echo $fetch_products['name']; ?>">
+                  <input name="product_category" type="hidden" value="<?php echo $fetch_products['image']; ?>">
+                  <input name="product_range type=" hidden value="<?php echo $fetch_products['price_range']; ?>">
+                  <div class="unavailablediv">
+                  <img src="../products/<?php echo $fetch_products['image']; ?>" alt="coffee" />
+                  
+                    <div class="description">
+                      <h5><?php echo $fetch_products['name']; ?></h5>
+                      <h6><?php echo $fetch_products['price_range']; ?></h6>
+                      <h4><i>*UNAVAILABLE</i></h4>
+                  </div>
+
+              </div>
+            </div>
+
+            <?php  
+            }
+              }
+            ?>
+
         </div>
     </div>
     <div style=" padding: 150px">

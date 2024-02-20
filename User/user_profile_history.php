@@ -1,3 +1,17 @@
+<?php
+    include '../connection.php';
+    session_start();
+    $user_id = $_SESSION['user_id'];
+    
+    if (!isset($user_id)){
+        header('location:../login/login.php');
+    }
+    if (isset($_POST['logout'])){
+      session_destroy();
+      header('location:../login/login.php');
+  }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,9 +42,11 @@
                 <h1>09896782912</h1>
                 <h1>ABDULDB09</h1>
                 <h1>91231 purok 4 Dila Bay laguna</h1>
-                <button class="logout2" href="user_profile_history.php">
+                <form method="post">
+                    <button name="logout" class="logout2" >
                     LOGOUT
-                </button>
+                    </button>
+                </form>
             </div>
         </div>
         <div class="col2">

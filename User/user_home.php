@@ -50,7 +50,7 @@
     <section class="products">
         <h1>HAVE A GLIMPSE OF OUR SPECIALS</h1>
         <div style="padding: 30px"></div>
-        <div class="coffe-flex">
+        <div class="coffe-flex container">
             <div class="box">
                 <img src="../assets/Images/5.png" alt="" />
                 <div class="description">

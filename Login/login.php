@@ -12,7 +12,7 @@
     $filter_password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
     $password = mysqli_real_escape_string($conn, $filter_password);
 
-    $select_user = mysqli_query($conn, "SELECT * FROM `user` WHERE username = '$username' AND password = '$password'") or die ('query failed');
+    $select_user = mysqli_query($conn, "SELECT * FROM `user` WHERE email = '$email' AND password = '$password'") or die ('query failed');
     if(mysqli_num_rows($select_user)>0){
       $row = mysqli_fetch_assoc($select_user);
       if($row['type'] == 'admin') {
@@ -31,7 +31,7 @@
         $_SESSION['employee_name'] = $row['name'];
         $_SESSION['employee_name'] = $row['id'];
         sleep(1);
-        header('location:../');
+        header('location:../employee/employee_home.html');
       }
       
       if(isset($_POST['remember'])) {

@@ -27,7 +27,7 @@
             <li><a href="user_products.php">PRODUCTS</a></li>
             <li><a href="user_contact.php">CONTACT US</a></li>
             <li><a href="user_about.php">ABOUT US</a></li>
-            <li><a href="user_album.php">ALBUM</a></li>
+            <li><a href="user_album.php">REVIEWS</a></li>
             <li><a href="../Login/signup.php">JOIN US</a></li>
         </ul>
     </div>

@@ -234,6 +234,7 @@
   color: var(--black1);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
+
 .details .recentOrders table tr:last-child {
   border-bottom: none;
 }
@@ -271,6 +272,312 @@
   padding: 20px;
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
   border-radius: 20px;
+}
+
+.container-box .h2 {
+  text-align: center;
+}
+.products-table {
+  width: 100%;
+}
+.products-table thead {
+  background-color: #f2f2f2;
+  position: sticky;
+  top: 0;
+}
+
+.products-table thead tr th {
+  text-transform: uppercase;
+  /* background-color: var(--black1);
+  color: white; */
+  padding: 5px 5px;
+  font-size: 15px;
+  font-weight: 600;
+
+  text-align: start;
+}
+.products-table {
+  width: 100%;
+}
+.products-table tbody tr td {
+  padding: 0px 5px;
+}
+.products-table tbody tr td:first-child {
+  width: 5%;
+  text-align: center;
+  font-weight: 700;
+}
+.products-table tbody tr td:nth-child(2) {
+  width: 10%;
+}
+.products-table tbody tr td:nth-child(3) {
+  width: 23%;
+}
+.products-table tbody tr td:nth-child(4) {
+  width: 10%;
+}
+.products-table tbody tr td:nth-child(5) {
+  width: 15%;
+}
+.products-table tbody tr td:nth-child(6) {
+  width: 15%;
+}
+.products-table tbody tr td:nth-child(7) {
+  width: 10%;
+  text-align: center;
+}
+.products-table tbody tr td:nth-child(8) {
+  width: 100%;
+}
+.products-table thead tr th:nth-child(8),
+.products-table thead tr th:nth-child(7) {
+  text-align: center;
+}
+.products-edit {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 10px;
+}
+.bin-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgb(49, 49, 49);
+  cursor: pointer;
+  border: var(--black1);
+  transition-duration: 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.bin-bottom {
+  width: 10px;
+  z-index: 2;
+}
+.bin-top {
+  width: 10px;
+  transform-origin: right;
+  transition-duration: 0.3s;
+  z-index: 2;
+}
+.bin-button:hover .bin-top {
+  transform: rotate(45deg);
+}
+.bin-button:hover {
+  background-color: rgb(255, 0, 0);
+}
+.bin-button:active {
+  transform: scale(0.9);
+}
+.garbage {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.3s;
+}
+.bin-button:hover .garbage {
+  animation: throw 0.4s linear;
+}
+.edit-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgb(49, 49, 49);
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+  cursor: pointer;
+  transition-duration: 0.3s;
+  overflow: hidden;
+  position: relative;
+  text-decoration: none !important;
+}
+
+.edit-svgIcon {
+  width: 17px;
+  transition-duration: 0.3s;
+}
+
+.edit-svgIcon path {
+  fill: white;
+}
+
+.edit-button:hover {
+  width: 120px;
+  border-radius: 50px;
+  transition-duration: 0.3s;
+  background-color: rgb(255, 69, 69);
+  align-items: center;
+}
+
+.edit-button:hover .edit-svgIcon {
+  width: 20px;
+  transition-duration: 0.3s;
+  transform: translateY(60%);
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+
+.edit-button::before {
+  display: none;
+  content: "Edit";
+  color: white;
+  transition-duration: 0.3s;
+  font-size: 2px;
+}
+
+.edit-button:hover::before {
+  display: block;
+  padding-right: 10px;
+  font-size: 13px;
+  opacity: 1;
+  transform: translateY(0px);
+  transition-duration: 0.3s;
+}
+.addbtn {
+  width: 140px;
+  height: auto;
+  float: left;
+  transition: 0.5s linear;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  padding: 7px;
+  text-align: center;
+  margin: 0 5px;
+  background: transparent;
+  text-transform: uppercase;
+  font-weight: 700;
+  border: 1px solid var(--black1);
+  border-radius: 3px;
+}
+
+.addbtn:before {
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: 0;
+  height: 4px;
+  width: 100%;
+  border-bottom: 4px solid transparent;
+  border-left: 4px solid transparent;
+  box-sizing: border-box;
+  transform: translateX(100%);
+}
+
+.addbtn:after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  border-top: 4px solid transparent;
+  border-right: 4px solid transparent;
+  box-sizing: border-box;
+  transform: translateX(-100%);
+}
+
+.addbtn:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.addbtn:hover:before {
+  border-color: #262626;
+  height: 100%;
+  transform: translateX(0);
+  transition: 0.3s transform linear, 0.3s height linear 0.3s;
+}
+
+.addbtn:hover:after {
+  border-color: #262626;
+  height: 100%;
+  transform: translateX(0);
+  transition: 0.3s transform linear, 0.3s height linear 0.5s;
+}
+.addbtn ion-icon {
+  font-size: 30px;
+}
+
+.addbutton {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: transparent;
+}
+
+.addmenu {
+  display: flex;
+  justify-content: space-between;
+}
+.brandings {
+  width: 100%;
+  text-align: center;
+}
+.brandings img {
+  width: 70px;
+}
+.brandings .img2 {
+  margin-left: -15px;
+}
+.productmenu {
+  display: flex;
+}
+.addproductsdiv {
+  margin: 30px;
+}
+.addproductsdiv ion-icon {
+  font-size: 30px;
+  padding-top: 20px;
+}
+.addproductsdiv input[type="text"],
+.addproductsdiv input[type="number"],
+.addproductsdiv select {
+  width: 100%;
+  border: 1px solid var(--black1);
+  margin: 10px 0px;
+  font-size: 15px;
+  padding: 10px;
+  border-radius: 6px;
+}
+.addproductsdiv input[type="file"] {
+  width: 100%;
+  font-size: 15px;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+.addsubmitbtn {
+  text-align: center;
+  background-color: var(--black1);
+  border: 1px solid var(--black1);
+  color: white;
+  border-radius: 6px;
+  width: 50%;
+  padding: 10px;
+  font-size: 15px;
+  margin-top: 50px;
+  font-weight: 500;
+}
+.addproductsdiv label {
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.adproduct-submit {
+  display: flex;
+  justify-content: space-around;
 }
 
 @media (max-width: 991px) {
@@ -332,5 +639,15 @@
     position: fixed;
     right: 0;
     left: initial;
+  }
+}
+@keyframes throw {
+  from {
+    transform: translate(-400%, -700%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(0%, 0%);
+    opacity: 1;
   }
 }

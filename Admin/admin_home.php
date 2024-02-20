@@ -49,7 +49,7 @@
             </a>
           </li>
           <li>
-            <a href="admin_products.html">
+            <a href="admin_products.php">
               <span class="icon">
                 <ion-icon name="cafe-outline"></ion-icon>
               </span>
@@ -181,7 +181,7 @@
         </div>
       </div>
     </div>
-    <script src="/Src/Javascript/index.js"></script>
+    <script src="../Src/Javascript/index.js"></script>
     <script
       type="module"
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
