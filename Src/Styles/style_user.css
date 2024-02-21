@@ -1046,13 +1046,14 @@ footer a {
   font-weight: 500;
 }
 
-.product .col2 .inner input[type="number"]:disabled,
+.product .col2 .inner input[type="number"],
 .view-div-2 .quantity input[type="number"]:disabled {
   background-color: white;
   color: var(--browncolor);
   font-weight: 700;
   border-color: #ddd;
   border: 0px;
+  cursor: default;
 }
 .view-div-2 .quantity input {
   font-size: 12px;
@@ -1550,8 +1551,22 @@ footer a {
   font-weight: 700;
 }
 .reciept .maindiv .col1 .detailss h2 {
-  font-weight: 700;
+  font-weight: 500;
   font-size: 13px;
+}
+.reciept .maindiv .col1 .detailss ul li {
+  list-style: none;
+}
+.reciept .maindiv .col1 .detailss ul li {
+  font-size: 10px;
+  margin-left: -20px;
+}
+.receiptheight {
+  height: 450px;
+}
+.receiptheight .inner {
+  overflow-y: auto;
+  height: 100%;
 }
 .reciept .maindiv .col1 .total .sub {
   display: flex;
@@ -1571,7 +1586,7 @@ footer a {
   margin-top: 20px;
 }
 .reciept .maindiv .col1 .box .total {
-  margin-top: 350px;
+  margin-top: 0px;
 }
 .reciept .maindiv .col1 .total h4 {
   font-size: 9px;
@@ -1640,6 +1655,7 @@ footer a {
   margin-left: 10px;
 }
 .reciept .maindiv .col2 .row input::placeholder,
+.reciept .maindiv .col2 .row2 input::placeholder,
 .reciept .maindiv .col2 .row textarea::placeholder {
   font-size: 9px;
   font-weight: 700;
@@ -1689,6 +1705,9 @@ footer a {
 .logout {
   margin: 50px 200px;
   margin-bottom: 250px;
+}
+.edit-profile-form input::placeholder {
+  text-transform: uppercase;
 }
 .profile {
   display: flex;
@@ -2081,10 +2100,11 @@ footer a {
 .maindiv .flexing input,
 .maindiv .flexing textarea {
   border: 1px solid var(--browncolor);
-  font-size: 5;
-  padding: 10px;
+  font-size: 9px;
+  padding: 15px;
   border-radius: 6px;
   margin-top: 20px;
+  font-weight: 600;
 }
 .maindiv .flexing textarea {
   height: 100%;

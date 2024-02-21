@@ -38,7 +38,7 @@
         $_SESSION['employee_name'] = $row['id'];
        
         sleep(1);
-        header('location:professor_home.php');
+        header('location:Employee/attendance.php');
       }
       if(isset($_POST['remember'])) {
         $token = generateToken();

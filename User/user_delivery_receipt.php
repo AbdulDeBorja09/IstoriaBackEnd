@@ -31,13 +31,13 @@
         <div class="return">
             <a href="user_profile.php">VIEW PROFILE</a>
         </div>
-        <?php 
+         <?php 
             $select_orders = mysqli_query($conn, "SELECT * FROM `orders` WHERE reference = '$ref'") or die ('query failed');
                 if(mysqli_num_rows($select_orders)>0){
                   while($fetch_orders = mysqli_fetch_assoc($select_orders)){
                     $time = strtok($fetch_orders["date"], " ");
                     $date = substr(strstr($fetch_orders["date"], " "), 1);
-                    $pickup = explode('|', $fetch_orders["info"]);
+                    $address = explode('|', $fetch_orders["info"]);
 
                     $full_name = $fetch_orders["name"];
                     $last_space_position = strrpos($full_name, " ");
@@ -96,44 +96,32 @@
                     <div class="total">
                         <div class="sub">
                             <h1>SUBTOTAL</h1>
-                            <h2>104.00</h2>
+                            <h2>₱ <?php echo $fetch_orders['total'] ?>.00</h2>
                         </div>
                         <h3>PAID WITH</h3>
-                        <h4>CASH</h4>
+                        <h4><?php echo $fetch_orders['payment'] ?></h4>
                     </div>
                 </div>
             </div>
             <div class="col2">
                 <div class="heading">
-                    <h1>PICK UP</h1>
-                    <h2>YOU CAN PICK IT UP AT 4:20PM</h2>
+                    <h1>DELIVERY</h1>
                 </div>
                 <div class="main">
                     <div class="row">
                         <input type="text" placeholder="<?php echo $fname ?>" disabled />
-                        <input type="text" placeholder="<?php echo $fname ?>" disabled />
+                        <input type="text" placeholder="<?php echo $lname ?>" disabled />
                     </div>
                     <div class="row">
-                        <input type="number" placeholder="<?php echo $fetch_orders['reference'] ?>" disabled />
-                        <input type="number" placeholder="<?php echo $fetch_orders['contact'] ?>" disabled />
+                        <input type="number"  placeholder="<?php echo $fetch_orders['reference'] ?>" disabled />
+                        <input type="number"  placeholder="<?php echo $fetch_orders['contact'] ?>" disabled />
                     </div>
                     <div class="row">
-                        <input type="text" placeholder="<?php echo $pickup[0]?>" disabled />
-                        <input type="text" placeholder="<?php echo $pickup[1]?>" disabled />
+                        <input type="text" placeholder="<?php echo $address[0]?>" disabled />
+                        <input type="text" name="" id="" placeholder="<?php echo $address[1]?>" disabled />
+                        <textarea name="" id="" cols="30" rows="15" placeholder="<?php echo $fetch_orders['note'] ?>" disabled></textarea>
                     </div>
-
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1367.6562945205706!2d121.27078013080597!3d14.176251422419956!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd5f701ef8134d%3A0xc7c0108692658b32!2sIstoria%20Coffee!5e0!3m2!1sen!2sph!4v1707856498946!5m2!1sen!2sph"
-                        height="200" style="border: 0" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-                    <div class="address">
-                        <img src="../assets/Images/maps.png" />
-                        <p>
-                            Istoria Coffee Shop, Brgy. Maitim, Bay, Philippines, 4033,
-                            National Hwy, Manila S Road
-                        </p>
-                    </div>
+                    <div style="padding: 22px"></div>
                     <?php
                     $statuss = $fetch_orders['status'];
 
@@ -181,4 +169,5 @@
     <script src="/Src/Javascript/index.js"></script>
     <script src="/Src/Javascript/main.js"></script>
 </body>
+
 </html>

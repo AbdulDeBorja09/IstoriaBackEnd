@@ -38,12 +38,20 @@
                 <a href="user_profile_edit.php"><img src="../assets/Images/editprofile.png" alt="editprofile" /></a>
             </div>
             <div class="bottom">
-                <h1>ABDUL DE BORJA</h1>
-                <h1>09896782912</h1>
-                <h1>ABDULDB09</h1>
-                <h1>91231 purok 4 Dila Bay laguna</h1>
+            <?php $select_user = mysqli_query($conn, "SELECT * FROM `user` WHERE id = '$user_id' ") or die ('query failed'); 
+                    if(mysqli_num_rows($select_user)>0){
+                        while($fetch_user = mysqli_fetch_assoc($select_user)){
+                    ?>
+            
+                <h1><?php echo $fetch_user['name'] ?></h1>
+                <h1><?php echo $fetch_user['username'] ?></h1>
+                <h1><?php echo $fetch_user['contact'] ?></h1>
+                <h1><?php echo $fetch_user['address'] ?></h1>
                 <a href="user_profile_history.php">VIEW ORDER HISTORY</a>
                 <br />
+                <?php 
+                }
+            }?>
                 <form method="post"><button name="logout" class="logout-button"><span> LOGOUT </span></button></form>
             </div>
         </div>
@@ -53,132 +61,71 @@
             </div>
             <div class="content">
                 <div class="inner">
+                    <?php 
+                        $select_tray = mysqli_query($conn, "SELECT * FROM `orders` WHERE user_id = '$user_id' AND status != 'completed' ") or die ('query failed');
+                        if(mysqli_num_rows($select_tray)>0){
+                            while($fetch_tray = mysqli_fetch_assoc($select_tray)){
+                        ?>
                     <div class="products">
                         <div class="div1">
-                            <h5>02/12/2024 4:25 p.m.</h5>
-                            <h2>3 cappuccino</h2>
-                            <h3>size: 16 oz</h3>
-                            <h4>add ons: espresso shot</h4>
-                            <h6>PICKUP</h6>
+                            <h5><?php echo $fetch_tray['date'] ?></h5>
+                            <h2><?php echo $fetch_tray['product'] ?></h2>
+                            <h3>size: <?php echo $fetch_tray['size'] ?></h3>
+                            <h4><?php echo $fetch_tray['transaction'] ?></h4>
+                            <h6><?php echo $fetch_tray['status'] ?></h6>
                             <a href="user"></a>
                         </div>
-                        <div class="div2">
-                            <a href="user_pickup_receipt.php">
-                                <span class="hover-underline-animation">SEE ORDER</span>
-                                <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="25" height="5"
-                                    viewBox="0 0 46 16">
-                                    <path id="Path_10" data-name="Path 10"
-                                        d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                                        transform="translate(30)"></path>
-                                </svg>
-                            </a>
-                        </div>
+                            <?php
+                            $transaction = $fetch_tray['transaction'];
+
+                            if ($transaction == 'pickup') {
+                                ?>
+                                <div class="div2">
+                                    <a href="user_pickup_receipt.php?ref=<?php echo $fetch_tray['reference'] ?>">
+                                        <span class="hover-underline-animation">SEE ORDER</span>
+                                        <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="25" height="5"
+                                            viewBox="0 0 46 16">
+                                            <path id="Path_10" data-name="Path 10"
+                                                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                                                transform="translate(30)"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                                <?php
+                            } elseif ($transaction == 'delivery') {
+                                ?>
+                                 <div class="div2">
+                                    <a href="user_delivery_receipt.php?ref=<?php echo $fetch_tray['reference'] ?>">
+                                        <span class="hover-underline-animation">SEE ORDER</span>
+                                        <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="25" height="5"
+                                            viewBox="0 0 46 16">
+                                            <path id="Path_10" data-name="Path 10"
+                                                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                                                transform="translate(30)"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                                <?php
+                            } else {
+                                ?>
+                                 <div class="div2">
+                                    <a href="user_profile.php">
+                                        <span class="hover-underline-animation">SEE ORDER</span>
+                                        <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="25" height="5"
+                                            viewBox="0 0 46 16">
+                                            <path id="Path_10" data-name="Path 10"
+                                                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                                                transform="translate(30)"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                                <?php
+                            }                
+                            ?>
                     </div>
-                    <div class="products">
-                        <div class="div1">
-                            <h5>02/12/2024 4:25 p.m.</h5>
-                            <h2>2 cappuccino</h2>
-                            <h3>size: 16 oz</h3>
-                            <h4>add ons: espresso shot</h4>
-                            <h6>PICKUP</h6>
-                            <a href="user"></a>
-                        </div>
-                        <div class="div2">
-                            <a href="user_pickup_receipt.php">
-                                <span class="hover-underline-animation">SEE ORDER</span>
-                                <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="25" height="5"
-                                    viewBox="0 0 46 16">
-                                    <path id="Path_10" data-name="Path 10"
-                                        d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                                        transform="translate(30)"></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div class="div1">
-                            <h5>02/12/2024 4:25 p.m.</h5>
-                            <h2>1 cappuccino</h2>
-                            <h3>size: 16 oz</h3>
-                            <h4>add ons: espresso shot</h4>
-                            <h6>PICKUP</h6>
-                            <a href="user"></a>
-                        </div>
-                        <div class="div2">
-                            <a href="user_pickup_receipt.php">
-                                <span class="hover-underline-animation">SEE ORDER</span>
-                                <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="25" height="5"
-                                    viewBox="0 0 46 16">
-                                    <path id="Path_10" data-name="Path 10"
-                                        d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                                        transform="translate(30)"></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div class="div1">
-                            <h5>02/12/2024 4:25 p.m.</h5>
-                            <h2>1 cappuccino</h2>
-                            <h3>size: 16 oz</h3>
-                            <h4>add ons: espresso shot</h4>
-                            <h6>PICKUP</h6>
-                            <a href="user"></a>
-                        </div>
-                        <div class="div2">
-                            <a href="user_pickup_receipt.php">
-                                <span class="hover-underline-animation">SEE ORDER</span>
-                                <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="25" height="5"
-                                    viewBox="0 0 46 16">
-                                    <path id="Path_10" data-name="Path 10"
-                                        d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                                        transform="translate(30)"></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div class="div1">
-                            <h5>02/12/2024 4:25 p.m.</h5>
-                            <h2>5 cappuccino</h2>
-                            <h3>size: 16 oz</h3>
-                            <h4>add ons: espresso shot</h4>
-                            <h6>PICKUP</h6>
-                            <a href="user"></a>
-                        </div>
-                        <div class="div2">
-                            <a href="user_pickup_receipt.php">
-                                <span class="hover-underline-animation">SEE ORDER</span>
-                                <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="25" height="5"
-                                    viewBox="0 0 46 16">
-                                    <path id="Path_10" data-name="Path 10"
-                                        d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                                        transform="translate(30)"></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div class="div1">
-                            <h5>02/12/2024 4:25 p.m.</h5>
-                            <h2>3 cappuccino</h2>
-                            <h3>size: 16 oz</h3>
-                            <h4>add ons: espresso shot</h4>
-                            <h6>PICKUP</h6>
-                            <a href="user"></a>
-                        </div>
-                        <div class="div2">
-                            <a href="user_pickup_receipt.php">
-                                <span class="hover-underline-animation">SEE ORDER</span>
-                                <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="25" height="5"
-                                    viewBox="0 0 46 16">
-                                    <path id="Path_10" data-name="Path 10"
-                                        d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                                        transform="translate(30)"></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
+                    <?php 
+                    }
+                }?>
                 </div>
             </div>
         </div>

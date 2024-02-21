@@ -61,120 +61,44 @@
                             <td>PRODUCT</td>
                             <td>TIME AND DATE</td>
                             <td>PAID WITH</td>
-                            <td>ADDRESS</td>
+                            <td>TRANSACTION</td>
                             <td>TOTAL</td>
                             <td>STATUS</td>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <h2 class="productss">
-                                    3 AMERICANO, 3 cappuccino, 3 cappuccino, 3 cappuccino
-                                </h2>
-                                <h1>size: 16 oz</h1>
-                                <h1>add ons: espresso shot</h1>
-                                <a href="user_review.php">
-                                    <span>REVIEW</span>
-                                    <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="25" height="5"
-                                        viewBox="0 0 46 16">
-                                        <path id="Path_10" data-name="Path 10"
-                                            d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                                            transform="translate(30)"></path>
-                                    </svg>
-                                </a>
-                                <div class="historyline"></div>
-                            </td>
-                            <td>
-                                <h1>02/12/2024</h1>
-                                <h1>4:03 PM</h1>
-                            </td>
-                            <td>
-                                <h1>CASH</h1>
-                            </td>
-                            <td class="address">
-                                <h1>#221 purok 5 lower dagsian, baguio city, silver gate</h1>
-                            </td>
-                            <td>
-                                <h1>100.00</h1>
-                            </td>
-                            <td>
-                                <h1>COMPLETED</h1>
-                            </td>
-                        </tr>
+                    <?php 
+                        $select_orders = mysqli_query($conn, "SELECT * FROM `orders` WHERE user_id = '$user_id' AND status = 'completed' ") or die ('query failed');
+                        if(mysqli_num_rows($select_orders)>0){
+                            while($fetch_orders= mysqli_fetch_assoc($select_orders)){
+                            $time = strtok($fetch_orders["date"], " ");
+                            $date = substr(strstr($fetch_orders["date"], " "), 1);
+                            $info = explode('|', $fetch_orders["info"]);
+                        ?>
+                      <tr>
+                            <td style="width: 30%;">
+                                <h2 class="productss"><?php echo $fetch_orders['product'] ?></h2>
+                                <h1>size: <?php echo $fetch_orders['size'] ?></h1>
 
-                        <tr>
-                            <td>
-                                <h2 class="productss">3 cappuccino</h2>
-                                <h1>size: 16 oz</h1>
-                                <h1>add ons: espresso shot</h1>
-                                <a href="user_review.php">
-                                    <span>REVIEW</span>
-                                    <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="25" height="5"
-                                        viewBox="0 0 46 16">
-                                        <path id="Path_10" data-name="Path 10"
-                                            d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                                            transform="translate(30)"></path>
-                                    </svg>
-                                </a>
-                                <div class="historyline"></div>
-                            </td>
-                            <td>
-                                <h1>02/12/2024</h1>
-                                <h1>4:03 PM</h1>
-                            </td>
-                            <td>
-                                <h1>CASH</h1>
-                            </td>
-                            <td class="address">
-                                <h1>#221 purok 5 lower dagsian, baguio city, silver gate</h1>
-                            </td>
-                            <td>
-                                <h1>100.00</h1>
-                            </td>
-                            <td>
-                                <h1>COMPLETED</h1>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h2 class="productss">3 AMERICANO, 3 cappuccino</h2>
-                                <h1>size: 16 oz</h1>
-                                <h1>add ons: espresso shot</h1>
-                                <a href="user_review.php">
-                                    <span>REVIEW</span>
-                                    <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="25" height="5"
-                                        viewBox="0 0 46 16">
-                                        <path id="Path_10" data-name="Path 10"
-                                            d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                                            transform="translate(30)"></path>
-                                    </svg>
-                                </a>
-                                <div class="historyline"></div>
-                            </td>
-                            <td>
-                                <h1>02/12/2024</h1>
-                                <h1>4:03 PM</h1>
-                            </td>
-                            <td>
-                                <h1>CASH</h1>
-                            </td>
-                            <td class="address">
-                                <h1>#221 purok 5 lower dagsian, baguio city, silver gate</h1>
-                            </td>
-                            <td>
-                                <h1>100.00</h1>
-                            </td>
-                            <td>
-                                <h1>COMPLETED</h1>
-                            </td>
-                        </tr>
+                                <!-- <?php
+                                    $count = 0;
+                                    $addons = $fetch_orders['addons'];
+                                    $addons = str_replace(['[', ']'], '', $addons); 
 
-                        <tr>
-                            <td>
-                                <h2 class="productss">3 AMERICANO, 3 cappuccino</h2>
-                                <h1>size: 16 oz</h1>
-                                <h1>add ons: espresso shot</h1>
+                                    if (empty(trim($addons))) {
+                                        echo "<h2>ADDONS: None</h2>";
+                                    } else {
+                                        $addonList = explode('|', $addons); 
+                                        echo "<h1>ADDONS: ";
+                                        foreach ($addonList as $addon) {
+                                            
+                                            $addon = str_replace('"', '', $addon);
+                                            echo "$addon</h1>";
+                                        }
+                                        echo "</ul>";
+                                    }
+                                    ?> -->
+                                <h1>TYPE:<?php echo $fetch_orders['type'] ?> </h1>
                                 <a href="user_review.php">
                                     <span>REVIEW</span>
                                     <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="25" height="5"
@@ -187,192 +111,27 @@
                                 <div class="historyline"></div>
                             </td>
                             <td>
-                                <h1>02/12/2024</h1>
-                                <h1>4:03 PM</h1>
+                                <h1><?php echo $date ?></h1>
+                                <h1><?php echo $time ?></h1>
                             </td>
                             <td>
-                                <h1>CASH</h1>
+                                <h1><?php echo $fetch_orders['payment'] ?></h1>
                             </td>
                             <td class="address">
-                                <h1>#221 purok 5 lower dagsian, baguio city, silver gate</h1>
+                                <h1><?php echo $fetch_orders['info'] ?></h1>
                             </td>
                             <td>
-                                <h1>100.00</h1>
+                                <h1><?php echo $fetch_orders['total'] ?>.00</h1>
                             </td>
                             <td>
                                 <h1>COMPLETED</h1>
                             </td>
                         </tr>
-
-                        <tr>
-                            <td>
-                                <h2 class="productss">3 AMERICANO, 3 cappuccino</h2>
-                                <h1>size: 16 oz</h1>
-                                <h1>add ons: espresso shot</h1>
-                                <a href="user_review.php">
-                                    <span>REVIEW</span>
-                                    <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="25" height="5"
-                                        viewBox="0 0 46 16">
-                                        <path id="Path_10" data-name="Path 10"
-                                            d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                                            transform="translate(30)"></path>
-                                    </svg>
-                                </a>
-                                <div class="historyline"></div>
-                            </td>
-                            <td>
-                                <h1>02/12/2024</h1>
-                                <h1>4:03 PM</h1>
-                            </td>
-                            <td>
-                                <h1>CASH</h1>
-                            </td>
-                            <td class="address">
-                                <h1>#221 purok 5 lower dagsian, baguio city, silver gate</h1>
-                            </td>
-                            <td>
-                                <h1>100.00</h1>
-                            </td>
-                            <td>
-                                <h1>COMPLETED</h1>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <h2 class="productss">3 AMERICANO, 3 cappuccino</h2>
-                                <h1>size: 16 oz</h1>
-                                <h1>add ons: espresso shot</h1>
-                                <a href="user_review.php">
-                                    <span>REVIEW</span>
-                                    <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="25" height="5"
-                                        viewBox="0 0 46 16">
-                                        <path id="Path_10" data-name="Path 10"
-                                            d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                                            transform="translate(30)"></path>
-                                    </svg>
-                                </a>
-                                <div class="historyline"></div>
-                            </td>
-                            <td>
-                                <h1>02/12/2024</h1>
-                                <h1>4:03 PM</h1>
-                            </td>
-                            <td>
-                                <h1>CASH</h1>
-                            </td>
-                            <td class="address">
-                                <h1>#221 purok 5 lower dagsian, baguio city, silver gate</h1>
-                            </td>
-                            <td>
-                                <h1>100.00</h1>
-                            </td>
-                            <td>
-                                <h1>COMPLETED</h1>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <h2 class="productss">3 AMERICANO, 3 cappuccino</h2>
-                                <h1>size: 16 oz</h1>
-                                <h1>add ons: espresso shot</h1>
-                                <a href="user_review.php">
-                                    <span>REVIEW</span>
-                                    <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="25" height="5"
-                                        viewBox="0 0 46 16">
-                                        <path id="Path_10" data-name="Path 10"
-                                            d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                                            transform="translate(30)"></path>
-                                    </svg>
-                                </a>
-                                <div class="historyline"></div>
-                            </td>
-                            <td>
-                                <h1>02/12/2024</h1>
-                                <h1>4:03 PM</h1>
-                            </td>
-                            <td>
-                                <h1>CASH</h1>
-                            </td>
-                            <td class="address">
-                                <h1>#221 purok 5 lower dagsian, baguio city, silver gate</h1>
-                            </td>
-                            <td>
-                                <h1>100.00</h1>
-                            </td>
-                            <td>
-                                <h1>COMPLETED</h1>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <h2 class="productss">3 AMERICANO, 3 cappuccino</h2>
-                                <h1>size: 16 oz</h1>
-                                <h1>add ons: espresso shot</h1>
-                                <a href="user_review.php">
-                                    <span>REVIEW</span>
-                                    <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="25" height="5"
-                                        viewBox="0 0 46 16">
-                                        <path id="Path_10" data-name="Path 10"
-                                            d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                                            transform="translate(30)"></path>
-                                    </svg>
-                                </a>
-                                <div class="historyline"></div>
-                            </td>
-                            <td>
-                                <h1>02/12/2024</h1>
-                                <h1>4:03 PM</h1>
-                            </td>
-                            <td>
-                                <h1>CASH</h1>
-                            </td>
-                            <td class="address">
-                                <h1>#221 purok 5 lower dagsian, baguio city, silver gate</h1>
-                            </td>
-                            <td>
-                                <h1>100.00</h1>
-                            </td>
-                            <td>
-                                <h1>COMPLETED</h1>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <h2 class="productss">3 AMERICANO, 3 cappuccino</h2>
-                                <h1>size: 16 oz</h1>
-                                <h1>add ons: espresso shot</h1>
-                                <a href="user_review.php">
-                                    <span>REVIEW</span>
-                                    <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="25" height="5"
-                                        viewBox="0 0 46 16">
-                                        <path id="Path_10" data-name="Path 10"
-                                            d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                                            transform="translate(30)"></path>
-                                    </svg>
-                                </a>
-                                <div class="historyline"></div>
-                            </td>
-                            <td>
-                                <h1>02/12/2024</h1>
-                                <h1>4:03 PM</h1>
-                            </td>
-                            <td>
-                                <h1>CASH</h1>
-                            </td>
-                            <td class="address">
-                                <h1>#221 purok 5 lower dagsian, baguio city, silver gate</h1>
-                            </td>
-                            <td>
-                                <h1>100.00</h1>
-                            </td>
-                            <td>
-                                <h1>COMPLETED</h1>
-                            </td>
-                        </tr>
+                    <?php
+                        }
+                    } 
+                    ?>
+                        
                     </tbody>
                 </table>
             </div>

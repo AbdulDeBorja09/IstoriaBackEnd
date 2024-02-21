@@ -20,7 +20,6 @@
         </div>
     </div>
 </nav>
-
 <div class="fixed-top" id="navbarToggleExternalContent" style="margin-top: 110px">
     <div class="navigations text-center">
         <ul>

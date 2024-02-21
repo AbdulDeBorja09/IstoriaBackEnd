@@ -158,7 +158,7 @@
                             </tr>
                             <?php 
                                 }
-                             }
+                            }
                             ?>
                             
                         </tbody>
@@ -177,9 +177,7 @@
                     if(isset($message)){
                       foreach ($message as $message) {
                       echo'
-                          <div class="alert alert-danger" role="alert text-center p-3"  >
-                          '.$message.'
-                          </div>
+                          
                         ';
                       }
                     }
@@ -422,31 +420,21 @@
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     const totalPriceInput = document.getElementById('total_price');
 
-    // Initialize total price to the product price
     let totalPrice = parseFloat(totalPriceInput.value) || 0;
-
     checkboxes.forEach(function (checkbox) {
         checkbox.addEventListener('change', function () {
-            // Get the addon price
             const addonPrice = parseFloat(this.dataset.price);
-
-            // Update total price based on whether the checkbox is checked or unchecked
             if (this.checked) {
                 totalPrice += addonPrice;
             } else {
                 totalPrice -= addonPrice;
             }
-
-            // Update the total price input value
             totalPriceInput.value = totalPrice.toFixed(2);
+            });
         });
     });
-});
 
-
-
-
-</script>
+    </script>
 
 
     <div style="padding: 50px"></div>

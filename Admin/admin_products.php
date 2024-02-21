@@ -10,7 +10,7 @@
     unlink('image/'.$fetch_delete_image['image']);
 
     mysqli_query($conn, "DELETE FROM `products` WHERE id = '$delete_id'") or die ('query failed');
-    // mysqli_query($conn, "DELETE FROM `cart` WHERE pid = '$delete_id'") or die ('query failed');
+    mysqli_query($conn, "DELETE FROM `tray` WHERE pid = '$delete_id'") or die ('query failed');
     header('location:admin_products.php');
 }
 

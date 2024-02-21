@@ -54,7 +54,7 @@
 </head>
 
 <body>
-    <!-- <?php include 'navbar.php' ?> -->
+    <?php include 'navbar.php' ?>
     <div style="padding: 90px"></div>
 
     <div class="tray-div">
@@ -103,7 +103,7 @@
                                 }?>
                             </h4>
                         </div>
-                        <h6><?php echo $fetch_tray['price']; ?>.00</h6>
+                        <h6>₱ <?php echo $fetch_tray['price']; ?>.00</h6>
                     </div>
                 </div>
                 <div class="col2">
@@ -112,7 +112,7 @@
                         <div class="quantity">
                             <button class="minusBtn" data-index="<?php echo $index;?>">-</button>
                             <input type="hidden" name="update_id" value="<?php echo $fetch_tray['id']; ?>">
-                            <input type="number" class="quantity-input" name="quantity" value="<?php echo $fetch_tray['quantity']; ?>" min="1" max="10" disabled />
+                            <input type="number" class="quantity-input" name="quantity" value="<?php echo $fetch_tray['quantity']; ?>" min="1" max="10"  />
                             <button class="addBtn" data-index="<?php echo $index;?>">+</button>
                             <div> 
                             </div>
@@ -143,7 +143,7 @@
                                 </svg>
                                 <span class="tooltip">Delete</span>
                             </a>
-                            <h6 class="qty_total" data-price="<?php echo $fetch_tray['price']; ?>"><?php echo $total_amt = ($fetch_tray['price']*$fetch_tray['quantity']) ?>.00</h6>
+                            <h6 class="qty_total" data-price="<?php echo $fetch_tray['price']; ?>">₱ <?php echo $total_amt = ($fetch_tray['price']*$fetch_tray['quantity']) ?>.00</h6>
                         </div>
                     </div>
                 </div>
@@ -171,7 +171,7 @@
         <div class="col2">
             <div class="upper">
                 <h1>SUBTOTAL:</h1>
-                <h2 class="sub_total"><?php echo $grand_total ?>.00</h2>
+                <h2 class="sub_total">₱ <?php echo $grand_total ?>.00</h2>
             </div>
             <h3>DELIVERY FEE INCLUDED AT CHECKOUT.</h3>
             <div class="lower">
@@ -229,10 +229,10 @@
         const quantity = parseInt(product.querySelector('.quantity-input').value);
 
         const total = price * quantity;
-        product.querySelector('h6.qty_total').innerText = total.toFixed(2);
+        product.querySelector('h6.qty_total').innerText = "₱ " + total.toFixed(2);
         subtotal += total;
     });
-    document.querySelector('.sub_total').innerText = '$' + subtotal.toFixed(2);
+    document.querySelector('.sub_total').innerText = "₱ " + subtotal.toFixed(2);
     }
 
 </script>
