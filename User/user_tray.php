@@ -155,7 +155,7 @@
               }else{
                 echo '
                 <div class="container text-center" style="padding: 100px;">
-                    <h1>No Product In Your Cart</h1>
+                    <h1>No Product In Your Tray</h1>
                 </div>
                 ';  
               }

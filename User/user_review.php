@@ -2,11 +2,29 @@
     include '../connection.php';
     session_start();
     $user_id = $_SESSION['user_id'];
+    date_default_timezone_set('Asia/Manila');
     
     if (!isset($user_id)){
         header('location:../login/login.php');
     }
     $ref = $_GET['ref'];
+    if (isset($_POST['send'])) {
+        $name = mysqli_real_escape_string($conn, $_POST['name']);
+        $order= mysqli_real_escape_string($conn, $_POST['order']);
+        $comment = mysqli_real_escape_string($conn, $_POST['comment']);
+        $reference = mysqli_real_escape_string($conn, $_POST['reference']);
+        $rating= mysqli_real_escape_string($conn, $_POST['rating']);
+        $date = date('m-d-y');
+
+        $select_product_name = mysqli_query($conn, "SELECT name FROM `review` WHERE reference = '$reference' ") or die('query failed');
+          if (mysqli_num_rows($select_product_name) > 0) {
+              $message[] = "You've already review this order";
+          } else {
+            $insert_product = mysqli_query($conn, "INSERT INTO `review` (`user_id`, `name`, `orders`, `comment`, `rating`, `reference`, `date`)
+            VALUES ('$user_id','$name', '$order', '$comment', '$rating',  '$reference', '$date')") or die('query failed');
+            header('location: user_profile_history.php');
+          }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,26 +51,29 @@
             $select_orders = mysqli_query($conn, "SELECT * FROM `orders` WHERE reference = '$ref'") or die ('query failed');
                 if(mysqli_num_rows($select_orders)>0){
                   while($fetch_orders = mysqli_fetch_assoc($select_orders)){
-
         ?>
-        <div class="reviewform">
-            <div class="text-center">
-                <h2 id="rating-value">0</h2>
+        <form method="post">
+            <div class="reviewform">
+                <div class="text-center">
+                    <input type="hidden" name="rating">
+                    <input type="hidden" name="reference" value="<?php echo $fetch_orders['reference'] ?>">
+                    <h2 id="rating-value">0</h2>
+                </div>
+                <div class="ratingsss">
+                    <span class="rating-star" data-value="1">&#9733;</span>
+                    <span class="rating-star" data-value="2">&#9733;</span>
+                    <span class="rating-star" data-value="3">&#9733;</span>
+                    <span class="rating-star" data-value="4">&#9733;</span>
+                    <span class="rating-star" data-value="5">&#9733;</span>
+                </div>
+                <div class="forms">
+                    <input type="text" name="name" id="" value="<?php echo $fetch_orders['name'] ?>" readonly/>
+                    <input type="text" name="order" id="" value="<?php echo $fetch_orders['product'] ?>" readonly />
+                    <textarea name="comment" id="" cols="30" rows="10" placeholder="COMMENT"></textarea>
+                    <button name="send" type="submit">SEND REVIEW</button>
+                </div>
             </div>
-            <div class="ratingsss">
-                <span class="rating-star" data-value="1">&#9733;</span>
-                <span class="rating-star" data-value="2">&#9733;</span>
-                <span class="rating-star" data-value="3">&#9733;</span>
-                <span class="rating-star" data-value="4">&#9733;</span>
-                <span class="rating-star" data-value="5">&#9733;</span>
-            </div>
-            <div class="forms">
-                <input type="text" name="" id="" placeholder="USERNAME" />
-                <input type="text" name="" id="" placeholder="ORDER" />
-                <textarea name="comment" id="" cols="30" rows="10" placeholder="COMMENT"></textarea>
-                <a href="">SEND REVIEW</a>
-            </div>
-        </div>
+        </form>
         <?php
             }
         } ?>
@@ -62,12 +83,14 @@
     function initializeStarRating() {
         const stars = document.querySelectorAll(".rating-star");
         const ratingValue = document.getElementById("rating-value");
+        const ratingInput = document.querySelector("input[name='rating']");
         let rating;
 
         stars.forEach((star) => {
             star.addEventListener("click", () => {
                 rating = star.getAttribute("data-value");
                 ratingValue.textContent = `${rating}`;
+                ratingInput.value = rating;
                 highlightSelectedStars(rating);
             });
 

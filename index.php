@@ -11,7 +11,7 @@
     function generateToken() {
         return bin2hex(random_bytes(32));
     }
-  if(isset($_POST['login'])){
+    if(isset($_POST['login'])){
     
     $filter_email = filter_var($_POST['email'], FILTER_SANITIZE_STRING);
     $email = mysqli_real_escape_string($conn, $filter_email);
@@ -48,6 +48,8 @@
     else{
       header('location:Admin/admin_home.php');  
     }
+
+
   }
 ?>
 <!DOCTYPE html>

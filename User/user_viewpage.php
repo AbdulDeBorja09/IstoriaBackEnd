@@ -45,6 +45,17 @@
           $message[] = 'Product successfuly added in your cart';
         }
       }
+      $select_review = mysqli_query($conn, "SELECT * FROM `review`") or die ('query failed');
+        $total_ratings = 0;
+        $num_of_reviews = 0;
+        
+        while($fetch_review = mysqli_fetch_assoc($select_review)){
+            $total_ratings += $fetch_review['rating'];
+            $num_of_reviews++;
+        }
+        $average_rating = $num_of_reviews > 0 ? round($total_ratings / $num_of_reviews, 1) : 0;
+        $average_stars = str_repeat('<ion-icon name="star"></ion-icon>', $average_rating);
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -198,13 +209,13 @@
         <div class="star-rating-container">
             <div class="overallrating">
                 <div class="starstatic">
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
+                    <?php echo $average_stars; ?>
                 </div>
-                <p>35 REVIEWS</p>
+                <?php
+                $select_review = mysqli_query($conn, "SELECT * FROM `review`") or die ('queryfailed');
+                $num_of_review = mysqli_num_rows($select_review);
+                ?>
+                <p><?php echo $num_of_review ?> REVIEWS</p>
             </div>
             <div class="detailrating">
                 <div class="guidestar">
@@ -237,162 +248,35 @@
         <hr />
         <div class="reviewsrcollbox">
             <div class="scrollbox">
+
+
+            <?php
+                $review_query = mysqli_query($conn, "SELECT * FROM `review`") or die ('query failed');
+                if(mysqli_num_rows($review_query) > 0){
+                    while($fetch_review = mysqli_fetch_assoc($review_query)){
+                    $user_rating = str_repeat('<ion-icon name="star"></ion-icon>', $fetch_review['rating']);
+            ?>
                 <div class="reivewbox">
                     <div class="reviewtop">
                         <img src="../assets/Images/profile2.png" width="50px" alt="profile2" />
                         <div class="reviewdets">
                             <div class="reviewdetstars">
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                                <p>02/10/2024</p>
+                                <?php echo $user_rating ?>
+                                <p><?php echo $fetch_review['date']?></p>
                             </div>
-                            <h6>ANONYMOUS USER</h6>
-                            <h5>CAPPUCINO, ICED 22 OZ</h5>
+                            <h6><?php echo $fetch_review['name']?></h6>
+                            <h5><?php echo $fetch_review['orders']?> </h5>
                         </div>
                     </div>
                     <div class="reviewbot">
-                        <p>
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil
-                            excepturi beatae, nisi doloribus atque optio sapiente dolorem
-                            ipsa, deleniti labore blanditiis quae non ipsam et voluptatum
-                            repellendus assumenda unde aliquid.
-                        </p>
+                        <p><?php echo $fetch_review['comment']?></p>
                         <hr />
                     </div>
                 </div>
-                <div class="reivewbox">
-                    <div class="reviewtop">
-                        <img src="../assets/Images/profile2.png" width="50px" alt="profile2" />
-                        <div class="reviewdets">
-                            <div class="reviewdetstars">
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                                <p>02/10/2024</p>
-                            </div>
-                            <h6>ANONYMOUS USER</h6>
-                            <h5>CAPPUCINO, ICED 22 OZ</h5>
-                        </div>
-                    </div>
-                    <div class="reviewbot">
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-                            possimus maxime quam fuga cum, eaque commodi asperiores vitae
-                            minus laboriosam earum voluptatem eum iste ea expedita eius non
-                            autem repellat?
-                        </p>
-                        <hr />
-                    </div>
-                </div>
-                <div class="reivewbox">
-                    <div class="reviewtop">
-                        <img src="../assets/Images/profile2.png" width="50px" alt="profile" />
-                        <div class="reviewdets">
-                            <div class="reviewdetstars">
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                                <p>02/10/2024</p>
-                            </div>
-                            <h6>ANONYMOUS USER</h6>
-                            <h5>CAPPUCINO, ICED 22 OZ</h5>
-                        </div>
-                    </div>
-                    <div class="reviewbot">
-                        <p>
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil
-                            excepturi beatae, nisi doloribus atque optio sapiente dolorem
-                            ipsa, deleniti labore blanditiis quae non ipsam et voluptatum
-                            repellendus assumenda unde aliquid.
-                        </p>
-                        <hr />
-                    </div>
-                </div>
-                <div class="reivewbox">
-                    <div class="reviewtop">
-                        <img src="../assets/Images/profile2.png" width="50px" alt="profile2" />
-                        <div class="reviewdets">
-                            <div class="reviewdetstars">
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                                <p>02/10/2024</p>
-                            </div>
-                            <h6>ANONYMOUS USER</h6>
-                            <h5>CAPPUCINO, ICED 22 OZ</h5>
-                        </div>
-                    </div>
-                    <div class="reviewbot">
-                        <p>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                            Labore, harum omnis laboriosam hic veniam iste expedita magni
-                            animi ipsa deleniti quasi id eaque eum dignissimos odio.
-                            Deserunt id iusto ullam!
-                        </p>
-                        <hr />
-                    </div>
-                </div>
-                <div class="reivewbox">
-                    <div class="reviewtop">
-                        <img src="../assets/Images/profile2.png" width="50px" alt="profile2" />
-                        <div class="reviewdets">
-                            <div class="reviewdetstars">
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                                <p>02/10/2024</p>
-                            </div>
-                            <h6>ANONYMOUS USER</h6>
-                            <h5>CAPPUCINO, ICED 22 OZ</h5>
-                        </div>
-                    </div>
-                    <div class="reviewbot">
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
-                            dolore ullam natus labore! Minus deserunt delectus animi, ipsum
-                            totam facilis voluptatum illo, enim sint sapiente impedit
-                            eligendi eius? Repellendus, ut.
-                        </p>
-                        <hr />
-                    </div>
-                </div>
-                <div class="reivewbox">
-                    <div class="reviewtop">
-                        <img src="../assets/Images/profile2.png" width="50px" alt="profile2" />
-                        <div class="reviewdets">
-                            <div class="reviewdetstars">
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                                <p>02/10/2024</p>
-                            </div>
-                            <h6>ANONYMOUS USER</h6>
-                            <h5>CAPPUCINO, ICED 22 OZ</h5>
-                        </div>
-                    </div>
-                    <div class="reviewbot">
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Inventore dignissimos tempore cupiditate perspiciatis culpa
-                            voluptatem explicabo, sunt ullam nam nemo minus voluptatum
-                            laudantium illo iusto voluptates facere ex facilis deleniti.
-                        </p>
-                        <hr />
-                    </div>
-                </div>
+                <?php 
+                }
+            }
+                ?>
             </div>
         </div>
     </div>

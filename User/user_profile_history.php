@@ -38,10 +38,18 @@
                 <a href="user_profile_edit.php"><img src="../assets/Images/editprofile.png" alt="editprofile" /></a>
             </div>
             <div class="bottom">
-                <h1>ABDUL DE BORJA</h1>
-                <h1>09896782912</h1>
-                <h1>ABDULDB09</h1>
-                <h1>91231 purok 4 Dila Bay laguna</h1>
+                <?php $select_user = mysqli_query($conn, "SELECT * FROM `user` WHERE id = '$user_id' ") or die ('query failed'); 
+                    if(mysqli_num_rows($select_user)>0){
+                        while($fetch_user = mysqli_fetch_assoc($select_user)){
+                    ?>
+            
+                <h1><?php echo $fetch_user['name'] ?></h1>
+                <h1><?php echo $fetch_user['username'] ?></h1>
+                <h1><?php echo $fetch_user['contact'] ?></h1>
+                <h1><?php echo $fetch_user['address'] ?></h1>
+                <?php 
+                }
+             }?>
                 <form method="post">
                     <button name="logout" class="logout2" >
                     LOGOUT
@@ -74,40 +82,36 @@
                             $time = strtok($fetch_orders["date"], " ");
                             $date = substr(strstr($fetch_orders["date"], " "), 1);
                             $info = explode('|', $fetch_orders["info"]);
+                            // $ref = $fetch_orders['reference'];
                         ?>
                       <tr>
                             <td style="width: 30%;">
                                 <h2 class="productss"><?php echo $fetch_orders['product'] ?></h2>
                                 <h1>size: <?php echo $fetch_orders['size'] ?></h1>
-
-                                <!-- <?php
-                                    $count = 0;
-                                    $addons = $fetch_orders['addons'];
-                                    $addons = str_replace(['[', ']'], '', $addons); 
-
-                                    if (empty(trim($addons))) {
-                                        echo "<h2>ADDONS: None</h2>";
-                                    } else {
-                                        $addonList = explode('|', $addons); 
-                                        echo "<h1>ADDONS: ";
-                                        foreach ($addonList as $addon) {
-                                            
-                                            $addon = str_replace('"', '', $addon);
-                                            echo "$addon</h1>";
-                                        }
-                                        echo "</ul>";
-                                    }
-                                    ?> -->
-                                <h1>TYPE:<?php echo $fetch_orders['type'] ?> </h1>
+                                <?php
+                                $ref = $fetch_orders['reference'];
+                                $review_query = mysqli_query($conn, "SELECT * FROM `review` WHERE reference = '$ref'") or die ('query failed');
+                                if(mysqli_num_rows($review_query) > 0){
+                                ?>
+                                <a style="cursor: default;">
+                                    <span>COMPLETED</span>
+                                </a>
+                                <?php 
+                                }else{
+                                ?>
                                 <a href="user_review.php?ref=<?php echo $fetch_orders['reference'] ?>">
-                                    <span>REVIEW</span>
+                                    <span>TO REVIEW</span>
                                     <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="25" height="5"
                                         viewBox="0 0 46 16">
                                         <path id="Path_10" data-name="Path 10"
                                             d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
                                             transform="translate(30)"></path>
                                     </svg>
-                                </a>
+                                 </a>
+                                <?php
+                                } 
+                                ?>
+                                
                                 <div class="historyline"></div>
                             </td>
                             <td>
@@ -118,7 +122,9 @@
                                 <h1><?php echo $fetch_orders['payment'] ?></h1>
                             </td>
                             <td class="address">
-                                <h1><?php echo $fetch_orders['info'] ?></h1>
+                                <b><?php echo $fetch_orders['transaction'] ?></b>
+                                <h1><?php echo $info[0] ?></h1>
+                                <h1><?php echo $info[1] ?></h1>
                             </td>
                             <td>
                                 <h1><?php echo $fetch_orders['total'] ?>.00</h1>
@@ -137,6 +143,7 @@
             </div>
         </div>
     </div>
+    <div style="padding: 80px;"></div>
     <?php include 'footer.php' ?>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

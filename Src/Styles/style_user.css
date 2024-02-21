@@ -646,10 +646,14 @@ footer a {
 .overallrating {
   margin-right: 10px;
 }
+.overallrating .starstatic {
+  width: 100px;
+}
 
 .starstatic {
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
 }
 .starstatic ion-icon {
   margin-right: 5px;
@@ -1997,6 +2001,11 @@ footer a {
 }
 .history-table tr .address {
   width: 200px;
+  margin-top: -10px;
+  padding-top: 0px;
+}
+.history-table tr .address b {
+  font-size: 10px;
 }
 .history-table tr td a:hover {
   color: #a6a6a6;
@@ -2158,6 +2167,7 @@ footer a {
 
 .reviewform {
   margin: 50px 600px;
+  text-transform: uppercase;
 }
 .reviewform input,
 .reviewform textarea {
@@ -2167,6 +2177,7 @@ footer a {
   font-weight: 700;
   padding: 10px;
   font-size: 9px;
+  text-transform: uppercase;
 }
 .forms {
   display: flex;
@@ -2179,7 +2190,7 @@ footer a {
   font-weight: 700;
   width: 100%;
 }
-.forms a {
+.forms button {
   padding: 10px;
   width: 100%;
   margin-top: 40px;
