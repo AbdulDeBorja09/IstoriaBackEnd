@@ -99,7 +99,7 @@
                                     }
                                     ?> -->
                                 <h1>TYPE:<?php echo $fetch_orders['type'] ?> </h1>
-                                <a href="user_review.php">
+                                <a href="user_review.php?ref=<?php echo $fetch_orders['reference'] ?>">
                                     <span>REVIEW</span>
                                     <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="25" height="5"
                                         viewBox="0 0 46 16">
@@ -131,7 +131,7 @@
                         }
                     } 
                     ?>
-                        
+
                     </tbody>
                 </table>
             </div>

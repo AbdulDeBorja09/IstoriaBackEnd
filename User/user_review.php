@@ -6,7 +6,7 @@
     if (!isset($user_id)){
         header('location:../login/login.php');
     }
-
+    $ref = $_GET['ref'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +29,16 @@
             <button onclick="history.back()">RETURN TO ACCOUNT DETAILS</button>
         </div>
         <h1>SEND US A REVIEW!</h1>
+        <?php 
+            $select_orders = mysqli_query($conn, "SELECT * FROM `orders` WHERE reference = '$ref'") or die ('query failed');
+                if(mysqli_num_rows($select_orders)>0){
+                  while($fetch_orders = mysqli_fetch_assoc($select_orders)){
+
+        ?>
         <div class="reviewform">
+            <div class="text-center">
+                <h2 id="rating-value">0</h2>
+            </div>
             <div class="ratingsss">
                 <span class="rating-star" data-value="1">&#9733;</span>
                 <span class="rating-star" data-value="2">&#9733;</span>
@@ -40,10 +49,13 @@
             <div class="forms">
                 <input type="text" name="" id="" placeholder="USERNAME" />
                 <input type="text" name="" id="" placeholder="ORDER" />
-                <textarea name="" id="" cols="30" rows="10" placeholder="COMMENT"></textarea>
+                <textarea name="comment" id="" cols="30" rows="10" placeholder="COMMENT"></textarea>
                 <a href="">SEND REVIEW</a>
             </div>
         </div>
+        <?php
+            }
+        } ?>
     </div>
 
     <script>
@@ -55,7 +67,7 @@
         stars.forEach((star) => {
             star.addEventListener("click", () => {
                 rating = star.getAttribute("data-value");
-                ratingValue.textContent = `You rated ${rating} stars.`;
+                ratingValue.textContent = `${rating}`;
                 highlightSelectedStars(rating);
             });
 
