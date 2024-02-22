@@ -257,6 +257,7 @@
 }
 .details .recentOrders table tr td:last-child {
   text-align: end;
+  text-transform: uppercase;
 }
 .details .recentOrders table tr td:nth-child(2) {
   text-align: end;

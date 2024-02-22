@@ -35,10 +35,9 @@
         
       }else if($row['type'] == 'employee') {
         $_SESSION['employee_name'] = $row['name'];
-        $_SESSION['employee_name'] = $row['id'];
-       
+        $_SESSION['employee_id'] = $row['id'];
         sleep(1);
-        header('location:Employee/attendance.php');
+        header('location:../employee/employee_home.php');
       }
       if(isset($_POST['remember'])) {
         $token = generateToken();

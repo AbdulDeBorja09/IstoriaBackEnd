@@ -15,7 +15,7 @@
         $contact = mysqli_real_escape_string($conn, $_POST['contact']);
         $info= mysqli_real_escape_string($conn, $_POST['address'].' | '.$_POST['landmark']);
         $total = mysqli_real_escape_string($conn, $_POST['total']);
-        $payment = mysqli_real_escape_string($conn, $_POST['payment']);
+        $payment = mysqli_real_escape_string($conn, $_POST['payment'].' '.$_POST['gcashnumber']);
         $note = mysqli_real_escape_string($conn, $_POST['note']);
         $transaction = mysqli_real_escape_string($conn, $_POST['transaction']);
         $user_id = $_SESSION['user_id']; 
@@ -83,13 +83,13 @@
             </div>
             <h3>PAY WITH:</h3>
             <div class="payment">
-                <input type="radio" class="btn-check" name="payment" value="gcash" id="gcash" autocomplete="off" checked />
+                <input type="radio" class="btn-check" name="payment" value="gcash" id="gcash" autocomplete="off"  />
                 <label class="btn" for="gcash">G-CASH</label>
 
-                <input type="radio" class="btn-check" name="payment" value="cash" id="cash" autocomplete="off" />
+                <input type="radio" class="btn-check" name="payment" value="cash" id="cash" autocomplete="off" checked/>
                 <label class="btn" for="cash">CASH</label>
             </div>
-            <input class="gcash" type="number" placeholder="G-CASH NUMBER" />
+            <input name="gcashnumber" class="gcash" type="number" placeholder="G-CASH NUMBER" />
         </div>
 
         <div class="checkout-div2">
@@ -164,6 +164,25 @@
     </div>
     </form>
     <?php include 'footer.php' ?>
+    <script>
+    $(document).ready(function() {
+        function handlePaymentSelection() {
+            var gcashInput = $('.gcash');
+            var gcashRadio = $('#gcash');
+            var cashRadio = $('#cash');
+
+            if (gcashRadio.is(':checked')) {
+                gcashInput.prop('required', true);
+                gcashInput.prop('readonly', false);
+            } else {
+                gcashInput.prop('required', false);
+                gcashInput.prop('readonly', true);
+                gcashInput.val('');
+            }
+        }
+        $('.btn-check[name="payment"]').on('change', handlePaymentSelection);
+    });
+    </script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

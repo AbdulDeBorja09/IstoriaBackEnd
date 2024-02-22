@@ -16,22 +16,19 @@
     if(mysqli_num_rows($select_user)>0){
       $row = mysqli_fetch_assoc($select_user);
       if($row['type'] == 'admin') {
-        $_SESSION['admin_name'] = $row['name'];
-        $id = $_SESSION['id'];
+        $_SESSION['id'] - $row['id'];
         sleep(1);
         header('location:../Admin/admin_home.php');
         
       }else if($row['type'] == 'user') {
-        $_SESSION['user_name'] = $row['name'];
         $_SESSION['user_id'] = $row['id'];
         sleep(1);
         header('location:../user/user_home.php');
         
       }else if($row['type'] == 'employee') {
-        $_SESSION['employee_name'] = $row['name'];
-        $_SESSION['employee_name'] = $row['id'];
+        $_SESSION['employee_id'] = $row['id'];
         sleep(1);
-        header('location:../employee/employee_home.html');
+        header('location:../employee/employee_home.php');
       }
       
       if(isset($_POST['remember'])) {
