@@ -72,8 +72,12 @@
                                 <?php
                                     $count = 0;
                                     $addons = $fetch_orders['addons'];
-                                    $addons = str_replace(['[', ']'], '', $addons); 
-
+                                    $addons = preg_replace_callback('/\[([^\]]*)\]/', function($matches) {
+                                        return str_replace(',', '###COMMA###', $matches[0]);
+                                    }, $addons);
+                                    $addons = str_replace(['[', ']', ','], '', $addons);
+                                    $addons = str_replace('###COMMA###', ',', $addons);
+                                    $addonList = explode('|', $addons);
                                     if (empty(trim($addons))) {
                                         echo "<h2>ADDONS: None</h2>";
                                     } else {
@@ -83,7 +87,7 @@
                                         for ($i = 0; $i < count($addonList) - 1; $i++) {
                                             $count++;
                                             $addon = str_replace('"', '', $addonList[$i]);
-                                            echo "<li>ITEM $count: $addon</li>";
+                                            echo "<li><b>ITEM $count:</b> $addon</li>";
                                         }
                                         echo "</ul>";
                                     }
@@ -91,14 +95,13 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="total">
                         <div class="sub">
                             <h1>SUBTOTAL</h1>
                             <h2>₱ <?php echo $fetch_orders['total'] ?>.00</h2>
                         </div>
                         <h3>PAID WITH</h3>
-                        <h4>CASH</h4>
+                        <h4><?php echo $fetch_orders['payment'] ?></h4>
                     </div>
                 </div>
             </div>

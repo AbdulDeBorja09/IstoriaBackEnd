@@ -6,6 +6,24 @@
     if (!isset($user_id)){
         header('location:../login/login.php');
     }
+    $sort_order = "";
+    if (isset($_GET['sort'])) {
+        $sort_option = $_GET['sort'];
+        switch ($sort_option) {
+            case 'low_high':
+                $sort_order = "ORDER BY price ASC";
+                break;
+            case 'high_low':
+                $sort_order = "ORDER BY price DESC";
+                break;
+            case 'alphabetical':
+                $sort_order = "ORDER BY name ASC";
+                break;
+            default:
+                $sort_order = ""; 
+                break;
+        }
+    }
 
 ?>
 
@@ -47,15 +65,15 @@
                 SORT BY:
             </button>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Price: Low - High</a></li>
-                <li><a class="dropdown-item" href="#">Price: Hgih - Low</a></li>
-                <li><a class="dropdown-item" href="#">Alpabethically</a></li>
+                <li><a class="dropdown-item" href="?sort=low_high">Price: Low - High</a></li>
+                <li><a class="dropdown-item" href="?sort=high_low">Price: High - Low</a></li>
+                <li><a class="dropdown-item" href="?sort=alphabetical">Alphabetically</a></li>
             </ul>
         </div>
 
         <div class="coffe-flex">
             <?php 
-          $select_prodcuts = mysqli_query($conn, "SELECT * FROM `products` WHERE category ='coffee' ") or die ('query failed');
+          $select_prodcuts = mysqli_query($conn, "SELECT * FROM `products` WHERE category ='coffee' $sort_order") or die ('query failed');
           if(mysqli_num_rows($select_prodcuts)>0){
               while($fetch_products = mysqli_fetch_assoc($select_prodcuts)){
           ?>
@@ -70,13 +88,10 @@
                     <br />
                     <a class="viewpagelink" href="user_viewpage.php?pid=<?php echo $fetch_products['id']; ?>">
                         <input name="product_id" type="hidden" value="<?php echo $fetch_products['id']; ?>">
-                        <input name="product_name" type="hidden" value="<?php echo $fetch_products['name']; ?>">
-                        <input name="product_category" type="hidden" value="<?php echo $fetch_products['image']; ?>">
-                        <input name="product_range type=" hidden value="<?php echo $fetch_products['price_range']; ?>">
                         <img src="../products/<?php echo $fetch_products['image']; ?>" alt="coffee" />
                         <div class="description">
                             <h5><?php echo $fetch_products['name']; ?></h5>
-                            <h6><?php echo $fetch_products['price_range']; ?></h6>
+                            <h6>₱ <?php echo $fetch_products['price']; ?>.00 - <?php echo $fetch_products['price']; ?>.00</h6>
                             <div class="star">
                                 <ion-icon name="star"></ion-icon>
                                 <ion-icon name="star"></ion-icon>
@@ -218,24 +233,15 @@
         </div>
     </div>
     <script>
-    // Get the modal
     var modal = document.getElementById("exampleModal");
-
-    // Add event listener to all buttons with class "enlarge"
     var enlargeButtons = document.querySelectorAll(".enlarge");
     enlargeButtons.forEach(function(button) {
         button.addEventListener('click', function() {
-            // Get product ID from data attribute
             var productId = this.getAttribute("data-product-id");
-
-            // Make AJAX call to retrieve product details based on ID
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4 && xhr.status == 200) {
-                    // Parse response as JSON
                     var product = JSON.parse(xhr.responseText);
-
-                    // Populate modal with product details
                     modal.querySelector(".modal-coffee-img").src = "../assets/Images/" + product
                         .image;
                     modal.querySelector("h1").innerText = product.name;

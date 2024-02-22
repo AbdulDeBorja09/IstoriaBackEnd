@@ -25,10 +25,16 @@
             foreach ($_POST['addons'] as $addon_name => $addon_price) {
                 
                 $selected_addons[] = $addon_name;
-                // Add addon price to the total price
                 $total_price += $addon_price;
             }
         }
+        if ($product_size == '22 oz') {
+            $total_price += 20;
+        }
+        if ($product_type == 'iced') {
+            $total_price += 10;
+        }
+       
         $total_price += $product_price;
         $tray_num = mysqli_query($conn, "SELECT * FROM `tray` 
         WHERE size = '$product_size'

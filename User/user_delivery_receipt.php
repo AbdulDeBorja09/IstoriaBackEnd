@@ -72,8 +72,12 @@
                                 <?php
                                     $count = 0;
                                     $addons = $fetch_orders['addons'];
-                                    $addons = str_replace(['[', ']'], '', $addons); 
-
+                                    $addons = preg_replace_callback('/\[([^\]]*)\]/', function($matches) {
+                                        return str_replace(',', '###COMMA###', $matches[0]);
+                                    }, $addons);
+                                    $addons = str_replace(['[', ']', ','], '', $addons);
+                                    $addons = str_replace('###COMMA###', ',', $addons);
+                                    $addonList = explode('|', $addons);
                                     if (empty(trim($addons))) {
                                         echo "<h2>ADDONS: None</h2>";
                                     } else {
@@ -83,11 +87,11 @@
                                         for ($i = 0; $i < count($addonList) - 1; $i++) {
                                             $count++;
                                             $addon = str_replace('"', '', $addonList[$i]);
-                                            echo "<li>ITEM $count: $addon</li>";
+                                            echo "<li><b>ITEM $count:</b> $addon</li>";
                                         }
                                         echo "</ul>";
                                     }
-                                    ?> 
+                                    ?>
                             </div>
                         </div>
                     </div>

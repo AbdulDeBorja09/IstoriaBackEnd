@@ -96,11 +96,12 @@
                             <h2><?php echo $fetch_tray['name']; ?></h2>
                             <h3>OPTION: <?php echo $fetch_tray['type']; ?></h3>
                             <h3>SIZE: <?php echo $fetch_tray['size']; ?></h3>
-                            <h4><?php $addons = explode(",", $fetch_tray['addons']);
-                                foreach ($addons as $addon) {
-                                    $cleaned_addon = trim($addon, '[]"');
-                                    echo $cleaned_addon . ", ";
-                                }?>
+                            <h4><h4><?php 
+    $addons = explode(",", $fetch_tray['addons']);
+    $cleaned_addons = array_map('trim', $addons, array_fill(0, count($addons), '[]"'));
+    echo implode(", ", $cleaned_addons);
+?></h4>
+
                             </h4>
                         </div>
                         <h6>₱ <?php echo $fetch_tray['price']; ?>.00</h6>
