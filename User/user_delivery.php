@@ -30,7 +30,7 @@
                 $products[] = $tray_item['quantity'].' '.$tray_item['name'];
                 $size[] = $tray_item['size'];
                 $type[] = $tray_item['type'];
-                $addons[] = $tray_item['addons']. ' | ';
+                $addons[] = ' | '.$tray_item['addons'];
 
             }
         }

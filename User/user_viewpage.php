@@ -116,10 +116,10 @@
                     <input type="radio" class="btn-check" name="product_type" id="option6" autocomplete="off" value="iced"/>
                     <label class="btn" for="option6">ICED</label>
                     <h6>SIZE</h6>
-                    <input type="radio" class="btn-check" name="product_size" id="small" autocomplete="off" checked  value="16oz"/>
+                    <input type="radio" class="btn-check" name="product_size" id="small" autocomplete="off" checked  value="16 oz"/>
                     <label class="btn" for="small">16 OZ</label>
 
-                    <input type="radio" class="btn-check" name="product_size" id="large" autocomplete="off" value="22oz"/>
+                    <input type="radio" class="btn-check" name="product_size" id="large" autocomplete="off" value="22 oz"/>
                     <label class="btn" for="large">22 OZ</label>
                     <h6>ADD ONS</h6>
                     <table class="viewaddonts-table w-50" style="background-color: #f6f3f1">
@@ -261,7 +261,17 @@
                         <img src="../assets/Images/profile2.png" width="50px" alt="profile2" />
                         <div class="reviewdets">
                             <div class="reviewdetstars">
-                                <?php echo $user_rating ?>
+                               <div class="userreviewstardiv">
+                                        <?php 
+                                        if ($user_rating > 0) {
+                                            echo '<div class="userreviewstardiv">' . $user_rating . '</div>';
+                                        } else {
+                                            echo '<div class="userreviewstardiv">
+                                            <ion-icon name="star-outline"></ion-icon>
+                                            </div>';
+                                        }
+                                        ?>
+                               </div>
                                 <p><?php echo $fetch_review['date']?></p>
                             </div>
                             <h6><?php echo $fetch_review['name']?></h6>

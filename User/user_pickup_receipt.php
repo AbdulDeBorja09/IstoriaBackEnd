@@ -80,15 +80,14 @@
                                         $addonList = explode('|', $addons); 
                                         echo "<h2>ADDONS:</h2>";
                                         echo "<ul>";
-                                        foreach ($addonList as $addon) {
-                                            $count ++;
-                                            
-                                            $addon = str_replace('"', '', $addon);
+                                        for ($i = 0; $i < count($addonList) - 1; $i++) {
+                                            $count++;
+                                            $addon = str_replace('"', '', $addonList[$i]);
                                             echo "<li>ITEM $count: $addon</li>";
                                         }
                                         echo "</ul>";
                                     }
-                                    ?> 
+                                    ?>
                             </div>
                         </div>
                     </div>
@@ -96,7 +95,7 @@
                     <div class="total">
                         <div class="sub">
                             <h1>SUBTOTAL</h1>
-                            <h2>104.00</h2>
+                            <h2>₱ <?php echo $fetch_orders['total'] ?>.00</h2>
                         </div>
                         <h3>PAID WITH</h3>
                         <h4>CASH</h4>
@@ -106,7 +105,7 @@
             <div class="col2">
                 <div class="heading">
                     <h1>PICK UP</h1>
-                    <h2>YOU CAN PICK IT UP AT 4:20PM</h2>
+                    <h2>YOU CAN PICK IT UP AT <?php echo $pickup[1]?></h2>
                 </div>
                 <div class="main">
                     <div class="row">
@@ -149,16 +148,16 @@
                         ?>
                         <div class="status">
                             <h1>ORDER STATUS:</h1>
-                            <img src="../assets/Images/prep.png" />
-                            <h2>YOUR ORDER IS READY</h2>
+                            <img src="../assets/Images/ready.png" />
+                            <h2>YOUR ORDER IS READY FOR PICKUP</h2>
                         </div>
                         <?php
                     } else {
                         ?>
                         <div class="status">
                             <h1>ORDER STATUS:</h1>
-                            <img src="../assets/Images/prep.png" />
-                            <h2>YOUR ORDER IS COMPLETED</h2>
+                            <img src="../assets/Images/complete.png" />
+                            <h2>ORDER COMPLETE!</h2>
                         </div>
                         <?php
                     }                

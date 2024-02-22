@@ -25,7 +25,7 @@
     <?php include 'navbar.php' ?>
     <div style="padding: 90px"></div>
     <div class="text-center">
-        <h1>ALBUM</h1>
+        <h1>REVIEWS</h1>
     </div>
     <div style="padding: 150px"></div>
     <?php include 'footer.php' ?>

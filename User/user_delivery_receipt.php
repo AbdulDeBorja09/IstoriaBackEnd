@@ -80,10 +80,9 @@
                                         $addonList = explode('|', $addons); 
                                         echo "<h2>ADDONS:</h2>";
                                         echo "<ul>";
-                                        foreach ($addonList as $addon) {
-                                            $count ++;
-                                            
-                                            $addon = str_replace('"', '', $addon);
+                                        for ($i = 0; $i < count($addonList) - 1; $i++) {
+                                            $count++;
+                                            $addon = str_replace('"', '', $addonList[$i]);
                                             echo "<li>ITEM $count: $addon</li>";
                                         }
                                         echo "</ul>";
@@ -137,7 +136,7 @@
                         ?>
                         <div class="status">
                             <h1>ORDER STATUS:</h1>
-                            <img src="../assets/Images/prep.png" />
+                            <img src="../assets/Images/ready.png" />
                             <h2>YOUR ORDER IS READY</h2>
                         </div>
                         <?php
@@ -145,7 +144,7 @@
                         ?>
                         <div class="status">
                             <h1>ORDER STATUS:</h1>
-                            <img src="../assets/Images/prep.png" />
+                            <img src="../assets/Images/complete.png" />
                             <h2>YOUR ORDER IS COMPLETED</h2>
                         </div>
                         <?php
