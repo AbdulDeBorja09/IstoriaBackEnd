@@ -6,6 +6,24 @@
     if (!isset($user_id)){
         header('location:../login/login.php');
     }
+    $sort_order = "";
+    if (isset($_GET['sort'])) {
+        $sort_option = $_GET['sort'];
+        switch ($sort_option) {
+            case 'low_high':
+                $sort_order = "ORDER BY price ASC";
+                break;
+            case 'high_low':
+                $sort_order = "ORDER BY price DESC";
+                break;
+            case 'alphabetical':
+                $sort_order = "ORDER BY name ASC";
+                break;
+            default:
+                $sort_order = ""; 
+                break;
+        }
+    }
 
 ?>
 
@@ -45,14 +63,14 @@
                 SORT BY:
             </button>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Price: Low - High</a></li>
-                <li><a class="dropdown-item" href="#">Price: Hgih - Low</a></li>
-                <li><a class="dropdown-item" href="#">Alpabethically</a></li>
+                <li><a class="dropdown-item" href="?sort=low_high">Price: Low - High</a></li>
+                <li><a class="dropdown-item" href="?sort=high_low">Price: High - Low</a></li>
+                <li><a class="dropdown-item" href="?sort=alphabetical">Alphabetically</a></li>
             </ul>
         </div>
         <div class="coffe-flex">
             <?php 
-          $select_prodcuts = mysqli_query($conn, "SELECT * FROM `products` WHERE category ='latte' ") or die ('query failed');
+          $select_prodcuts = mysqli_query($conn, "SELECT * FROM `products` WHERE category ='latte' $sort_order") or die ('query failed');
           if(mysqli_num_rows($select_prodcuts)>0){
               while($fetch_products = mysqli_fetch_assoc($select_prodcuts)){
           ?>

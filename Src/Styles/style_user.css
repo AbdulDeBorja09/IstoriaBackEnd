@@ -2496,3 +2496,6 @@ footer a {
 .checkbtn:hover .tooltip {
   opacity: 1;
 }
+.dropdown-menu {
+  border: 0px;
+}

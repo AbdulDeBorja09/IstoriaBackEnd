@@ -144,6 +144,7 @@
 
         </div>
     </div>
+    </div>
     <div style=" padding: 150px">
     </div>
     <?php include 'footer.php' ?>
