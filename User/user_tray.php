@@ -18,7 +18,6 @@
     if(isset($_POST['update'])){
         // Debug: Check POST data
         var_dump($_POST);
-        
         $update_id = $_POST['update_id'];
         $update_value = $_POST['quantity'];
     

@@ -71,7 +71,7 @@
         </div>
         <div class="coffe-flex">
             <?php 
-           $select_prodcuts = mysqli_query($conn, "SELECT * FROM `products` WHERE category ='noncoffee' $sort_order") or die ('query failed');
+           $select_prodcuts = mysqli_query($conn, "SELECT * FROM `products` WHERE category ='noncoffee' AND status = 'available'  $sort_order") or die ('query failed');
           if(mysqli_num_rows($select_prodcuts)>0){
               while($fetch_products = mysqli_fetch_assoc($select_prodcuts)){
           ?>

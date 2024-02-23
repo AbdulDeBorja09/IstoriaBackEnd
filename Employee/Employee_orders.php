@@ -27,9 +27,28 @@
           </div>
           <?php include 'time.php' ?>
         </div>
-
-        <div class="container-box">
-          <h1>ORDERS</h1>
+        <div class="container-box heading-div">
+        <button class="button" onclick="history.back()">
+          <div class="button-box">
+            <span class="button-elem">
+              <svg viewBox="0 0 46 40" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"
+                ></path>
+              </svg>
+            </span>
+            <span class="button-elem">
+              <svg viewBox="0 0 46 40">
+                <path
+                  d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"
+                ></path>
+              </svg>
+            </span>
+          </div>
+        </button>
+          <div class="titlediv">
+            <h1>ORDERS</h1>
+          </div>
         </div>
         <div class="container-box">
           <!-- <div class="history-search">
@@ -44,7 +63,7 @@
                   <th>Total Price</th>
                   <th>Payment</th>
                   <th>Transaction</th>
-                  <th>Info</th>
+                  <th>Status</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -52,7 +71,7 @@
               <tbody>
               <?php 
               $count = 0;
-              $select_orders = mysqli_query($conn, "SELECT * FROM `orders` WHERE status ='completed'") or die ('query failed');
+              $select_orders = mysqli_query($conn, "SELECT * FROM `orders` WHERE status !='completed' ORDER BY status DESC") or die ('query failed');
               if(mysqli_num_rows($select_orders)>0){
                   while($fetch_orders = mysqli_fetch_assoc($select_orders)){
                     $count++
@@ -64,6 +83,7 @@
                   <td>₱ <?php echo $fetch_orders['total'] ?>.00</td>
                   <td><?php echo $fetch_orders['payment'] ?></td>
                   <td><?php echo $fetch_orders['transaction'] ?></td>
+                  <td><?php echo $fetch_orders['status'] ?></td>
                   <td><a href="">View</a></td>
                 </tr>
 

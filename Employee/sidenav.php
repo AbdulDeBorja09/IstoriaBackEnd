@@ -29,6 +29,14 @@
       </a>
     </li>
     <li>
+      <a href="Employee_history.php">
+        <span class="icon">
+          <ion-icon name="cash-outline"></ion-icon>
+        </span>
+        <span class="title">History</span>
+      </a>
+    </li>
+    <li>
       <a href="Employee_products.php">
         <span class="icon">
           <ion-icon name="cafe-outline"></ion-icon>
@@ -42,14 +50,6 @@
           <ion-icon name="chatbubble-outline"></ion-icon>
         </span>
         <span class="title">Messages</span>
-      </a>
-    </li>
-    <li>
-      <a href="Employee_history.php">
-        <span class="icon">
-          <ion-icon name="cash-outline"></ion-icon>
-        </span>
-        <span class="title">History</span>
       </a>
     </li>
     <li>

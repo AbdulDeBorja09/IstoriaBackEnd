@@ -64,7 +64,7 @@
           <div class="card">
             <div>
               <?php
-                $select_orders = mysqli_query($conn, "SELECT * FROM `orders` WHERE status ='ready'") or die ('queryfailed');
+                $select_orders = mysqli_query($conn, "SELECT * FROM `orders` WHERE status ='completed'") or die ('queryfailed');
                 $num_of_completed = mysqli_num_rows($select_orders);
                 ?>
               <div class="numbers"><?php echo  $num_of_completed ?></div>

@@ -164,7 +164,7 @@
                 <label for="">category</label>
                 <select class="form-control" name="category" id="" required>
                     <option value="coffee">COFFEE</option>
-                    <option value="lattte">LATTE</option>
+                    <option value="latte">LATTE</option>
                     <option value="specias">SPECIAL</option>
                     <option value="noncoffee">NON COFFEE</option>
                 </select>
