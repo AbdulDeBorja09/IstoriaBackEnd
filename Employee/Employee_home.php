@@ -14,7 +14,7 @@
   <head>
     <link rel="icon" href="../assets/Images/Favicon.png" type="image/x-icon" />
     <meta charset="UTF-8" />
-    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge" /> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="refresh" content="10">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Istoria</title>
@@ -22,75 +22,13 @@
   </head>
   <body>
     <div class="">
-      <div class="navigation">
-        <ul>
-          <li>
-            <a href="Employee_home.php">
-              <span class="icon">
-                <img
-                  class="home-brand"
-                  src="../assets/Images/Favicon.png"
-                  width="50px"
-                />
-              </span>
-              <span class="brand-title">Brand Name</span>
-            </a>
-          </li>
-          <li>
-            <a href="Employee_home.php">
-              <span class="icon">
-                <ion-icon name="home-outline"></ion-icon>
-              </span>
-              <span class="title">Dashboard</span>
-            </a>
-          </li>
-          <li>
-            <a href="Employee_orders.php">
-              <span class="icon">
-                <ion-icon name="receipt-outline"></ion-icon>
-              </span>
-              <span class="title">Orders</span>
-            </a>
-          </li>
-          <li>
-            <a href="Employee_products.php">
-              <span class="icon">
-                <ion-icon name="cafe-outline"></ion-icon>
-              </span>
-              <span class="title">Products</span>
-            </a>
-          </li>
-          <li>
-            <a href="Employee_message.php">
-              <span class="icon">
-                <ion-icon name="chatbubble-outline"></ion-icon>
-              </span>
-              <span class="title">Messages</span>
-            </a>
-          </li>
-          <li>
-            <a href="Employee_history.php">
-              <span class="icon">
-                <ion-icon name="cash-outline"></ion-icon>
-              </span>
-              <span class="title">History</span>
-            </a>
-          </li>
-          <li>
-            <a href="Employee_signout.php">
-              <span class="icon">
-                <ion-icon name="log-out-outline"></ion-icon>
-              </span>
-              <span class="title">Logout</span>
-            </a>
-          </li>
-        </ul>
-      </div>
+      <?php include 'sidenav.php' ?>
       <div class="main">
         <div class="topbar">
           <div class="toggle">
             <ion-icon name="menu-outline"></ion-icon>
           </div>
+          <?php include 'time.php' ?>
         </div>
         <div class="cardBox">
           <div class="card">

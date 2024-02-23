@@ -9,13 +9,16 @@
 }
 
 :root {
-  --brown: #3a342e;
+  --brown: #2c2722;
   --white: #ffffffd0;
   --white2: #ffffff;
   --gray: #f5f5f5;
   --black1: #222;
   --black2: #999;
   --gray2: #1b1815;
+}
+h1 {
+  color: var(--brown);
 }
 .navigation {
   position: fixed;
@@ -333,18 +336,32 @@
   color: white;
 }
 
-.time {
+.time-div .time {
   margin-top: 20px;
   font-weight: 700;
   font-size: 25px;
 }
-.date {
+.time-div .date {
   margin-top: -20px;
   font-size: 15px;
 }
 .time-div {
   margin-right: 30px;
   color: var(--gray2);
+}
+.panel-time {
+  margin-right: 50px;
+  display: flex;
+  text-align: center;
+}
+.panel-time .time {
+  font-size: 20px;
+  font-weight: 500;
+}
+.panel-time .date {
+  font-size: 12px;
+  margin-top: 7px;
+  margin-right: 5px;
 }
 .back ion-icon {
   font-size: 45px;
@@ -439,10 +456,85 @@
   margin: 50px;
 }
 .signoutdiv button:hover {
-  background-color: #2c2722;
+  background-color: var(--brown);
   color: white;
   border: 1px solid white;
   transform: scale(1.2);
+}
+.history-div {
+  background-color: var(--brown);
+  text-align: center;
+}
+.history-div h1 {
+  color: var(--white);
+  text-align: center;
+}
+.history-table {
+  border-collapse: collapse;
+}
+.history-table thead th {
+  font-weight: 700;
+  padding: 10px 5px;
+  border: 1px solid var(--brown);
+  background-color: #2c2722;
+  color: var(--white);
+}
+.history-table thead th:nth-child(2),
+.history-table thead th:nth-child(3) {
+  text-align: start;
+}
+.history-table tbody td {
+  border: 1px solid var(--black2);
+  padding: 10px;
+  font-size: 15px;
+}
+
+.history-table td:first-child {
+  text-align: center;
+  width: 20px;
+  font-weight: 700;
+}
+.history-table td:nth-child(2) {
+  width: 200px;
+  font-weight: 500;
+}
+.history-table td:nth-child(4) {
+  width: 150px;
+  text-align: center;
+  font-weight: 500;
+}
+.history-table td:nth-child(5) {
+  width: 200px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.history-table td:nth-child(6) {
+  width: 200px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.history-table td:nth-child(7) {
+  width: 200px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.history-table td a {
+  text-decoration: none;
+  color: var(--gray2);
+}
+.history-table td a:hover {
+  color: var(--black2);
+}
+.history-search {
+  display: flex;
+  justify-content: end;
+}
+.history-search input {
+  font-size: 15px;
+  padding: 10px;
+  width: 300px;
+  border: 1px solid var(--brown);
+  border-radius: 5px;
 }
 @media (max-width: 991px) {
   .navigation {
