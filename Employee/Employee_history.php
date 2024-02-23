@@ -82,7 +82,7 @@
                   <td>₱ <?php echo $fetch_orders['total'] ?>.00</td>
                   <td><?php echo $fetch_orders['payment'] ?></td>
                   <td><?php echo $fetch_orders['transaction'] ?></td>
-                  <td><a href="">View</a></td>
+                  <td><a href="Employee_viewpage.php?ref=<?php echo $fetch_orders['reference'] ?>">VIEW</a></td>
                 </tr>
 
                 <?php 

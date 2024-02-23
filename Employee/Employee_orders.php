@@ -84,7 +84,7 @@
                   <td><?php echo $fetch_orders['payment'] ?></td>
                   <td><?php echo $fetch_orders['transaction'] ?></td>
                   <td><?php echo $fetch_orders['status'] ?></td>
-                  <td><a href="">View</a></td>
+                  <td><a href="Employee_viewpage.php?ref=<?php echo $fetch_orders['reference'] ?>">View</a></td>
                 </tr>
 
                 <?php 
