@@ -1,3 +1,12 @@
+<?php
+  include '../connection.php';
+  session_start();
+  $employee_id = $_SESSION['employee_id'];
+  date_default_timezone_set('Asia/Manila');
+  $date = date('m-d-y');
+  $time = date('h:i:sA');
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,18 +27,24 @@
           </div>
           <?php include 'time.php' ?>
         </div>
-
         <div class="container-box">
           <div class="signoutdiv">
+          <?php 
+            $select_orders = mysqli_query($conn, "SELECT * FROM `user` WHERE id = ' $employee_id'") or die ('query failed');
+             $fetch_orders = mysqli_fetch_assoc($select_orders);
+
+          ?>
             <img src="../assets/Images/profile.png" width="250px" />
-            <h1>De Borja, Abdul Aziz A.</h1>
+            <h1><?php echo $fetch_orders['name'] ?></h1>
             <hr />
             <h4>TIME IN</h4>
-            <h5>10:00:00</h5>
-            <h6>02/11/22</h6>
+            <h5>10:00:00</h5> 
+            <h6><?php echo $date ?></h6>
             <br />
 
-            <button class="button">CLOCK OUT</button>
+           <form method="post">
+            <button name="l" class="button">CLOCK OUT</button>
+           </form>
           </div>
         </div>
       </div>

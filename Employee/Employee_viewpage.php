@@ -77,6 +77,7 @@
             <div class="order-flex1">
                 <div class="box1">
                     <div class="text">
+                        <h5>REFERENCE #:</h5>
                         <h5>NAME:</h5>
                         <h5>CONTACT NUMBER:</h5>
                         <?php 
@@ -90,6 +91,7 @@
                         ?>
                     </div>
                     <div class="text2">
+                        <h5><?php echo $fetch_orders['reference'] ?></h5>
                         <h5><?php echo $fetch_orders['name'] ?></h5>
                         <h5><?php echo $fetch_orders['contact'] ?></h5>
                         <h5><?php echo $info [0] ?></h5>

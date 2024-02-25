@@ -31,15 +31,14 @@ input[type="time"]:active {
 p {
   line-height: 1.5;
 }
-
 .istoria {
-  margin-right: 75px;
+  margin-right: 25px;
 }
 .navbar a {
   text-decoration: none;
 }
 .navbar {
-  border-bottom: 2px solid #a6a6a6;
+  border-bottom: 1px solid #a6a6a6;
   background-color: white;
 }
 .navbarand {
@@ -623,12 +622,20 @@ footer a {
 .stylishbtn3:before {
   width: 300px;
 }
-
 .viewbtn a {
   margin-top: 7px;
   font-size: 13px;
   border: 1px solid var(--browncolor);
   font-weight: 700;
+}
+.reviewhead h1 {
+  font-weight: 700;
+}
+.nostar {
+  margin-left: 6px;
+}
+.nostar ion-icon {
+  margin-left: -6px;
 }
 .review {
   margin-top: 50px;
@@ -652,7 +659,6 @@ footer a {
 .overallrating .starstatic {
   width: 100px;
 }
-
 .starstatic {
   display: flex;
   flex-direction: row;

@@ -1,19 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <link rel="icon" href="../assets/Images/Favicon.png" type="image/x-icon" />
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin | Istoria</title>
-    <link rel="stylesheet" href="../Src/Styles/style_admin.css" />
-  </head>
-  <body>
-    <div class="container">
-      <div class="navigation">
+<div class="navigation">
         <ul>
           <li>
-            <a href="#">
+            <a href="admin_home.php">
               <span class="icon">
                 <img
                   class="home-brand"
@@ -25,7 +13,7 @@
             </a>
           </li>
           <li>
-            <a href="admin_home.html">
+            <a href="admin_home.php">
               <span class="icon">
                 <ion-icon name="home-outline"></ion-icon>
               </span>
@@ -33,7 +21,7 @@
             </a>
           </li>
           <li>
-            <a href="admin_sales.html">
+            <a href="admin_sales.php">
               <span class="icon">
                 <ion-icon name="cash-outline"></ion-icon>
               </span>
@@ -41,7 +29,7 @@
             </a>
           </li>
           <li>
-            <a href="admin_orders.html">
+            <a href="admin_orders.php">
               <span class="icon">
                 <ion-icon name="clipboard-outline"></ion-icon>
               </span>
@@ -49,7 +37,7 @@
             </a>
           </li>
           <li>
-            <a href="admin_products.html">
+            <a href="admin_products.php">
               <span class="icon">
                 <ion-icon name="cafe-outline"></ion-icon>
               </span>
@@ -57,7 +45,15 @@
             </a>
           </li>
           <li>
-            <a href="admin_employee.html">
+            <a href="admin_addons.php">
+              <span class="icon">
+                <ion-icon name="leaf-outline"></ion-icon>
+              </span>
+              <span class="title">Addons</span>
+            </a>
+          </li>
+          <li>
+            <a href="admin_employee.php">
               <span class="icon">
                 <ion-icon name="people-outline"></ion-icon>
               </span>
@@ -65,7 +61,7 @@
             </a>
           </li>
           <li>
-            <a href="admin_customers.html">
+            <a href="admin_customers.php">
               <span class="icon">
                 <ion-icon name="people-outline"></ion-icon>
               </span>
@@ -74,7 +70,7 @@
           </li>
 
           <li>
-            <a href="admin_messages.html">
+            <a href="admin_messages.php">
               <span class="icon">
                 <ion-icon name="chatbox-ellipses-outline"></ion-icon>
               </span>
@@ -82,7 +78,7 @@
             </a>
           </li>
           <li>
-            <a href="admin_accounts.html">
+            <a href="admin_accounts.php">
               <span class="icon">
                 <ion-icon name="lock-closed-outline"></ion-icon>
               </span>
@@ -91,7 +87,7 @@
           </li>
 
           <li>
-            <a href="admin_logout.html">
+            <a href="admin_logout.php">
               <span class="icon">
                 <ion-icon name="log-out-outline"></ion-icon>
               </span>
@@ -100,24 +96,3 @@
           </li>
         </ul>
       </div>
-      <div class="main">
-        <div class="topbar">
-          <div class="toggle">
-            <ion-icon name="menu-outline"></ion-icon>
-          </div>
-        </div>
-
-        <div class="container-box">sales</div>
-      </div>
-    </div>
-    <script src="/Src/Javascript/index.js"></script>
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
-    ></script>
-  </body>
-</html>

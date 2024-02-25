@@ -16,7 +16,7 @@
     if(mysqli_num_rows($select_user)>0){
       $row = mysqli_fetch_assoc($select_user);
       if($row['type'] == 'admin') {
-        $_SESSION['id'] - $row['id'];
+        $_SESSION['admin_id'] = $row['id'];
         sleep(1);
         header('location:../Admin/admin_home.php');
         
@@ -37,7 +37,7 @@
     }
     }
     else{
-      header('location:Admin/admin_home.php');  
+      header('location:login.php');  
     }
     
   }

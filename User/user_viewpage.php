@@ -272,7 +272,11 @@
                                         if ($user_rating > 0) {
                                             echo '<div class="userreviewstardiv">' . $user_rating . '</div>';
                                         } else {
-                                            echo '<div class="userreviewstardiv">
+                                            echo '<div class="nostar">
+                                            <ion-icon name="star-outline"></ion-icon>
+                                            <ion-icon name="star-outline"></ion-icon>
+                                            <ion-icon name="star-outline"></ion-icon>
+                                            <ion-icon name="star-outline"></ion-icon>
                                             <ion-icon name="star-outline"></ion-icon>
                                             </div>';
                                         }

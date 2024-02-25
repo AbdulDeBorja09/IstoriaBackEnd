@@ -2,11 +2,11 @@
   include 'connection.php';
   session_start();
 
-  if(isset($_COOKIE['user_id'])) {
+    if(isset($_COOKIE['user_id'])) {
     
     header("Location:user/user_home.php");
     exit();
-}
+    }
 
     function generateToken() {
         return bin2hex(random_bytes(32));
@@ -84,6 +84,9 @@
                 </a>
                 <a class="open-modal" href="#">
                     <ion-icon name="file-tray"></ion-icon>
+                </a>
+                <a class="open-modal" href="#">
+                    <ion-icon name="mail-unread"></ion-icon>
                 </a>
             </div>
         </div>
@@ -307,7 +310,7 @@
                             <div class="button-login">
                                 <h1>
                                     DON'T HAVE AN ACCOUNT?
-                                    <a href="Login/signup.html">SIGN UP</a>
+                                    <a  href="Login/signup.php">SIGN UP</a>
                                 </h1>
                                 <br />
                                 <button name="login" class="btn w-100" type="submit">LOG IN</button>

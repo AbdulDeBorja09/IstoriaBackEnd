@@ -4,7 +4,7 @@
     $employee_id = $_SESSION['employee_id'];
 
     if (!isset($employee_id)){
-        header('location:../login/login.php');
+        header('location:../Login/login.php');
     }
 
 ?>
@@ -79,11 +79,16 @@
           <div class="card">
             <div>
             <?php
+              $select_message_count = mysqli_query($conn, "SELECT COUNT(DISTINCT user_id) AS user_count FROM `message`") or die ('Query failed');
+              $row = mysqli_fetch_assoc($select_message_count);
+              $user_count = $row['user_count'];
+              ?>
+            <?php
                 $select_message = mysqli_query($conn, "SELECT * FROM `message`") or die ('queryfailed');
                 $num_of_message = mysqli_num_rows($select_message);
                 ?>
-              <div class="numbers"><?php echo $num_of_message  ?></div>
-              <div class="cardName">Questions</div>
+              <div class="numbers"><?php echo $user_count ?></div>
+              <div class="cardName">Messages</div>
             </div>
 
             <div class="iconBx">
@@ -120,7 +125,7 @@
                   <td><?php echo $fetch_orders['total'] ?></td>
                   <td><?php echo $fetch_orders['payment'] ?></td>
                   <td><?php echo $fetch_orders['transaction'] ?></td>
-                  <td><a href="">View Order</a></td>
+                  <td><a href="Employee_viewpage.php?ref=<?php echo $fetch_orders['reference'] ?>">View</a></td>
                 </tr>
 
                 <?php 

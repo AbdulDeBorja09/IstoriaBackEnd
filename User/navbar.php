@@ -1,3 +1,4 @@
+
 <nav class="navbar fixed-top">
     <div class="container-fluid">
         <div>
@@ -16,6 +17,9 @@
             </a>
             <a href="user_tray.php">
                 <ion-icon name="file-tray"></ion-icon>
+            </a>
+            <a href="user_messages.php">
+                <ion-icon name="mail-unread"></ion-icon>
             </a>
         </div>
     </div>
@@ -37,3 +41,23 @@
     <img src="../assets/Images/fb.png" class="side-icon" alt="fb" />
     <p class="..side-text">ISTORIA COFFEE</p>
 </div>
+<script>
+    var lastScrollTop = 0;
+    var navbar = document.querySelector('.navigations');
+
+    window.addEventListener('scroll', function() {
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (scrollTop > lastScrollTop) {
+            navbar.classList.add('collaps');
+        } else {
+            navbar.classList.remove('collaps');
+        }
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    }, false);
+</script>
+<style>
+    .collaps {
+        display: none;
+    }
+</style>

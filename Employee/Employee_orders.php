@@ -51,9 +51,6 @@
           </div>
         </div>
         <div class="container-box">
-          <!-- <div class="history-search">
-            <input type="text" id="searchInput" placeholder="Search...">
-          </div> -->
             <table class="orders-table" >
               <thead>
                 <tr>
