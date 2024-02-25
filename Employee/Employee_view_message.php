@@ -7,6 +7,28 @@
         header('location:../login/login.php');
     }
     $id = $_GET['id'];
+    if(isset($_POST['send'])){
+        date_default_timezone_set('Asia/Manila');
+        $sender = mysqli_real_escape_string($conn, $_POST['sender']);
+        $name = mysqli_real_escape_string($conn, $_POST['name']);
+        $email = mysqli_real_escape_string($conn, $_POST['email']);
+        $phone =  mysqli_real_escape_string($conn, $_POST['phone']);
+        $messages = mysqli_real_escape_string($conn, $_POST['messages']);
+        $date = date('m-d-y');
+        $time = date('h:i:sA');
+        $timestamp = $date.' '.$time;
+
+        $select_message = mysqli_query($conn, "SELECT * FROM `message` WHERE message = '$messages'") or die ('query failed');
+        if(mysqli_num_rows($select_message)>0){
+        }else{
+        mysqli_query($conn, "INSERT INTO `message` (`user_id`, `sender`, `name`, `email`, `phone`, `message`, `date` ) VALUES ('$id', '$sender', '$name', '$email', '$phone', '$messages','$timestamp')") or die ('query failed');
+        }
+    }
+    if(isset($_POST['delete'])){
+        mysqli_query($conn, "DELETE FROM `message` WHERE user_id = '$id'") or die ('query failed');
+        header('location:employee_message.php');
+    }
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,44 +73,64 @@
           <div class="titlediv">
             <h1>MESSAGES</h1>
           </div>
+          <form method="post">
+            <button name="delete" type="submit" class="msg-delete-btn" onclick="return confirm('Delete this message?')"><ion-icon class="msg-delete-btn" name="trash"></ion-icon></button>
+          </form>
         </div>
           <div class="container-box">
           <?php 
-            $select_message = mysqli_query($conn, "SELECT * FROM `message` WHERE user_id = '$id'") or die ('query failed');
+            $select_message = mysqli_query($conn, "SELECT * FROM `message` WHERE user_id = '$id' ORDER BY date ASC") or die ('query failed');
                 if(mysqli_num_rows($select_message)>0){
                   while($fetch_message = mysqli_fetch_assoc($select_message)){
                     $sender = $fetch_message['sender'];
                     $date = strtok($fetch_message["date"], " ");
                     $time = substr(strstr($fetch_message["date"], " "), 1);
                 ?>  
+                <?php if ($sender == "user"){ ?>
                     <div class="message-left">
-                        <h5><?php echo $fetch_message['name']?></h5>
-                        <div class="msg">
-                            <p><?php echo $fetch_message['message']?>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus odit accusamus ratione, quo earum vitae quasi quibusdam obcaecati deserunt soluta non possimus dolorum, dolorem, molestiae architecto animi incidunt iure necessitatibus.</p>
-                        </div>
-                        <div class="time">
-                            <h6><?php echo $date?></h6>
-                            <h6><?php echo $time?></h6>
+                        <h6><?php echo $fetch_message['date']?></h6>
+                        <div class="msgbox">
+                            <img src="../assets/Images/profile3.png" >
+                            <div class="info">
+                                <h5>CUSTOMER</h5>
+                                <h4><?php echo $fetch_message['name']?></h4>
+                                <h3><?php echo $fetch_message['email']?></h3>
+                            </div>
+                            <div class="msg">
+                                <p><?php echo $fetch_message['message']?></p>
+                            </div>
                         </div>
                     </div>
-
-
+                    <?php } else { ?>
                     <div class="message-right">
-                        <h5><?php echo $fetch_message['name']?></h5>
-                        <div class="msg">
-                            <p><?php echo $fetch_message['message']?>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus odit accusamus ratione, quo earum vitae quasi quibusdam obcaecati deserunt soluta non possimus dolorum, dolorem, molestiae architecto animi incidunt iure necessitatibus.</p>
-                        
-                        </div>
-                        <div class="time">
-                            <h6><?php echo $time?></h6>
-                            <h6><?php echo $date?></h6>
+                        <h6><?php echo $fetch_message['date']?></h6>
+                        <div class="msgbox">
+                            <div class="msg">
+                                <p><?php echo $fetch_message['message']?></p>
+                            </div>
+                            <div class="info">
+                                <h5>CUSTOMER SERVICE</h5>
+                                <h4>ISTORIA </h4>
+                                <h3>istoriacafe@gmail.com</h3>
+                            </div>
+                            <img src="../assets/Images/profile3.png" >
                         </div>
                     </div>
-
+                    <?php } ?>
                 <?php
                    }
                 }
                 ?>
+                <form method="post">
+                    <div class="send-msg">
+                        <input type="hidden" name="email" value="ISTORIACAFE@GMAIL.COM">
+                        <input type="hidden" name="sender" value="employee">
+                        <input type="hidden" name="name" value="ISTORIA">
+                        <input type="hidden" name="phone" value="istoria">
+                        <input name="messages" type="text" placeholder="Send message....">
+                        <button name="send" type="submit"><ion-icon name="paper-plane"></ion-icon></button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

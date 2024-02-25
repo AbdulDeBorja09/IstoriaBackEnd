@@ -98,9 +98,10 @@
                         <p><?php echo $fetch_message['message'] ?></p>
                       <?php } ?> 
                     </td>
-                    <td><a href="Employee_view_message.php?id=<?php $fetch_message['user_id']?>">VIEW MESSAGE</a></td>
+                    <td><a href="Employee_view_message.php?id=<?php echo $fetch_message['user_id']?>">VIEW MESSAGE</a></td>
                   </tr>
-                 <?php        
+                 <?php    
+                 $current_user_id = $fetch_message['user_id'];
                     }
                 }
                 ?>
