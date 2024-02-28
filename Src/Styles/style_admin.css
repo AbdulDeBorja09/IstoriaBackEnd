@@ -279,6 +279,7 @@
 }
 .products-table {
   width: 100%;
+  border-collapse: collapse;
 }
 .products-table thead {
   background-color: #f2f2f2;

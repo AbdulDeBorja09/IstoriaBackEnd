@@ -31,7 +31,7 @@
           <?php include 'time.php' ?>
         </div>
         <div class="cardBox">
-          <div class="card">
+          <a href="Employee_orders.php" class="card">
             <div>
             <?php
                 $select_orders = mysqli_query($conn, "SELECT * FROM `orders` WHERE status ='pending'") or die ('queryfailed');
@@ -44,24 +44,24 @@
             <div class="iconBx">
               <ion-icon name="notifications-outline"></ion-icon>
             </div>
-          </div>
+          </a>
 
-          <div class="card">
+          <a href="Employee_orders.php" class="card">
             <div>
-              <?php
-                $select_orders = mysqli_query($conn, "SELECT * FROM `orders` WHERE status ='ready'") or die ('queryfailed');
-                $num_of_ready = mysqli_num_rows($select_orders);
-                ?>
-              <div class="numbers"><?php echo  $num_of_ready?></div>
-              <div class="cardName">Ready</div>
-            </div>
+                <?php
+                  $select_orders = mysqli_query($conn, "SELECT * FROM `orders` WHERE status ='ready'") or die ('queryfailed');
+                  $num_of_ready = mysqli_num_rows($select_orders);
+                  ?>
+                <div class="numbers"><?php echo  $num_of_ready?></div>
+                <div class="cardName">Ready</div>
+              </div>
 
-            <div class="iconBx">
-              <ion-icon name="cafe-outline"></ion-icon>
-            </div>
-          </div>
+              <div class="iconBx">
+                <ion-icon name="cafe-outline"></ion-icon>
+              </div>
+           </a>
 
-          <div class="card">
+          <a href="Employee_history.php" class="card">
             <div>
               <?php
                 $select_orders = mysqli_query($conn, "SELECT * FROM `orders` WHERE status ='completed'") or die ('queryfailed');
@@ -74,28 +74,24 @@
             <div class="iconBx">
               <ion-icon name="trending-up-outline"></ion-icon>
             </div>
-          </div>
+          </a>
 
-          <div class="card">
+          <a href="Employee_message.php" class="card">
             <div>
-            <?php
-              $select_message_count = mysqli_query($conn, "SELECT COUNT(DISTINCT user_id) AS user_count FROM `message`") or die ('Query failed');
-              $row = mysqli_fetch_assoc($select_message_count);
-              $user_count = $row['user_count'];
-              ?>
-            <?php
-                $select_message = mysqli_query($conn, "SELECT * FROM `message`") or die ('queryfailed');
-                $num_of_message = mysqli_num_rows($select_message);
+              <?php
+                $select_message_count = mysqli_query($conn, "SELECT COUNT(DISTINCT user_id) AS user_count FROM `message`") or die ('Query failed');
+                $row = mysqli_fetch_assoc($select_message_count);
+                $user_count = $row['user_count'];
                 ?>
-              <div class="numbers"><?php echo $user_count ?></div>
-              <div class="cardName">Messages</div>
-            </div>
+                <div class="numbers"><?php echo $user_count ?></div>
+                <div class="cardName">Messages</div>
+              </div>
 
-            <div class="iconBx">
-              <ion-icon name="mail-unread-outline"></ion-icon>
+              <div class="iconBx">
+                <ion-icon name="mail-unread-outline"></ion-icon>
+              </div>
             </div>
-          </div>
-        </div>
+          </a>
 
         <div class="details">
           <div class="recentOrders">

@@ -159,7 +159,7 @@
             </p>
         </div>
         <div class="viewmore">
-            <a href="user_album.php" class="stylishbtn"> VIEW MORE</a>
+            <a href="user_reviews.php" class="stylishbtn"> VIEW MORE</a>
         </div>
         <div style="padding: 30px"></div>
         <img src="../assets/Images/banner2.png" width="100%" alt="banner2" />

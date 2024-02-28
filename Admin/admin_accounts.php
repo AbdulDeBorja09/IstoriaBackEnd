@@ -45,7 +45,7 @@
               </tr>
             </thead>
             <tbody>
-            <?php $select_user = mysqli_query($conn, "SELECT * FROM `user` ") or die ('query failed');
+            <?php $select_user = mysqli_query($conn, "SELECT * FROM `user` WHERE type = 'employee' OR type = 'admin' ") or die ('query failed');
                 $count = 0;
                 if(mysqli_num_rows($select_user )>0){
                     while($fetch_user = mysqli_fetch_assoc($select_user )){
@@ -54,10 +54,10 @@
                 <tr>
                   <td><?php echo $count ?></td>
                   <td><?php echo $fetch_user['name']; ?></td>
-                  <td><?php echo $fetch_user['username']; ?></td>
                   <td><?php echo $fetch_user['email']; ?></td>
-                  <td><td><?php echo $fetch_user['password']; ?></td></td>
-                  <td>s</td>
+                  <td><?php echo $fetch_user['password']; ?></td>
+                  <td><?php echo $fetch_user['type']; ?></td>
+                  <td><a href="">view</a></td>
                 </tr>
                   <?php  
                     }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 22, 2024 at 12:18 AM
+-- Generation Time: Feb 28, 2024 at 02:53 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -56,20 +56,13 @@ INSERT INTO `addons` (`id`, `category`, `addons1`, `addons2`, `addons3`, `addons
 CREATE TABLE `message` (
   `id` int(255) NOT NULL,
   `user_id` int(255) NOT NULL,
+  `sender` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `phone` varchar(255) NOT NULL,
-  `message` varchar(1000) NOT NULL
+  `message` varchar(1000) NOT NULL,
+  `date` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `message`
---
-
-INSERT INTO `message` (`id`, `user_id`, `name`, `email`, `phone`, `message`) VALUES
-(1, 3, 'Mae joy Ongchad', 'mj@gmail.com', '9612058240', 'hi'),
-(2, 3, 'Abdul De Borja', 'abduldb09@gmail.com', '9612058240', ''),
-(3, 3, 'Abdul De Borja', 'abduldb09@gmail.com', '9612058240', 'test');
 
 -- --------------------------------------------------------
 
@@ -111,15 +104,6 @@ CREATE TABLE `products` (
   `category` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'available'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `products`
---
-
-INSERT INTO `products` (`id`, `name`, `price`, `price_range`, `image`, `category`, `status`) VALUES
-(1, 'matcha', 300, '150-223', '5.png', 'latte', 'unavailable'),
-(4, 'Java Chip', 80, '80-90', '5.png', 'coffee', 'unavailable'),
-(5, 'Mocha', 80, '80-90', '5.png', 'latte', 'available');
 
 -- --------------------------------------------------------
 
@@ -184,7 +168,8 @@ INSERT INTO `user` (`id`, `type`, `name`, `username`, `email`, `password`, `addr
 (2, 'user', 'Abdul De borja', 'adminacc', '2', '123', 'bay laguna', 'No contact'),
 (3, 'employee', 'istoria admin', 'adminacc', '3', '123', 'bay laguna', ''),
 (4, 'user', 'kezuke, jose', 'josekzk', 'user', '123', 'asdasd', ''),
-(8, 'user', 'ongchad, mj', 'mjongchad', 'mj@s', '123', 'asdasdasd', '');
+(8, 'user', 'ongchad, mj', 'mjongchad', 'mj@s', '123', 'asdasdasd', ''),
+(9, 'user', 'Celino, Andrea', 'Andregg', 'celino@gmail.com', 'andrea123', 'san pablo city', '09123123123');
 
 --
 -- Indexes for dumped tables
@@ -246,7 +231,7 @@ ALTER TABLE `addons`
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -258,7 +243,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `review`
@@ -270,13 +255,13 @@ ALTER TABLE `review`
 -- AUTO_INCREMENT for table `tray`
 --
 ALTER TABLE `tray`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
