@@ -15,13 +15,8 @@
         $date = date('m-d-y');
         $time = date('h:i:sA');
         $timestamp = $date.' '.$time;
-
-        $select_message = mysqli_query($conn, "SELECT * FROM `message` WHERE name = '$name' AND email = '$email' AND message = '$messages'") or die ('query failed');
-        if(mysqli_num_rows($select_message)>0){
-        echo 'message already send';
-        }else{
         mysqli_query($conn, "INSERT INTO `message` (`user_id`, `sender`, `name`, `email`, `message`, `date` ) VALUES ('$user_id', '$sender', '$name', '$email', '$messages','$timestamp')") or die ('query failed');
-        }
+        echo "<script>window.onload = function() { window.opener.location.href = '../employee/employee_message.php'; }</script>";
     }
    
 ?>
