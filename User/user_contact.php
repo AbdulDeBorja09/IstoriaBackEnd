@@ -30,7 +30,7 @@
                 <form method="post" action="https://api.web3forms.com/submit" id="form">
                     <input type="hidden" name="access_key" value="be5b9631-6122-47f3-9df4-f5855b112ce4">
                     <input type="hidden" name="from_name" value="E-Store-Ria">
-                    <input type="hidden" name="redirect" value="http://localhost/istoriabackend/user/user_home.php">
+                    <input type="hidden" name="redirect" value="http://localhost/istoriabackend/user/user_form_submitted.php">
                     <input type="hidden" name="subject" value="Customer Service" />
 
                     <input type="text" name="name" placeholder="NAME" required />

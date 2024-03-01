@@ -2639,3 +2639,63 @@ footer a {
 .replybtn button ion-icon {
   font-size: 25px;
 }
+
+.form-submiited-div .logo-container {
+  display: flex;
+  margin-top: 50px;
+  justify-content: space-evenly;
+}
+
+.form-submiited-div .logo1,
+.form-submiited-div .logo2 {
+  width: 100px;
+  margin-top: 70px;
+}
+
+.form-submiited-div .form-submitted h1 {
+  font-size: 40px;
+  text-align: center;
+  margin-top: 40px;
+  font-weight: 700;
+  letter-spacing: 10px;
+}
+
+.form-submiited-div .thankyou h6 {
+  font-size: 20px;
+  text-align: center;
+  margin-top: 30px;
+  font-weight: 500;
+  letter-spacing: 10px;
+}
+
+.form-submiited-div .form-sub {
+  text-align: center;
+  margin-top: 30px;
+}
+.form-submiited-div .returnbutton {
+  display: flex;
+  justify-content: space-evenly;
+}
+.form-submiited-div .form-img {
+  width: 300px;
+  margin-left: -60px;
+  margin-top: 10px;
+}
+
+.form-submiited-div .return {
+  border: 1px solid var(--browncolor);
+  color: var(--browncolor);
+  padding: 15px 32px;
+  width: 30%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 50px 2px;
+  cursor: pointer;
+  border-radius: 9px;
+}
+.form-submiited-div .return:hover {
+  background-color: var(--browncolor);
+  color: white;
+}
