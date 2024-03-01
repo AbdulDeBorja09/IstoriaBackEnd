@@ -16,7 +16,6 @@
         header('location:user_tray.php');
     }
     if(isset($_POST['update'])){
-        // Debug: Check POST data
         var_dump($_POST);
         $update_id = $_POST['update_id'];
         $update_value = $_POST['quantity'];
@@ -36,12 +35,10 @@
             $addons_data[$fetch_tray['id']] = $addons;
         }
     }
-    $_SESSION['addons_data'] = serialize($addons_data);
-
+    $_SESSION['addons_data'] = serialize($addons_data); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <link rel="icon" href="../assets/Images/Favicon.png" type="image/x-icon" />
     <meta charset="UTF-8" />
@@ -51,7 +48,6 @@
     <link rel="stylesheet" href="../Src/Styles/style_user.css" />
     <title>Istoria</title>
 </head>
-
 <body>
     <?php include 'navbar.php' ?>
     <div style="padding: 90px"></div>
@@ -95,12 +91,11 @@
                             <h2><?php echo $fetch_tray['name']; ?></h2>
                             <h3>OPTION: <?php echo $fetch_tray['type']; ?></h3>
                             <h3>SIZE: <?php echo $fetch_tray['size']; ?></h3>
-                            <h4><h4><?php 
-    $addons = explode(",", $fetch_tray['addons']);
-    $cleaned_addons = array_map('trim', $addons, array_fill(0, count($addons), '[]"'));
-    echo implode(", ", $cleaned_addons);
-?></h4>
-
+                            <h4><?php 
+                                $addons = explode(",", $fetch_tray['addons']);
+                                $cleaned_addons = array_map('trim', $addons, array_fill(0, count($addons), '[]"'));
+                                echo implode(", ", $cleaned_addons);
+                            ?>
                             </h4>
                         </div>
                         <h6>₱ <?php echo $fetch_tray['price']; ?>.00</h6>
@@ -112,7 +107,7 @@
                         <div class="quantity">
                             <button class="minusBtn" data-index="<?php echo $index;?>">-</button>
                             <input type="hidden" name="update_id" value="<?php echo $fetch_tray['id']; ?>">
-                            <input type="number" class="quantity-input" name="quantity" value="<?php echo $fetch_tray['quantity']; ?>" min="1" max="10"  />
+                            <input type="number" class="quantity-input" name="quantity" value="<?php echo $fetch_tray['quantity']; ?>" min="1" max="15"  />
                             <button class="addBtn" data-index="<?php echo $index;?>">+</button>
                             <div> 
                             </div>
@@ -192,52 +187,46 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
-  <script>
-        document.querySelectorAll('.minusBtn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            event.preventDefault();
-            const index = this.getAttribute('data-index');
-            const input = this.parentElement.querySelector('.quantity-input');
-            let quantity = parseInt(input.value);
-            if (quantity > 1) {
-                quantity--;
+    <script>
+    document.querySelectorAll('.minusBtn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        event.preventDefault();
+        const index = this.getAttribute('data-index');
+        const input = this.parentElement.querySelector('.quantity-input');
+        let quantity = parseInt(input.value);
+        if (quantity > 1) {
+            quantity--;
+            input.value = quantity;
+            updateTotals();
+    
+            }
+        });
+    });
+    document.querySelectorAll('.addBtn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        event.preventDefault();
+        const index = this.getAttribute('data-index');
+        const input = this.parentElement.querySelector('.quantity-input');
+        let quantity = parseInt(input.value);
+            if (quantity < 10) {
+                quantity++;
                 input.value = quantity;
                 updateTotals();
-           
-                }
-            });
+            }
         });
-        document.querySelectorAll('.addBtn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            event.preventDefault();
-            const index = this.getAttribute('data-index');
-            const input = this.parentElement.querySelector('.quantity-input');
-            let quantity = parseInt(input.value);
-                if (quantity < 10) {
-                    quantity++;
-                    input.value = quantity;
-                    updateTotals();
-                }
-            });
-        });
-
-        function updateTotals() {
+    });
+    function updateTotals() {
         let subtotal = 0;
-
         document.querySelectorAll('.product').forEach(product => {
         const price = parseFloat(product.querySelector('h6.qty_total').getAttribute('data-price'));
         const quantity = parseInt(product.querySelector('.quantity-input').value);
-
         const total = price * quantity;
         product.querySelector('h6.qty_total').innerText = "₱ " + total.toFixed(2);
         subtotal += total;
     });
     document.querySelector('.sub_total').innerText = "₱ " + subtotal.toFixed(2);
     }
-
-</script>
-
-
+    </script>
     <script src="../Src/Javascript/main.js"></script>
 </body>
 </html>

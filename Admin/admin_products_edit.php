@@ -84,13 +84,13 @@
                 <input id="name" name="name" type="text"required value="<?php echo $fetch_edit['name'];?>"/>
                 <label>price</label>
                 <input name="price" type="number" required value="<?php echo $fetch_edit['price'];?>"/>
-                <label>price range</label>
+                <label>Max price</label>
                 <input name="price_range" type="text" required value="<?php echo $fetch_edit['price_range'];?>" />
                 <label for="category">category</label>
                 <select  name="category" id="category" required >
                     <option value="coffee" <?php if ($fetch_edit['category'] == 'coffee') echo 'selected'; ?>>Coffee</option>
                     <option value="latte" <?php if ($fetch_edit['category'] == 'latte') echo 'selected'; ?>>Latte</option>
-                    <option value="special" <?php if ($fetch_edit['category'] == 'special') echo 'selected'; ?>>Special</option>
+                    <option value="specials" <?php if ($fetch_edit['category'] == 'special') echo 'selected'; ?>>Special</option>
                     <option value="noncoffee" <?php if ($fetch_edit['category'] == 'noncoffee') echo 'selected'; ?>>Non Coffee</option>
                 </select>
                 <label>Status</label>

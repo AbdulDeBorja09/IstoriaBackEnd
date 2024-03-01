@@ -6,7 +6,7 @@
     if (!isset($user_id)){
         header('location:../login/login.php');
     }
-    if(isset($_POST['message'])){
+    if(isset($_POST[''])){
         date_default_timezone_set('Asia/Manila');
         $sender = mysqli_real_escape_string($conn, $_POST['sender']);
         $name = mysqli_real_escape_string($conn, $_POST['name']);
@@ -45,12 +45,18 @@
         <h1 class="contact-gettouch">GET IN TOUCH</h1>
         <div class="contact-flex">
             <div class="contact-col1">
-                <form method="post">
+                <form method="post" action="https://api.web3forms.com/submit" id="form">
+                    <input type="hidden" name="access_key" value="be5b9631-6122-47f3-9df4-f5855b112ce4">
+                    <input type="hidden" name="from_name" value="E-Store-Ria">
+                    <input type="hidden" name="redirect" value="http://localhost/istoriabackend/user/user_home.php">
+                    <input type="hidden" name="subject" value="Customer Service" />
+
                     <input type="hidden" name="sender" value="user">
                     <input type="text" name="name" placeholder="NAME" required />
-                    <input type="text" name="email" placeholder="EMAIL" required />
+                    <input type="email" name="email" placeholder="EMAIL" required />
                     <input type="number" name="phone" placeholder="PHONE NUMBER" required />
-                    <textarea name="messages" id="" cols="30" rows="7" placeholder="MESSAGE" required></textarea>
+                    <textarea name="messages" id="message" cols="30" rows="7" placeholder="MESSAGE" required></textarea>
+                    <div class="h-captcha" id="captcha" data-captcha="true" style="display: none;"></div>
                     <button name="message" class="fancy" type="submit">
                         <span class="top-key"></span>
                         <span class="text">SEND A MESSAGE</span>
@@ -101,6 +107,26 @@
     </div>
     <div style="padding: 70px"></div>
     <?php include 'footer.php' ?>
+    <script>
+    document.getElementById("message").addEventListener("input", function() {
+    var captcha = document.getElementById("captcha");
+        if (this.value.trim() !== "") {
+            captcha.style.display = "block";
+        } else {
+            captcha.style.display = "none";
+        }
+    });
+    const form = document.getElementById('form');
+    form.addEventListener('submit', function(e) {
+    const hCaptcha = form.querySelector('textarea[name=h-captcha-response]').value;
+        if (!hCaptcha) {
+            e.preventDefault();
+            alert("Please fill out captcha field")
+            return
+        }
+    });
+    </script>
+    <script src="https://web3forms.com/client/script.js" async defer></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

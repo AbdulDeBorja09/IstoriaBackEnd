@@ -65,6 +65,14 @@
                 </tr>
             <?php 
                 }
+              }else{
+                echo '
+                <tr>
+                  <td colspan="8" style="padding: 150px 0px; border:0px;">
+                    <h1>NO AVAILABLE PRODUCTS</h1>
+                  </td>
+                </tr>
+                ';
               }
             ?>
               

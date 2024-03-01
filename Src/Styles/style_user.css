@@ -2538,3 +2538,6 @@ footer a {
 .msg-box .input-box button ion-icon {
   font-size: 25px;
 }
+.h-captcha {
+  margin: 10px 0px;
+}

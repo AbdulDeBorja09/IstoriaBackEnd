@@ -131,7 +131,7 @@
                   
                     <div class="description">
                       <h5><?php echo $fetch_products['name']; ?></h5>
-                      <h6><?php echo $fetch_products['price_range']; ?></h6>
+                      <h6>₱ <?php echo $fetch_products['price']; ?>.00 - ₱ <?php echo $fetch_products['price_range']; ?>.00</h6>
                       <h4><i>*UNAVAILABLE</i></h4>
                   </div>
                 </div>

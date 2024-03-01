@@ -103,7 +103,15 @@
                  <?php    
                  $current_user_id = $fetch_message['user_id'];
                     }
+                    
                 }
+                  echo '
+                  <tr>
+                    <td colspan="8" style="padding: 150px 0px; border:0px;">
+                      <h1 style="font-size: 30px;" >NO MESSAGE</h1>
+                    </td>
+                  </tr>
+                  ';
                 ?>
               </tbody>
             </table>

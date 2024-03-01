@@ -77,13 +77,13 @@
                 <input id="name" name="name" type="text" class="form-control" required />
                 <label>price</label>
                 <input name="price" type="number" class="form-control" required />
-                <label>price range</label>
+                <label>Max price</label>
                 <input name="price_range" type="text" class="form-control" required />
                 <label for="">category</label>
                 <select class="form-control" name="category" id="" required>
                     <option value="coffee">COFFEE</option>
                     <option value="latte">LATTE</option>
-                    <option value="specias">SPECIAL</option>
+                    <option value="specials">SPECIAL</option>
                     <option value="noncoffee">NON COFFEE</option>
                 </select>
                 <label for="image">image</label>
