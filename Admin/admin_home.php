@@ -31,40 +31,40 @@
           <div class="card">
             <div>
               <div class="numbers">0</div>
-              <div class="cardName">Orders</div>
+              <div class="cardName">Sales</div>
             </div>
 
             <div class="iconBx">
-              <ion-icon name="notifications-outline"></ion-icon>
+              <ion-icon name="cash-outline"></ion-icon>
             </div>
           </div>
 
           <div class="card">
             <div>
               <div class="numbers">0</div>
-              <div class="cardName">To Pickup</div>
+              <div class="cardName">Customer</div>
             </div>
 
             <div class="iconBx">
-              <ion-icon name="cafe-outline"></ion-icon>
+            <ion-icon name="people-outline"></ion-icon>
             </div>
           </div>
 
           <div class="card">
             <div>
               <div class="numbers">0</div>
-              <div class="cardName">Completed</div>
+              <div class="cardName">Employee</div>
             </div>
 
             <div class="iconBx">
-              <ion-icon name="trending-up-outline"></ion-icon>
+            <ion-icon name="people-outline"></ion-icon>
             </div>
           </div>
 
           <div class="card">
             <div>
               <div class="numbers">0</div>
-              <div class="cardName">Questions</div>
+              <div class="cardName">Messages</div>
             </div>
 
             <div class="iconBx">
@@ -90,12 +90,22 @@
               </thead>
 
               <tbody>
+              <?php 
+                $select_users = mysqli_query($conn, "SELECT * FROM `user` WHERE type ='employee'") or die ('query failed');
+                if(mysqli_num_rows($select_users)>0){
+                    while($fetch_users = mysqli_fetch_assoc($select_users)){
+                ?>
                 <tr>
-                  <td>Star Refrigerator</td>
+                  <td><?php echo $fetch_users['name'] ?></td>
                   <td>$1200</td>
                   <td>Paid</td>
                   <td><span class="status delivered">Delivered</span></td>
                 </tr>
+                <?php
+                    }
+                  }
+                
+                ?>
               </tbody>
             </table>
           </div>
