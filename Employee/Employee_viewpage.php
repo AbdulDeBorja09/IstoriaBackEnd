@@ -40,24 +40,24 @@
           <?php include 'time.php' ?>
         </div>
         <div class="container-box heading-div">
-        <a class="button" href="Employee_orders.php">
-          <div class="button-box">
-            <span class="button-elem">
-              <svg viewBox="0 0 46 40" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"
-                ></path>
-              </svg>
-            </span>
-            <span class="button-elem">
-              <svg viewBox="0 0 46 40">
-                <path
-                  d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"
-                ></path>
-              </svg>
-            </span>
-          </div>
-    </a>
+          <a class="button" href="Employee_orders.php">
+            <div class="button-box">
+              <span class="button-elem">
+                <svg viewBox="0 0 46 40" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"
+                  ></path>
+                </svg>
+              </span>
+              <span class="button-elem">
+                <svg viewBox="0 0 46 40">
+                  <path
+                    d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"
+                  ></path>
+                </svg>
+              </span>
+            </div>
+          </a>
           <div class="titlediv">
             <h1>ORDERS</h1>
           </div>
@@ -149,9 +149,8 @@
                     }
                     echo "</table>";
                     ?>
-
                 </div>
-                <div class="flex2">
+                  <div class="flex2">
                     <div class="note">
                         <?php 
                             if ($fetch_orders['transaction'] == 'pickup') {
@@ -166,11 +165,11 @@
                     </div>
                     <div class="total">
                         <h4>TOTAL PRICE</h4>
-                       <div class="bot">
-                        <h3>DELIVERY FEE: ₱ 60.00</h3> 
-                        <h4>₱ <?php echo $fetch_orders['total'] ?>.00</h4>
-                       </div>
-                    </div>
+                      <div class="bot">
+                      <h3>DELIVERY FEE: ₱ 60.00</h3> 
+                      <h4>₱ <?php echo $fetch_orders['total'] ?>.00</h4>
+                      </div>
+                  </div>
                 </div>
 
             </div>
@@ -202,32 +201,7 @@
             
             ?>
         </div>
-    </div>
-    <!-- <script>
-        // Get status from PHP variable
-        var status = "<?php echo $status; ?>";
-
-        // Get references to the buttons
-        var preparingButton = document.getElementById("preparingButton");
-        var readyButton = document.getElementById("readyButton");
-        var completedButton = document.getElementById("completedButton");
-
-        // Disable buttons based on status
-        if (status === "preparing") {
-            preparingButton.disabled = true;
-            readyButton.disabled = false;
-            completedButton.disabled = false;
-        } else if (status === "ready") {
-            preparingButton.disabled = false;
-            readyButton.disabled = true;
-            completedButton.disabled = false;
-        } else if (status === "completed") {
-            preparingButton.disabled = false;
-            readyButton.disabled = false;
-            completedButton.disabled = true;
-        }
-    </script> -->
-
+    </div>  
     <script src="../Src/Javascript/index.js"></script>
     <script
       type="module"
