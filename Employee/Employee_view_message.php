@@ -12,7 +12,6 @@
         $sender = mysqli_real_escape_string($conn, $_POST['sender']);
         $name = mysqli_real_escape_string($conn, $_POST['name']);
         $email = mysqli_real_escape_string($conn, $_POST['email']);
-        $phone =  mysqli_real_escape_string($conn, $_POST['phone']);
         $messages = mysqli_real_escape_string($conn, $_POST['messages']);
         $date = date('m-d-y');
         $time = date('h:i:sA');
@@ -21,7 +20,7 @@
         $select_message = mysqli_query($conn, "SELECT * FROM `message` WHERE message = '$messages'") or die ('query failed');
         if(mysqli_num_rows($select_message)>0){
         }else{
-        mysqli_query($conn, "INSERT INTO `message` (`user_id`, `sender`, `name`, `email`, `phone`, `message`, `date` ) VALUES ('$id', '$sender', '$name', '$email', '$phone', '$messages','$timestamp')") or die ('query failed');
+        mysqli_query($conn, "INSERT INTO `message` (`user_id`, `sender`, `name`, `email`, `message`, `date` ) VALUES ('$id', '$sender', '$name', '$email', '$messages','$timestamp')") or die ('query failed');
         }
     }
     if(isset($_POST['delete'])){
@@ -134,21 +133,6 @@
             </div>
         </div>
     </div>
-    <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        const searchInput = document.getElementById('searchInput');
-        const rows = document.querySelectorAll("#message-table tbody tr");
-
-        searchInput.addEventListener("keyup", function(event) {
-          const query = event.target.value.toLowerCase();
-
-          rows.forEach(row => {
-            const text = row.innerText.toLowerCase();
-            row.style.display = text.includes(query) ? "" : "none";
-          });
-        });
-      });
-  </script>
     <script src="../Src/Javascript/index.js"></script>
     <script
       type="module"

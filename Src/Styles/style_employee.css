@@ -1037,11 +1037,11 @@ h1 {
   font-weight: 500;
 }
 .message-left .msgbox .msg p {
-  border: 1px solid var(--black1);
   margin-left: 20px;
   padding: 10px;
   border-radius: 10px;
   font-size: 12px;
+  border: 1px solid var(--black1);
   font-weight: 500;
 }
 .message-left .msgbox .msg,
@@ -1057,6 +1057,7 @@ h1 {
 }
 .message-right .msgbox .msg p {
   border: 1px solid var(--black1);
+  width: auto;
   margin-left: 55px;
   padding: 10px;
   border-radius: 10px;

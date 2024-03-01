@@ -6,24 +6,6 @@
     if (!isset($user_id)){
         header('location:../login/login.php');
     }
-    if(isset($_POST[''])){
-        date_default_timezone_set('Asia/Manila');
-        $sender = mysqli_real_escape_string($conn, $_POST['sender']);
-        $name = mysqli_real_escape_string($conn, $_POST['name']);
-        $email = mysqli_real_escape_string($conn, $_POST['email']);
-        $phone =  mysqli_real_escape_string($conn, $_POST['phone']);
-        $messages = mysqli_real_escape_string($conn, $_POST['messages']);
-        $date = date('m-d-y');
-        $time = date('h:i:sA');
-        $timestamp = $date.' '.$time;
-
-        $select_message = mysqli_query($conn, "SELECT * FROM `message` WHERE name = '$name' AND email = '$email' AND message = '$messages'") or die ('query failed');
-        if(mysqli_num_rows($select_message)>0){
-        echo 'message already send';
-        }else{
-        mysqli_query($conn, "INSERT INTO `message` (`user_id`, `sender`, `name`, `email`, `phone`, `message`, `date` ) VALUES ('$user_id', '$sender', '$name', '$email', '$phone', '$messages','$timestamp')") or die ('query failed');
-        }
-    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,7 +33,6 @@
                     <input type="hidden" name="redirect" value="http://localhost/istoriabackend/user/user_home.php">
                     <input type="hidden" name="subject" value="Customer Service" />
 
-                    <input type="hidden" name="sender" value="user">
                     <input type="text" name="name" placeholder="NAME" required />
                     <input type="email" name="email" placeholder="EMAIL" required />
                     <input type="number" name="phone" placeholder="PHONE NUMBER" required />
