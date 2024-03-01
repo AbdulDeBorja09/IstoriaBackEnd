@@ -16,7 +16,7 @@
           $image = $_FILES['image']['name'];
           $image_size = $_FILES['image']['size'];
           $image_tmp_name = $_FILES['image']['tmp_name'];
-          $image_folder = '../products/'.$image;
+          $image_folder = '../assets/products/'.$image;
   
           $select_product_name = mysqli_query($conn, "SELECT name FROM `products` WHERE name = '$product_name' ") or die('query failed');
           if (mysqli_num_rows($select_product_name) > 0) {

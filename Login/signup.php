@@ -232,7 +232,7 @@
                 </div>
             </div>
             <div class="termsbutton text-center">
-                <button class="close btn w-50">CONTINUE</button>
+                <a href="signup.php" class="close btn w-50">CONTINUE</a>
             </div>
         </div>
     </div>

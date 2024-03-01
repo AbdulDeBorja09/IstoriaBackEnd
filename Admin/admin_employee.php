@@ -28,7 +28,9 @@
           </div>
         </div>
 
-        <div class="container-box">Employee</div>
+        <div class="container-box">
+          <h1 class="employee-title">Employee</h1>
+        </div>
       </div>
     </div>
     <script src="../Src/Javascript/index.js"></script>

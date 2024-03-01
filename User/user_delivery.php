@@ -112,7 +112,7 @@
                             <h6><?php echo $fetch_tray['quantity'] ?></h6>
                         </div>
                         <div class="col1">
-                            <img src="../products/5.png" alt="coffee" />
+                            <img src="../assets/products/<?php echo $fetch_tray['image'] ?>" alt="coffee" />
                             <div class="details">
                                 <input type="hidden" name="pname[]" value="<?php echo $fetch_tray['name'] ?>">
                                 <input type="hidden" name="size[]" value="<?php echo $fetch_tray['size'] ?>">

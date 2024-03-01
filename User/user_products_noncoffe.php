@@ -89,7 +89,7 @@
                         <input name="product_name" type="hidden" value="<?php echo $fetch_products['name']; ?>">
                         <input name="product_category" type="hidden" value="<?php echo $fetch_products['image']; ?>">
                         <input name="product_range type=" hidden value="<?php echo $fetch_products['price_range']; ?>">
-                        <img src="../products/<?php echo $fetch_products['image']; ?>" alt="coffee" />
+                        <img src="../assets/products/<?php echo $fetch_products['image']; ?>" alt="coffee" />
                         <div class="description">
                             <h5><?php echo $fetch_products['name']; ?></h5>
                             <h6><?php echo $fetch_products['price_range']; ?></h6>
@@ -127,7 +127,7 @@
                   <input name="product_category" type="hidden" value="<?php echo $fetch_products['image']; ?>">
                   <input name="product_range type=" hidden value="<?php echo $fetch_products['price_range']; ?>">
                   <div class="unavailablediv">
-                  <img src="../products/<?php echo $fetch_products['image']; ?>" alt="coffee" />
+                  <img src="../assets/products/<?php echo $fetch_products['image']; ?>" alt="coffee" />
                   
                     <div class="description">
                       <h5><?php echo $fetch_products['name']; ?></h5>

@@ -88,7 +88,7 @@
                     <br />
                     <a class="viewpagelink" href="user_viewpage.php?pid=<?php echo $fetch_products['id']; ?>">
                         <input name="product_id" type="hidden" value="<?php echo $fetch_products['id']; ?>">
-                        <img src="../products/<?php echo $fetch_products['image']; ?>" alt="coffee" />
+                        <img src="../assets/products/<?php echo $fetch_products['image']; ?>" alt="coffee" />
                         <div class="description">
                             <h5><?php echo $fetch_products['name']; ?></h5>
                             <h6>₱ <?php echo $fetch_products['price']; ?>.00 - ₱ <?php echo $fetch_products['price_range']; ?>.00</h6>
@@ -126,7 +126,7 @@
                   <input name="product_category" type="hidden" value="<?php echo $fetch_products['image']; ?>">
                   <input name="product_range type=" hidden value="<?php echo $fetch_products['price_range']; ?>">
                   <div class="unavailablediv">
-                  <img src="../products/<?php echo $fetch_products['image']; ?>" alt="coffee" />
+                  <img src="../assets/products/<?php echo $fetch_products['image']; ?>" alt="coffee" />
                   
                     <div class="description">
                       <h5><?php echo $fetch_products['name']; ?></h5>

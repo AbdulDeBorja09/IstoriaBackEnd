@@ -100,7 +100,7 @@
                 </select>
                 <label for="image">image</label>
                 <input  id="image" name="image" type="file" accept="image/jpg, image/png, image/webp" required value="<?php echo $fetch_edit['image'];?>" />
-                <img src="../products/<?php echo $fetch_edit['image'];?>" width="100px" alt="Current Image">
+                <img src="../assets/products/<?php echo $fetch_edit['image'];?>" width="100px" alt="Current Image">
                <div class="adproduct-submit">
                 <button type="submit" name="submit" class="addsubmitbtn">SUBMIT</button>
                </div>

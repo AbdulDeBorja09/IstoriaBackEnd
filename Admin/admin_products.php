@@ -74,7 +74,7 @@
                 ?>
                 <tr>
                   <td><?php echo $count; ?></td></td>
-                  <td><img src="../products/<?php echo $fetch_products['image']; ?>" width="80%" /></td>
+                  <td><img src="../assets/products/<?php echo $fetch_products['image']; ?>" width="80%" /></td>
                   <td><?php echo $fetch_products['name']; ?></td>
                   <td>₱<?php echo $fetch_products['price']; ?></td>
                   <td><?php echo $fetch_products['price_range']; ?></td>

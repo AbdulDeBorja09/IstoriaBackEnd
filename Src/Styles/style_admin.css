@@ -289,12 +289,9 @@
 
 .products-table thead tr th {
   text-transform: uppercase;
-  /* background-color: var(--black1);
-  color: white; */
-  padding: 5px 5px;
+  padding: 10px 10px;
   font-size: 15px;
   font-weight: 600;
-
   text-align: start;
 }
 .products-table {
@@ -610,6 +607,10 @@
 }
 .order-table td a:hover {
   color: var(--black2);
+}
+.employee-title {
+  font-weight: 700;
+  text-transform: uppercase;
 }
 @media (max-width: 991px) {
   .navigation {

@@ -84,7 +84,7 @@
             <form method="post">
             <div class="product">
                 <div class="col1">
-                    <img src="../products/<?php echo $fetch_tray['image']; ?>" />
+                    <img src="../assets/products/<?php echo $fetch_tray['image']; ?>" />
                     <div class="details">
                         <div class="text">
                             <h1><?php echo $fetch_tray['category']; ?></h1>

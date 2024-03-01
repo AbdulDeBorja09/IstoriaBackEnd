@@ -120,7 +120,7 @@
               ?>
                 <tr>
                   <td><?php echo $count ?></td>
-                  <td><img src="../products/<?php echo $fetch_products['image'] ?>" width="100px"></td>
+                  <td><img src="../assets/products/<?php echo $fetch_products['image'] ?>" width="100px"></td>
                   <td><?php echo $fetch_products['name'] ?></td>
                   <td>
                   <?php 
