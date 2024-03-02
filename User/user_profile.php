@@ -38,12 +38,13 @@
                 <a href="user_profile_edit.php"><img src="../assets/Images/editprofile.png" alt="editprofile" /></a>
             </div>
             <div class="bottom">
-            <?php $select_user = mysqli_query($conn, "SELECT * FROM `user` WHERE id = '$user_id' ") or die ('query failed'); 
+            <?php $select_user = mysqli_query($conn, "SELECT * FROM `customer` WHERE uid = '$user_id' ") or die ('query failed'); 
                     if(mysqli_num_rows($select_user)>0){
                         while($fetch_user = mysqli_fetch_assoc($select_user)){
                     ?>
             
                 <h1><?php echo $fetch_user['name'] ?></h1>
+                <h1><?php echo $fetch_user['email'] ?></h1>
                 <h1><?php echo $fetch_user['username'] ?></h1>
                 <h1><?php echo $fetch_user['contact'] ?></h1>
                 <h1><?php echo $fetch_user['address'] ?></h1>

@@ -2699,3 +2699,12 @@ footer a {
   background-color: var(--browncolor);
   color: white;
 }
+.no-product-div {
+  display: flex;
+  justify-content: space-around;
+  padding: 200px 0px 140px 0px;
+}
+.no-product-div h1 {
+  font-weight: 700;
+  
+}

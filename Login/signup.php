@@ -16,6 +16,8 @@
         
         $username = mysqli_real_escape_string($conn, $_POST['username']);
         $address = mysqli_real_escape_string($conn, $_POST['address']);
+
+        $date = date('m-d-y');
         
         $select_user = mysqli_query($conn, "SELECT * FROM `user` WHERE email = '$email'") or die ('query failed');
         if(mysqli_num_rows($select_user)>0){
@@ -25,8 +27,12 @@
           if ($password != $cpassword){
             $message[] = 'Password Not Match';
           }else{
-            mysqli_query($conn, "INSERT INTO `user` ( `name`, `username`, `email` , `password`, `address`) 
-            VALUES ( '$name', '$username', '$email','$password','$address')") or die ('query failed');
+            mysqli_query($conn, "INSERT INTO `user` ( `email` , `password`) 
+            VALUES ('$email','$password')") or die ('query failed');
+            $user_id = mysqli_insert_id($conn);
+
+            mysqli_query($conn, "INSERT INTO `customer` ( `uid`, `name`, `username`, `email`, `address`, `created`) 
+            VALUES ('$user_id', '$name', '$username', '$email','$address', '$date')") or die ('query failed');
             $message[] = 'Account Created Successfully';
           }
         }

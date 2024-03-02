@@ -67,6 +67,10 @@
                 <li><a class="dropdown-item" href="?sort=alphabetical">Alphabetically</a></li>
             </ul>
         </div>
+        <?php 
+          $select_prodcuts = mysqli_query($conn, "SELECT * FROM `products` WHERE category ='specials'") or die ('query failed');
+          if(mysqli_num_rows($select_prodcuts)>0){
+        ?>
         <div class="coffe-flex">
             <?php 
            $select_prodcuts = mysqli_query($conn, "SELECT * FROM `products` WHERE category ='specials' AND status = 'available' $sort_order") or die ('query failed');
@@ -140,6 +144,15 @@
               }
             ?>
         </div>
+        <?php 
+            }else{
+            ?>
+                <div class="no-product-div">
+                    <h1>NO AVAILABLE PRODUCT</h1>
+                </div>
+            <?php 
+            }
+            ?>
     </div>
     <div style="padding: 150px"></div>
     <?php include 'footer.php' ?>

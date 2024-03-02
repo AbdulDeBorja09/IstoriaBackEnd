@@ -65,6 +65,7 @@
                 $count = 0;
                 $select_message = mysqli_query($conn, "SELECT * FROM `message` ORDER BY user_id, date DESC") or die ('Query failed');
                 $current_user_id = null;
+                if(mysqli_num_rows( $select_message)>0){
                 while($fetch_message = mysqli_fetch_assoc($select_message)){
                     if($fetch_message['user_id'] != $current_user_id){
                       $count++;
@@ -102,16 +103,17 @@
                   </tr>
                  <?php    
                  $current_user_id = $fetch_message['user_id'];
-                    }
-                    
-                }
-                  ?>
-                  <tr>
-                    <td colspan="8" style="padding: 150px 0px; border:0px;">
-                      <h1 style="font-size: 30px;" >NO MESSAGE</h1>
-                    </td>
-                  </tr>
-                  <?php 
+                      }
+                } 
+              }else{
+                ?>
+                <tr>
+                  <td colspan="8" style="padding: 150px 0px; border:0px;">
+                    <h1 style="font-size: 30px;">NO MESSAGE</h1>
+                  </td>
+                </tr>
+                <?php  
+              }  
                 ?>
               </tbody>
             </table>

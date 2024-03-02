@@ -41,7 +41,7 @@
     </div>
     <div class="msg-box container">
         <?php 
-            $select_user = mysqli_query($conn, "SELECT * FROM `user` WHERE id = '$user_id'") or die ('query failed');
+            $select_user = mysqli_query($conn, "SELECT * FROM `customer` WHERE uid = '$user_id'") or die ('query failed');
             $fetch_user = mysqli_fetch_assoc($select_user);
             $select_message = mysqli_query($conn, "SELECT * FROM `message` WHERE user_id = '$user_id' ORDER BY date ASC") or die ('query failed');
                 if(mysqli_num_rows($select_message)>0){

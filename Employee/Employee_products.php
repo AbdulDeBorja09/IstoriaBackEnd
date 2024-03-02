@@ -175,6 +175,15 @@
 
                 <?php 
                   }
+                }
+                else{
+                  ?>
+                  <tr>
+                    <td colspan="8" style="padding: 150px 0px; border:0px;">
+                      <h1>NO PRODUCTS</h1>
+                    </td>
+                  </tr>
+                  <?php  
                 }  
                 ?>
               </tbody>
