@@ -28,8 +28,13 @@
           </div>
         </div>
 
-        <div class="container-box">
-          <h1 class="employee-title">Employee</h1>
+        <div class="container-box employee-title">
+          <h1>Employee</h1>
+          <a class="addbutton" href="admin_employee_add.php">
+              <span class="addbtn">
+              <ion-icon name="add-circle-outline"></ion-icon>
+              </span>
+            </a>
         </div>
       </div>
     </div>
