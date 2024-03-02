@@ -7,6 +7,7 @@
       header('location:../login/login.php');
   }
   $ref = $_GET['ref'];
+  
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $newStatus = $_POST["status"];

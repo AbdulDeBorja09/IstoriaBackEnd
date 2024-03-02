@@ -18,6 +18,7 @@
         mysqli_query($conn, "INSERT INTO `message` (`user_id`, `sender`, `name`, `email`, `message`, `date` ) VALUES ('$user_id', '$sender', '$name', '$email', '$messages','$timestamp')") or die ('query failed');
         echo "<script>window.onload = function() { window.opener.location.href = '../employee/employee_message.php'; }</script>";
     }
+    
    
 ?>
 <!DOCTYPE html>

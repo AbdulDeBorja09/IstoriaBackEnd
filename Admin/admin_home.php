@@ -40,8 +40,12 @@
           </div>
 
           <div class="card">
+            <?php 
+              $select_customer = mysqli_query($conn, "SELECT * FROM `employee`") or die ('query failed');
+              $fetth_customer= mysqli_num_rows($select_customer);
+            ?>
             <div>
-              <div class="numbers">0</div>
+              <div class="numbers"><?php echo $fetth_customer ?></div>
               <div class="cardName">Customer</div>
             </div>
 
@@ -51,8 +55,12 @@
           </div>
 
           <div class="card">
+            <?php 
+              $select_employee = mysqli_query($conn, "SELECT * FROM `employee`") or die ('query failed');
+              $fetth_employee = mysqli_num_rows($select_employee);
+            ?>
             <div>
-              <div class="numbers">0</div>
+              <div class="numbers"><?php echo $fetth_employee  ?></div>
               <div class="cardName">Employee</div>
             </div>
 
