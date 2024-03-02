@@ -30,22 +30,20 @@
         </div>
 
         <div class="container-box">
-          <h1>CUSTOMER'S ACCOUNTS</h1>
+          <h1>ACCOUNTS</h1>
         </div>
         <div class="container-box">
-          <table class="users-table">
+          <table class="accounts-table">
             <thead>
               <tr>
                 <th>#</th>
-                <th>Name</th>
-                <th>User Name</th>
                 <th>Email</th>
                 <th>Password</th>
-                <th>Edit</th>
+                <th>Type</th>
               </tr>
             </thead>
             <tbody>
-            <?php $select_user = mysqli_query($conn, "SELECT * FROM `user` WHERE type = 'employee' OR type = 'admin' ") or die ('query failed');
+            <?php $select_user = mysqli_query($conn, "SELECT * FROM `user` WHERE type = 'employee' OR type = 'admin' ORDER BY type ASC ") or die ('query failed');
                 $count = 0;
                 if(mysqli_num_rows($select_user )>0){
                     while($fetch_user = mysqli_fetch_assoc($select_user )){
@@ -53,11 +51,9 @@
                 ?>
                 <tr>
                   <td><?php echo $count ?></td>
-                  <td><?php echo $fetch_user['name']; ?></td>
                   <td><?php echo $fetch_user['email']; ?></td>
                   <td><?php echo $fetch_user['password']; ?></td>
                   <td><?php echo $fetch_user['type']; ?></td>
-                  <td><a href="">view</a></td>
                 </tr>
                   <?php  
                     }

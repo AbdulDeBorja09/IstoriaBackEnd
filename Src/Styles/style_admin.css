@@ -301,31 +301,36 @@
   padding: 0px 5px;
 }
 .products-table tbody tr td:first-child {
-  width: 5%;
+  width: 50px;
   text-align: center;
   font-weight: 700;
 }
-.products-table tbody tr td:nth-child(2) {
-  width: 10%;
+.products-table tbody tr td:nth-child(2),
+.products-table thead tr th:nth-child(2) {
+  width: 150px;
+  text-align: center;
 }
-.products-table tbody tr td:nth-child(3) {
-  width: 23%;
+.products-table tbody tr td:nth-child(3),
+.products-table thead tr th:nth-child(3) {
+  padding: 0px 30px;
 }
 .products-table tbody tr td:nth-child(4) {
-  width: 10%;
+  width: 120px;
 }
-.products-table tbody tr td:nth-child(5) {
-  width: 15%;
+.products-table tbody tr td:nth-child(5),
+.products-table thead tr th:nth-child(5) {
+  width: 200px;
+  text-align: center;
 }
 .products-table tbody tr td:nth-child(6) {
-  width: 15%;
+  width: 150px;
 }
 .products-table tbody tr td:nth-child(7) {
-  width: 10%;
+  width: 150px;
   text-align: center;
 }
 .products-table tbody tr td:nth-child(8) {
-  width: 100%;
+  width: 200px;
 }
 .products-table thead tr th:nth-child(8),
 .products-table thead tr th:nth-child(7) {
@@ -687,6 +692,80 @@
 .employee-add-button button:hover {
   background-color: var(--gray);
   color: white;
+}
+.employee-table {
+  border-collapse: collapse;
+  text-transform: capitalize;
+}
+.employee-table tr th {
+  background-color: var(--gray);
+  border: 1px solid var(--gray);
+  padding: 10px 5px;
+  color: white;
+}
+.employee-table tr td {
+  border-bottom: 1px solid var(--black2);
+  padding: 0px 20px;
+}
+.employee-table tr th:first-child {
+  width: 50px;
+  font-weight: 700;
+}
+.employee-table tr th:nth-child(2) {
+  width: 200px;
+  padding: 0px 20px;
+  text-align: start;
+}
+.employee-table tr th:nth-child(3) {
+  text-align: start;
+  padding: 0px 20px;
+}
+.employee-table tr th:nth-child(4) {
+  width: 100px;
+}
+.employee-table tr th:nth-child(5),
+.employee-table tr td:nth-child(5) {
+  width: 200px;
+  text-align: center;
+}
+.employee-table tr th:nth-child(6) {
+  width: 250px;
+}
+.accounts-table {
+  border-collapse: collapse;
+  text-transform: capitalize;
+}
+.accounts-table thead tr th {
+  background-color: var(--gray);
+  border: 1px solid var(--gray);
+  color: white;
+  padding: 9px;
+}
+.accounts-table tbody tr td {
+  border: 1px solid var(--black2);
+  padding: 9px;
+}
+.accounts-table thead tr th:first-child,
+.accounts-table tbody tr td:first-child {
+  width: 50px;
+  text-align: center;
+  font-weight: 500;
+}
+.accounts-table thead tr th:nth-child(3),
+.accounts-table tbody tr td:nth-child(3) {
+  text-align: start;
+  padding: 0px 20px;
+}
+.accounts-table thead tr th:nth-child(2),
+.accounts-table tbody tr td:nth-child(2) {
+  width: 250px;
+  text-align: start;
+  padding: 0px 20px;
+}
+.accounts-table thead tr th:last-child,
+.accounts-table tbody tr td:last-child {
+  width: 200px;
+  text-align: center;
 }
 @media (max-width: 991px) {
   .navigation {
