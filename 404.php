@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +22,7 @@
         </div>
 
         <div class="returnbutton">
-            <a class="return" href="user_home.php">RETURN TO HOME</a>
+            <button class="return" onclick="history.back()">RETURN TO HOME</button>
         </div>
     </div>
 </body>

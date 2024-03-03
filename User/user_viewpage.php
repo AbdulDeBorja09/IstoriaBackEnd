@@ -7,9 +7,10 @@
         header('location:../login/login.php');
     }
     if (!isset($_GET['pid'])) {
-        header('location:../user_home.php');
+        header('location:../404.php');
         
       }
+
     if (isset($_POST['add_to_tray'])){
         $product_id = $_POST['product_id'];
         $product_name = $_POST['product_name'];
@@ -206,6 +207,8 @@
         </form>
         <?php
                         }
+                    }else{
+                        header('location:../404.php');
                     }
                 }
             ?>

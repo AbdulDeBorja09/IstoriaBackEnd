@@ -24,6 +24,16 @@
                 break;
         }
     }
+    $select_review = mysqli_query($conn, "SELECT * FROM `review`") or die ('query failed');
+    $total_ratings = 0;
+    $num_of_reviews = 0;
+    
+    while($fetch_review = mysqli_fetch_assoc($select_review)){
+        $total_ratings += $fetch_review['rating'];
+        $num_of_reviews++;
+    }
+    $average_rating = $num_of_reviews > 0 ? round($total_ratings / $num_of_reviews, 1) : 0;
+    $average_stars = str_repeat('<ion-icon name="star"></ion-icon>&nbsp;', $average_rating);
 
 ?>
 
@@ -97,12 +107,8 @@
                         <div class="description">
                             <h5><?php echo $fetch_products['name']; ?></h5>
                             <h6>₱ <?php echo $fetch_products['price']; ?>.00 - ₱ <?php echo $fetch_products['price_range']; ?>.00</h6>
-                            <div class="star">
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
+                            <div class="product-star">
+                               <?php echo $average_stars; ?>
                             </div>
                         </div>
                     </a>

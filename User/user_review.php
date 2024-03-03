@@ -7,7 +7,12 @@
     if (!isset($user_id)){
         header('location:../login/login.php');
     }
+    
     $ref = $_GET['ref'];
+    if (!isset($_GET['ref'])) {
+        header('location:../404.php');
+        
+      }
     if (isset($_POST['send'])) {
         $name = mysqli_real_escape_string($conn, $_POST['name']);
         $order= mysqli_real_escape_string($conn, $_POST['order']);
@@ -82,7 +87,9 @@
         </form>
         <?php
             }
-        } ?>
+        } else{
+            header('location:../404.php');
+        }?>
     </div>
 
     <script>
@@ -113,7 +120,7 @@
 
         function resetStarsColor() {
             stars.forEach((star) => {
-                star.style.color = "#a6a6a6"; // Corrected color value
+                star.style.color = "#a6a6a6";
             });
         }
 
