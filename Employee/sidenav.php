@@ -59,7 +59,7 @@
     </li>
 
     <li>
-      <a href="Employee_message.php">
+      <a href="Employee_sales.php">
         <span class="icon">
           <ion-icon name="cash-outline"></ion-icon>
         </span>

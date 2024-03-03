@@ -11,15 +11,44 @@
   }
   $ref = $_GET['ref'];
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $newStatus = $_POST["status"];
-    $update_query = mysqli_query($conn, "UPDATE `orders` SET status = '$newStatus' WHERE reference = '$ref'");
-    if ($update_query) {
-        header("Location: #");
-        exit();
-    } else {
-        echo "Error updating status: " . mysqli_error($conn);
+    if(isset($_POST['status'])){
+        $newStatus = $_POST["status"];
+        $update_query = mysqli_prepare($conn, "UPDATE `orders` SET status = ? WHERE reference = ?");
+        mysqli_stmt_bind_param($update_query, "ss", $newStatus, $ref);
+        mysqli_stmt_execute($update_query);
+        mysqli_stmt_close($update_query);
+    } elseif(isset($_POST['completed'])) {
+        $Status = $_POST["completed"];
+
+        $select_sales = mysqli_query($conn, "SELECT * FROM `sales` WHERE reference = '$ref'") or die ('query failed');
+        if(mysqli_num_rows($select_sales) == 0){
+            $update_order_query = mysqli_prepare($conn, "UPDATE `orders` SET status = ? WHERE reference = ?");
+            mysqli_stmt_bind_param($update_order_query, "ss", $Status, $ref);
+            mysqli_stmt_execute($update_order_query);
+            mysqli_stmt_close($update_order_query);
+
+            $type = 'online';
+            $total = $_POST['total'];
+            $time = date('H:i:s A');
+            $day = date('d');
+            $month = date('m');
+            $year = date('Y');
+            $sales_insert = mysqli_prepare($conn, "INSERT INTO `sales` (`total`, `type`, `time`, `day`, `month`, `year`, `reference`) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            mysqli_stmt_bind_param($sales_insert, "dssssss", $total, $type, $time, $day, $month, $year, $ref);
+            mysqli_stmt_execute($sales_insert);
+            mysqli_stmt_close($sales_insert);
+
+            header("Location: Employee_orders.php");
+            exit();
+        }else{
+          $update_order_query = mysqli_prepare($conn, "UPDATE `orders` SET status = ? WHERE reference = ?");
+            mysqli_stmt_bind_param($update_order_query, "ss", $Status, $ref);
+            mysqli_stmt_execute($update_order_query);
+            mysqli_stmt_close($update_order_query);
+        }
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -190,10 +219,12 @@
                 <div class="status">
                     <h4>STATUS</h4>
                     <div class="buttons">
+                      
                     <form id="statusForm" method="post">
+                      <input type="hidden" name="total" value="<?php echo $fetch_orders['total'] ?>">
                         <button type="submit" name="status" value="pending" <?php if ($status === "pending") echo "disabled"; ?>>PENDING</button>
                         <button type="submit" name="status" value="ready" <?php if ($status === "ready") echo "disabled"; ?>>READY</button>
-                        <button type="submit" name="status" value="completed" <?php if ($status === "completed") echo "disabled"; ?>>COMPLETED</button>
+                        <button type="submit" name="completed" value="completed" <?php if ($status === "completed") echo "disabled"; ?>>COMPLETED</button>
                     </form>
 
                     </div>
