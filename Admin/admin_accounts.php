@@ -58,15 +58,15 @@
                   <?php  
                     }
                       }else{
-                      echo '
-                      <tr>
-                        <td colspan="7">
-                          <h1>NO AVAILABLE PRODUCTS</h1>
-                        </td>
-                      </tr>
-                      ';
-                    }
-                    ?>
+                        ?>
+                        <tr>
+                          <td colspan="4" style="padding: 150px 0px; border:0px;">
+                            <h1 style="font-size: 30px; text-align:center;">NO ACCOUNTS</h1>
+                          </td>
+                        </tr>
+                        <?php  
+                      }  
+                        ?>
             </tbody>
           </table>
           

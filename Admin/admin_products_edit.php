@@ -6,6 +6,10 @@
   if (!isset($admin_id)){
       header('location:../login/login.php');
   }
+  if (!isset($_GET['edit'])) {
+    header('location:../404.php');
+    
+  }
   
   if(isset($_POST['submit'])){
     $update_id = $_POST['update_id'];
@@ -116,7 +120,9 @@
             </form>
             <?php
                 }
-                }
+                }else{
+                  header('location:../404.php');
+              }
             }
             ?>
         </div>

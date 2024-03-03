@@ -28,9 +28,15 @@
           </div>
         </div>
         <div class="cardBox">
+        <?php $total = 0; 
+                    $select_total = mysqli_query($conn, "SELECT * FROM `orders` WHERE status = 'completed'") or die ('query failed');
+                    while ($fetch_total = mysqli_fetch_assoc($select_total)){
+                        $total  += $fetch_total['total'];
+                    }
+                ?>
           <div class="card">
             <div>
-              <div class="numbers">0</div>
+              <div class="numbers">₱ <?php echo $total ?></div>
               <div class="cardName">Sales</div>
             </div>
 

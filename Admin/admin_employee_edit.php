@@ -8,6 +8,10 @@
       header('location:../login/login.php');
   }
   $edit_id = $_GET['edit'];
+  if (!isset($_GET['edit'])) {
+    header('location:../404.php');
+    
+  }
   if(isset($_POST['submit'])){    
     $filter_email = filter_var($_POST['aemail'], FILTER_SANITIZE_STRING);
     $aemail = mysqli_real_escape_string($conn, $filter_email);

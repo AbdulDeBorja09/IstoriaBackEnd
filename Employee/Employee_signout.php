@@ -55,10 +55,11 @@
             <?php 
             $select_attendance = mysqli_query($conn, "SELECT * FROM `attendance` WHERE eid = ' $employee_id' AND status = 'on' ") or die ('query failed');
             $fetch_attendance = mysqli_fetch_assoc($select_attendance);
+            $time_in = date("h:i A", strtotime($fetch_attendance['time_in']));
             ?>
             
             <h4>TIME IN</h4>
-            <h5><?php echo $fetch_attendance['time_in'] ?></h5> 
+            <h5><?php echo $time_in ?></h5> 
             <h6><?php echo $fetch_attendance['date'] ?></h6>
             <br />
 

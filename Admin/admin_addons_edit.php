@@ -8,6 +8,10 @@
       header('location:../login/login.php');
   }
   $edit_id = $_GET['edit'];
+  if (!isset($_GET['edit'])) {
+    header('location:../404.php');
+    
+  }
 
   if(isset($_POST['edit'])){
     $category = mysqli_real_escape_string($conn, $_POST['category']);
@@ -122,9 +126,10 @@
           </form>
           <?php 
                 }
-              }
-            }
-          
+              }else{
+                header('location:../404.php');
+            }   
+          }
           ?>
         </div>
 

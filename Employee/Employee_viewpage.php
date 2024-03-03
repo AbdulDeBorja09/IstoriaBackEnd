@@ -6,9 +6,10 @@
   if (!isset($employee_id)){
       header('location:../login/login.php');
   }
+  if (!isset($_GET['ref'])) {
+    header('location:../404.php');
+  }
   $ref = $_GET['ref'];
-  
-
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $newStatus = $_POST["status"];
     $update_query = mysqli_query($conn, "UPDATE `orders` SET status = '$newStatus' WHERE reference = '$ref'");
@@ -66,6 +67,7 @@
         <div class="container-box">
           <h5 class="view-title">CUSTOMER DETAILS</h5>
           <?php 
+          if(isset($_GET['ref'])){
             $select_orders = mysqli_query($conn, "SELECT * FROM `orders` WHERE reference = '$ref'") or die ('query failed');
                 if(mysqli_num_rows($select_orders)>0){
                   while($fetch_orders = mysqli_fetch_assoc($select_orders)){
@@ -161,6 +163,7 @@
                                 echo '<h4>NOTE TO RIDER:</h4>';
                               
                             }
+                          
                         ?>
                         <p><?php echo $fetch_orders['note'] ?></p>
                     </div>
@@ -199,7 +202,9 @@
             <?php 
                   }
                 }
-            
+          }else{
+            header('location:../404.php');
+        }
             ?>
         </div>
     </div>  

@@ -36,7 +36,7 @@
     <li>
       <a href="Employee_history.php">
         <span class="icon">
-          <ion-icon name="cash-outline"></ion-icon>
+          <ion-icon name="checkmark-done-circle-outline"></ion-icon>
         </span>
         <span class="title">History</span>
       </a>
@@ -55,6 +55,15 @@
           <ion-icon name="chatbubble-outline"></ion-icon>
         </span>
         <span class="title">Messages</span>
+      </a>
+    </li>
+
+    <li>
+      <a href="Employee_message.php">
+        <span class="icon">
+          <ion-icon name="cash-outline"></ion-icon>
+        </span>
+        <span class="title">Sales</span>
       </a>
     </li>
     <li>
