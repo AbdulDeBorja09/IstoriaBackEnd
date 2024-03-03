@@ -59,7 +59,7 @@
                   <td><?php echo $fetch_orders['total'] ?></td>
                   <td><?php echo $fetch_orders['payment'] ?></td>
                   <td><?php echo $fetch_orders['transaction'] ?></td>
-                  <td><a href="admin_view_order.php?oid=<?php echo $fetch_orders['id'] ?>">VIEW</a></td>
+                  <td><a href="admin_order_viewpage.php?ref=<?php echo $fetch_orders['reference'] ?>">VIEW</a></td>
 
 
                 </tr>

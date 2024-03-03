@@ -1,3 +1,28 @@
+<?php
+    include '../connection.php';
+    session_start();
+    $employee_id = $_SESSION['employee_id'];
+
+    date_default_timezone_set('Asia/Manila');
+    $time = date('H:i:s');
+    $date = date('m-d-y');
+    $month = date('m');
+
+    if (!isset($employee_id)){
+        header('location:../login/login.php');
+    }
+    
+    if(isset($_POST['time_in'])){
+    $eid = $_POST['employee_id'];
+    $employee_name = $_POST['name'];
+    $employee_rank = $_POST['rank'];
+
+    $insert_attendance = mysqli_query($conn, "INSERT INTO `attendance` (`eid`, `employee_id`, `name`, `rank`, `time_in`, `date`, `month`)
+    VALUES ('$employee_id', '$eid', '$employee_name', '$employee_rank', '$time', '$date', '$month')") or die('query failed');
+    header('location:Employee_home.php');
+     
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -14,55 +39,53 @@
     <link rel="stylesheet" href="../Src/Styles/style_employee.css" />
   </head>
   <body class="attendance">
-    <div class="attendance-nav">
-      <div class="attendance-inner">
-        <a href="">
-          <img class="navbrand" src="../assets/Images/logo.png" alt=""
-        /></a>
-        <div class="time-div text-center">
-          <p id="time" class="time"></p>
-          <p id="currentDate" class="date">s</p>
+    <?php include 'navbar.php'; ?>
+
+    <?php 
+      $select_employee = mysqli_query($conn, "SELECT * FROM `employee` WHERE eid = '$employee_id'") or die ('query failed');
+      if(mysqli_num_rows($select_employee)>0){
+        while($fetch_employee = mysqli_fetch_assoc($select_employee)){
+        
+    ?>
+    <form method="post">
+      <div class="attendance-container">
+        <div class="attendance-image">
+          <img src="../assets/Images/profile.png" alt="profile-image" />
         </div>
-        <a href="attendance_profile.html"
-          ><ion-icon name="person-outline" class="avatar-icon"></ion-icon
-        ></a>
-      </div>
-    </div>
+        <div class="attendance-name">
+          <h1><?php echo $fetch_employee['name'] ?></h1>
+        </div>
+        <div class="attendance-button-holder">
+          <input type="hidden" name="employee_id" value="<?php echo $fetch_employee['employee_id'] ?>">
+          <input type="hidden" name="name" value="<?php echo $fetch_employee['name'] ?>">
+          <input type="hidden" name="rank" value="<?php echo $fetch_employee['rank'] ?>">
+          <?php 
+            $query1 = mysqli_query($conn, "SELECT * FROM `attendance` WHERE eid = '$employee_id' AND time_out = '0' AND date = '$date'") or die ('query failed');
+            $query2 = mysqli_query($conn, "SELECT * FROM `attendance` WHERE eid = '$employee_id' AND date = '$date' AND status  = 'off' ") or die ('query failed');
+            if(mysqli_num_rows($query1)>0){   
+          ?>
+            <a name="time_in" href="Employee_home.php" type="submit" class="timein btn">CONTINUE</a>
+            <button class="timeout btn">LOGOUT</button>
 
-    <div class="attendance-container">
-      <div class="attendance-image">
-        <img src="../assets/Images/profile.png" alt="profile-image" />
-      </div>
-      <div class="attendance-name">
-        <h1>De Borja, Abdul Aziz A.</h1>
-      </div>
-      <div class="attendance-button-holder">
-        <a href="Employee_home.html" class="timein btn">TIME IN</a>
-        <button class="timeout btn">LOGOUT</button>
-      </div>
-    </div>
-    <script>
-      function updateTime() {
-        var now = new Date();
-        var hours = now.getHours();
-        var minutes = now.getMinutes();
-        var seconds = now.getSeconds();
+            <?php 
+            }else if(mysqli_num_rows($query2 )>0) {?>
+              <a name="time_in" href="#" type="submit" class="timein btn" disabled>DUTY COMPLETED</a>
+            <?php
+            }else { ?>
+              <button class="time-in-btn" name="time_in" type="submit">TIME IN</button>
+              <button class="timeout btn">LOGOUT</button>
 
-        hours = (hours < 10 ? "0" : "") + hours;
-        minutes = (minutes < 10 ? "0" : "") + minutes;
-        seconds = (seconds < 10 ? "0" : "") + seconds;
-        var timeString = hours + ":" + minutes + ":" + seconds;
-        document.getElementById("time").textContent = timeString;
+            <?php
+              }
+            ?>
+        </div>
+      </div>
+    </form>
+    <?php 
+        }
       }
-      
-      setInterval(updateTime, 1000);
-      var currentDate = new Date();
-      var day = currentDate.getDate();
-      var month = currentDate.getMonth() + 1; 
-      var year = currentDate.getFullYear();
-      var formattedDate = month + "/" + day + "/" + year;
-      document.getElementById("currentDate").innerHTML = formattedDate;
-    </script>
+    ?>
+
     <script src="../Src/Javascript/main.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

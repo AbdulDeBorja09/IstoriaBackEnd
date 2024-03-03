@@ -40,20 +40,10 @@
         }
        
         $total_price += $product_price;
-        $tray_num = mysqli_query($conn, "SELECT * FROM `tray` 
-        WHERE size = '$product_size'
-        AND name = '$product_name' 
-        AND type = '$product_type' 
-        AND user_id = '$user_id'
-        AND addons = '$selected_addons' ") or die ('query failed');
-  
-        if(mysqli_num_rows($tray_num)>0){
-          $message[] = 'Product Already exist in tray';
-        }else{
-            mysqli_query($conn, "INSERT INTO `tray` (`name`, `category`, `price`, `quantity`, `type`, `size`,`addons`,`image`, `user_id`, `pid`) 
-            VALUES ('$product_name', '$product_category', '$total_price', '$product_quantity', '$product_type', '$product_size','" . mysqli_real_escape_string($conn, json_encode($selected_addons)) . "', '$product_image' , '$user_id', '$product_id')");
-          $message[] = 'Product successfuly added in your cart';
-        }
+        mysqli_query($conn, "INSERT INTO `tray` (`name`, `category`, `price`, `quantity`, `type`, `size`,`addons`,`image`, `user_id`, `pid`) 
+        VALUES ('$product_name', '$product_category', '$total_price', '$product_quantity', '$product_type', '$product_size','" . mysqli_real_escape_string($conn, json_encode($selected_addons)) . "', '$product_image' , '$user_id', '$product_id')");
+        $message[] = 'Product successfuly added in your cart';
+
       }
       $select_review = mysqli_query($conn, "SELECT * FROM `review`") or die ('query failed');
         $total_ratings = 0;
@@ -117,7 +107,7 @@
                         <ion-icon name="star"></ion-icon>
                         <ion-icon name="star"></ion-icon>
                     </div>
-                    <h5 class="product_price">₱<?php echo $fetch_products['price']; ?>.00</h5>
+                    <h5  class="total_price">₱<?php echo $fetch_products['price']; ?>.00</h5>
                     <h6>CHOICES</h6>
                     <input type="radio" class="btn-check" name="product_type" id="option5" autocomplete="off" checked value="hot"/>
                     <label class="radiolabel btn" for="option5" >HOT</label>
@@ -136,7 +126,7 @@
                         <tbody>
                             <?php 
                             $addons_category = $fetch_products['category'];
-                             $select_addons = mysqli_query($conn, "SELECT * FROM `addons` WHERE category = '$addons_category'") or die ('query failed');
+                             $select_addons = mysqli_query($conn, "SELECT * FROM `addons` WHERE category = '$addons_category' AND status = 'available'") or die ('query failed');
                              if(mysqli_num_rows($select_addons)>0){
                                 while($fetch_addons = mysqli_fetch_assoc($select_addons)){
                              ?>
@@ -309,7 +299,8 @@
     const minusBtn = document.getElementById("minusBtn");
     const addBtn = document.getElementById("addBtn");
     const quantityInput = document.getElementById("quantityInput");
-
+    const productPriceElement = document.querySelector('.product_price');
+    
     minusBtn.addEventListener("click", () => {
         event.preventDefault();
         let currentQuantity = parseInt(quantityInput.value);
@@ -326,8 +317,9 @@
         }
     });
     document.addEventListener('DOMContentLoaded', function () {
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    const totalPriceInput = document.getElementById('total_price');
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const totalPriceInput = document.querySelectorAll('.total_price');
+        const productPriceElement = document.querySelector('.product_price');
 
     let totalPrice = parseFloat(totalPriceInput.value) || 0;
     checkboxes.forEach(function (checkbox) {

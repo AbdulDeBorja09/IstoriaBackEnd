@@ -187,14 +187,12 @@
   color: var(--white);
 }
 
-/* ================== Order Details List ============== */
 .details {
   position: relative;
   width: 100%;
   padding: 20px;
   display: grid;
   grid-gap: 30px;
-  /* margin-top: 10px; */
 }
 .details .recentOrders {
   position: relative;
@@ -226,22 +224,22 @@
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
+
+  text-transform: capitalize;
 }
 .details table thead td {
   font-weight: 600;
+  background-color: var(--black1);
+  color: white;
 }
-.details .recentOrders table tr {
+.details .recentOrders table tbody tr {
   color: var(--black1);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .details .recentOrders table tr:last-child {
   border-bottom: none;
 }
-.details .recentOrders table tbody tr:hover {
-  background: var(--gray);
-  color: var(--white);
-}
+
 .details .recentOrders table tr td {
   padding: 10px;
 }
@@ -252,8 +250,18 @@
   text-align: end;
 }
 .details .recentOrders table tr td:nth-child(3) {
+  text-align: start;
+}
+.details .recentOrders table tr td:nth-child(4) {
+  text-align: end;
+}
+.details .recentOrders table thead tr td:nth-child(4) {
+  padding-right: 30px;
+}
+.details .recentOrders table tbody tr td:nth-child(5) {
   text-align: center;
 }
+
 .home-brand {
   margin-top: 10px;
 }
@@ -598,6 +606,10 @@
   text-align: center;
   font-weight: 700;
 }
+.order-table tr td:last-child,
+.order-table tr th:last-child {
+  text-align: center;
+}
 .order-table th {
   background-color: var(--gray);
   color: var(--white2);
@@ -908,8 +920,7 @@
 
   margin: 15px 20px;
 }
-.addonsmodal select,
-.editmodal select {
+.addonsmodal select {
   width: 93%;
   border: 1px solid var(--black1);
   border-radius: 6px;
@@ -917,8 +928,39 @@
   font-size: 12px;
   margin: 15px 20px;
 }
-.addonsmodal button,
-.editmodal button {
+.edit-modal input,
+.edit-modal select {
+  width: 47%;
+  border: 1px solid var(--black1);
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 12px;
+  margin: 0px 0px 30px 0px;
+}
+.edit-modal .submit {
+  text-align: center;
+  background-color: var(--black1);
+  color: white;
+  border-radius: 5px;
+  padding: 10px 50px;
+  width: 100%;
+  border: 1px solid var(--black1);
+}
+.edit-modal .delete {
+  text-align: center;
+  background-color: var(--white);
+  color: rgb(133, 6, 6);
+  border-radius: 5px;
+  padding: 10px 50px;
+  width: 100%;
+  border: 1px solid rgb(133, 6, 6);
+  margin-top: 20px;
+}
+.edit-modal .delete:hover {
+  background-color: rgb(133, 6, 6);
+  color: white;
+}
+.addonsmodal .submit {
   text-align: center;
   background-color: var(--black1);
   color: white;
@@ -927,6 +969,173 @@
   width: 93%;
   margin: 30px 20px;
   border: 1px solid var(--black1);
+}
+.addons-edit-div {
+  padding: 50px 0px 100px 0px;
+}
+.editbuttonaddons {
+  padding: 20px;
+}
+.editbuttonaddons .status-div {
+  display: flex;
+  justify-content: space-between;
+}
+.circle-flex {
+  display: flex;
+  justify-content: space-around;
+}
+.red-circle {
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 50%;
+}
+.green-circle {
+  width: 10px;
+  height: 10px;
+  background-color: rgb(1, 100, 1);
+  border-radius: 50%;
+}
+.table-attendance {
+  border-collapse: collapse;
+  text-transform: capitalize;
+}
+.table-attendance tr th {
+  padding: 7px 5px;
+  background-color: var(--gray);
+  border: 1px solid var(--gray);
+  color: white;
+}
+.table-attendance tr td {
+  padding: 10px 5px;
+  border: 1px solid var(--black2);
+}
+.table-attendance tr td:first-child {
+  width: 50px;
+}
+.table-attendance tr td:nth-child(2) {
+  width: 150px;
+}
+.table-attendance tr td:nth-child(4),
+.table-attendance tr td:nth-child(5),
+.table-attendance tr td:nth-child(6),
+.table-attendance tr td:nth-child(7),
+.table-attendance tr td:nth-child(8) {
+  width: 150px;
+  text-align: center;
+}
+.order-flex1 {
+  display: flex;
+  margin-top: -10px;
+  justify-content: space-between;
+  color: var(--brown);
+  text-transform: uppercase;
+}
+.order-flex1 .box1 {
+  display: flex;
+}
+.view-title {
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--brown);
+}
+.order-flex1 .box1 .text {
+  width: 200px;
+}
+.order-flex1 .box1 h5 {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.order-flex1 .box2 {
+  display: flex;
+}
+.order-flex1 .date h5 {
+  text-align: end;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+.container-box hr {
+  margin-top: -25px;
+  height: 1px;
+}
+.bottomdiv {
+  margin-top: -40px;
+  text-transform: uppercase;
+}
+.bottomdiv h4 {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+.bottomdiv h3 {
+  font-size: 12px;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.details-div {
+  width: 100%;
+  margin-top: -45px;
+  display: flex;
+  justify-content: space-between;
+  text-transform: uppercase;
+}
+.details-div .flex1 table td {
+  padding: 30px 0px;
+}
+.details-div .flex1 table th:first-child,
+.details-div .flex1 table th:nth-child(4) {
+  text-align: start;
+}
+.details-div .flex1 table tr td:first-child {
+  width: 300px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.details-div .flex1 table tr td:nth-child(2) {
+  width: 250px;
+  text-align: center;
+  font-size: 12px;
+}
+.details-div .flex1 table tr td:nth-child(3) {
+  width: 250px;
+  text-align: center;
+  font-size: 12px;
+}
+.details-div .flex1 table tr td:nth-child(4) {
+  font-size: 12px;
+}
+.details-div .flex1 table tr td:last-child {
+  width: auto;
+}
+.details-div .flex1 {
+  width: 65%;
+}
+.details-div .flex2 {
+  width: 35%;
+  margin-left: 100px;
+  display: flex;
+}
+.details-div .flex2 .note {
+  width: 50%;
+}
+.details-div .flex2 .note p {
+  font-size: 12px;
+  margin-top: 30px;
+}
+.details-div .flex2 .total {
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+  justify-content: space-between;
+}
+.details-div .flex2 .total h3 {
+  font-size: 10px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+.details-div .flex2 .total h4 {
+  font-size: 15px;
 }
 @media (max-width: 991px) {
   .navigation {

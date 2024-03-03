@@ -1,5 +1,13 @@
 <?php 
-$pid = 7;
+
+    include '../connection.php';
+    session_start();
+    $user_id = $_SESSION['user_id'];
+
+    if (!isset($user_id)){
+        header('location:../login/login.php');
+    }
+    $pid = isset($_GET['pid']);
 ?>
 <div class="modal fade" id="exampleModal" class="exampleModal" tabindex="-1" aria-hidden="true" aria-labelledby="exampleModalLabel">
     <div class="modal-dialog modal-dialog-centered modal-xl">
@@ -100,4 +108,8 @@ $pid = 7;
     </div>
 </div>
 
-    
+<script>
+    function enlargeModal(productId) {
+        console.log('Product ID:', productId);
+    }
+</script>

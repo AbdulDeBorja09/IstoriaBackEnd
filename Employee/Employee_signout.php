@@ -2,10 +2,25 @@
   include '../connection.php';
   session_start();
   $employee_id = $_SESSION['employee_id'];
+  if (!isset($employee_id)){
+    header('location:../login/login.php');
+  }
+
   date_default_timezone_set('Asia/Manila');
   $date = date('m-d-y');
-  $time = date('h:i:sA');
+  $time = date('H:i:s');
 
+  if(isset($_POST['time-out'])){
+    $status = 'off';
+    $id = $_POST['id'];
+    $update_addons = mysqli_query($conn, "UPDATE `attendance` SET 
+    `status` = '$status',
+    `time_out` = '$time'
+
+    WHERE id = '$id'") or die ('query failed'); 
+     header('location:../login/login.php');
+
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,21 +44,27 @@
         </div>
         <div class="container-box">
           <div class="signoutdiv">
-          <?php 
-            $select_orders = mysqli_query($conn, "SELECT * FROM `user` WHERE id = ' $employee_id'") or die ('query failed');
-             $fetch_orders = mysqli_fetch_assoc($select_orders);
+            <?php 
+            $select_employee = mysqli_query($conn, "SELECT * FROM `employee` WHERE eid = ' $employee_id'") or die ('query failed');
+             $fetch_employee = mysqli_fetch_assoc($select_employee);
 
-          ?>
+            ?>
             <img src="../assets/Images/profile.png" width="250px" />
-            <h1><?php echo $fetch_orders['name'] ?></h1>
+            <h1><?php echo $fetch_employee['name'] ?></h1>
             <hr />
+            <?php 
+            $select_attendance = mysqli_query($conn, "SELECT * FROM `attendance` WHERE eid = ' $employee_id' AND status = 'on' ") or die ('query failed');
+            $fetch_attendance = mysqli_fetch_assoc($select_attendance);
+            ?>
+            
             <h4>TIME IN</h4>
-            <h5>10:00:00</h5> 
-            <h6><?php echo $date ?></h6>
+            <h5><?php echo $fetch_attendance['time_in'] ?></h5> 
+            <h6><?php echo $fetch_attendance['date'] ?></h6>
             <br />
 
            <form method="post">
-            <button name="l" class="button">CLOCK OUT</button>
+              <input type="hidden" name="id" value="<?php echo $fetch_attendance['id'] ?>">
+              <button name="time-out" class="button">CLOCK OUT</button>
            </form>
           </div>
         </div>

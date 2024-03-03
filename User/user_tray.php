@@ -170,15 +170,30 @@
             </div>
             <h3>DELIVERY FEE INCLUDED AT CHECKOUT.</h3>
             <div class="lower">
-            <?php if ($grand_total == 0): ?>
-                <a class="stylish1 btn" disabled>DELIVERY</a>
-                <a class="stylish2 btn" disabled>PICK-UP</a>
-            <?php else: ?>
-                <a href="user_delivery.php" class="stylish1 btn">DELIVERY</a>
-                <a href="user_pickup.php" class="stylish2 btn">PICK-UP</a>
-            <?php endif; ?>
+
+            <?php 
+                $select_attendance = mysqli_query($conn, "SELECT * FROM `attendance` WHERE status = 'on'") or die ('query failed');
+                if(mysqli_num_rows($select_attendance )>0){
+            ?>
+                <?php if ($grand_total == 0): ?>
+                    <a class="stylish1 btn" disabled>DELIVERY</a>
+                    <a class="stylish2 btn" disabled>PICK-UP</a>
+                <?php else: ?>
+                    <a href="user_delivery.php" class="stylish1 btn">DELIVERY</a>
+                    <a href="user_pickup.php" class="stylish2 btn">PICK-UP</a>
+                <?php endif; ?>
+            
+            <?php
+                }else{
+            ?>
+            <div class="div">
+                <h1>STORE IS NOW CLOSE</h1>
             </div>
-        
+
+            <?php
+                }    
+            ?>
+            </div>
         </div>
     </div>
     <?php include 'footer.php' ?>

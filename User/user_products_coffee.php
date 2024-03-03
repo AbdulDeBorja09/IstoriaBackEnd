@@ -93,9 +93,9 @@
                 <form method="post">
                     <input type="hidden" name="product_id" value="<?php echo $fetch_products['id']; ?>">
                     <div class="enlargebox">
-                        <a class="enlarge btn" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            <ion-icon name="search"></ion-icon>
-                        </a>
+                    <a class="enlarge btn" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="enlargeModal(<?php echo $fetch_products['id']; ?>)">
+                        <ion-icon name="search"></ion-icon>
+                    </a>
                     </div>
                     <br />
                     <a class="viewpagelink" href="user_viewpage.php?pid=<?php echo $fetch_products['id']; ?>">
@@ -168,13 +168,10 @@
     <?php include 'user_modal_viewpage.php' ?>
     <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // Function to show a modal by ID
         function showModal(modalId) {
             var modal = new bootstrap.Modal(document.getElementById(modalId));
             modal.show();
         }
-
-        // Add event listeners to modal trigger buttons
         var modalTriggerButtons = document.querySelectorAll('.enlarge');
         modalTriggerButtons.forEach(function (button) {
             button.addEventListener('click', function (event) {
@@ -183,8 +180,6 @@
                 showModal(targetModalId);
             });
         });
-
-        // Add event listeners to modal close buttons
         var modalCloseButtons = document.querySelectorAll('[data-bs-dismiss="modal"]');
         modalCloseButtons.forEach(function (closeButton) {
             closeButton.addEventListener('click', function () {
@@ -194,7 +189,7 @@
             });
         });
     });
-</script>
+    </script>
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

@@ -26,7 +26,7 @@
       }else if($row['type'] == 'employee') {
         $_SESSION['employee_id'] = $row['id'];
         sleep(1);
-        header('location:../employee/employee_home.php');
+        header('location:../employee/attendance.php');
       }
 
       if(isset($_POST['remember'])) {

@@ -70,13 +70,17 @@
           </div>
 
           <div class="card">
+          <?php 
+              $select_attendance = mysqli_query($conn, "SELECT * FROM `attendance` WHERE status = 'on'") or die ('query failed');
+              $fetch_attendance = mysqli_num_rows($select_attendance );
+            ?>
             <div>
-              <div class="numbers">0</div>
-              <div class="cardName">Messages</div>
+              <div class="numbers"><?php echo $fetch_attendance ?></div>
+              <div class="cardName">On Duty</div>
             </div>
 
             <div class="iconBx">
-              <ion-icon name="mail-unread-outline"></ion-icon>
+              <ion-icon name="person-outline"></ion-icon>
             </div>
           </div>
         </div>
@@ -84,30 +88,42 @@
         <div class="details">
           <div class="recentOrders">
             <div class="cardHeader">
-              <h2>Employee List</h2>
+              <h2>Employee On Duty</h2>
             </div>
 
             <table>
               <thead>
                 <tr>
                   <td>Name</td>
+                  <td>Employee ID</td>
                   <td>Rank</td>
-                  <td>Payment</td>
-                  <td>Status</td>
+                  <td colspan="2">Status</td>
+                  
                 </tr>
               </thead>
 
               <tbody>
               <?php 
-                $select_users = mysqli_query($conn, "SELECT * FROM `user` WHERE type ='employee'") or die ('query failed');
+                $select_users = mysqli_query($conn, "SELECT * FROM `attendance` WHERE status ='on'") or die ('query failed');
                 if(mysqli_num_rows($select_users)>0){
                     while($fetch_users = mysqli_fetch_assoc($select_users)){
+                      $time_in = date("h:i A", strtotime($fetch_users['time_in']));
                 ?>
                 <tr>
                   <td><?php echo $fetch_users['name'] ?></td>
-                  <td>$1200</td>
-                  <td>Paid</td>
-                  <td><span class="status delivered">Delivered</span></td>
+                  <td><?php echo $fetch_users['employee_id'] ?></td>
+                  <td><?php echo $fetch_users['rank'] ?></td>
+                  <td><?php echo $time_in ?></td>
+                  <td>
+                      <?php 
+                      $status = $fetch_users ['status'];
+                      if($status == 'on'){
+                          echo '<div class="circle-flex" ><div class="green-circle"></div></div>';
+                      }else{
+                          echo '<div class="circle-flex" ><div class="red-circle"></div></div>';
+                      }
+                      ?>
+                  </td>
                 </tr>
                 <?php
                     }
