@@ -105,8 +105,7 @@
             <input type="hidden" name="product_category" value="<?php echo $fetch_products['category']; ?>">
             <div class="viewpagediv row">
                 <div class="col-lg-6">
-                    <img class="modal-coffee-img" src="../assets/products/<?php echo $fetch_products['image']; ?>"
-                        alt="coffee" />
+                    <img class="modal-coffee-img" src="../assets/products/<?php echo $fetch_products['image']; ?>" alt="coffee" />
                 </div>
                 <div class="view-div-2 col-lg-6">
                     <h1><?php echo $fetch_products['name']; ?></h1>

@@ -94,7 +94,7 @@
                         <img src="../assets/products/<?php echo $fetch_products['image']; ?>" alt="coffee" />
                         <div class="description">
                             <h5><?php echo $fetch_products['name']; ?></h5>
-                            <h6><?php echo $fetch_products['price_range']; ?></h6>
+                            <h6>₱ <?php echo $fetch_products['price']; ?>.00 - ₱ <?php echo $fetch_products['price_range']; ?>.00</h6>
                             <div class="star">
                                 <ion-icon name="star"></ion-icon>
                                 <ion-icon name="star"></ion-icon>

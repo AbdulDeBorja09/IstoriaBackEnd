@@ -47,9 +47,17 @@
     <li>
       <a href="admin_sales.php">
         <span class="icon">
-          <ion-icon name="cash-outline"></ion-icon>
+          <ion-icon name="trending-up-outline"></ion-icon>
         </span>
         <span class="title">Sales</span>
+      </a>
+    </li>
+    <li>
+      <a href="admin_sales.php">
+        <span class="icon">
+          <ion-icon name="cash-outline"></ion-icon>
+        </span>
+        <span class="title">Salary</span>
       </a>
     </li>
     <li>

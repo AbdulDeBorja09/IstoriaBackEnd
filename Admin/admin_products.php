@@ -40,7 +40,7 @@
         </div>
 
         <div class="container-box">
-          <div class="addmenu">
+          <div class="addmenu employee-title" >
             <h1 class="titles">PRODUCTS</h1>
             <a class="addbutton" href="admin_products_add.php">
               <span class="addbtn">

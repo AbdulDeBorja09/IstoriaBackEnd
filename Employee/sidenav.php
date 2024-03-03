@@ -1,3 +1,7 @@
+<?php 
+  $select_employee = mysqli_query($conn, "SELECT * FROM `employee` WHERE eid ='$employee_id'") or die ('queryfailed');
+  $fetch_employee = mysqli_fetch_assoc($select_employee);
+?>
 <div class="navigation">
   <ul>
     <li>
@@ -5,11 +9,12 @@
         <span class="icon">
           <img
             class="home-brand"
-            src="../assets/Images/Favicon.png"
+            src="../assets/profiles/<?php echo $fetch_employee['image']?>"
             width="50px"
+            style="border-radius: 50%;"
           />
         </span>
-        <span class="brand-title">Brand Name</span>
+        <span class="brand-title"><?php echo $fetch_employee['name']?></span>
       </a>
     </li>
     <li>

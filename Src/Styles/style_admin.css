@@ -322,15 +322,18 @@
   width: 200px;
   text-align: center;
 }
-.products-table tbody tr td:nth-child(6) {
+.products-table tbody tr td:nth-child(6),
+.products-table thead tr th:nth-child(6) {
   width: 150px;
+  text-align: center;
 }
 .products-table tbody tr td:nth-child(7) {
   width: 150px;
   text-align: center;
 }
 .products-table tbody tr td:nth-child(8) {
-  width: 200px;
+  width: 250px;
+  padding: 0px 25px;
 }
 .products-table thead tr th:nth-child(8),
 .products-table thead tr th:nth-child(7) {
@@ -766,6 +769,125 @@
 .accounts-table tbody tr td:last-child {
   width: 200px;
   text-align: center;
+}
+.edit-employee-profile-img {
+  border-radius: 50%;
+}
+.addons-table {
+  border-collapse: collapse;
+  text-transform: uppercase;
+}
+.addons-table thead tr th {
+  padding: 9px;
+  background-color: var(--gray);
+  color: #f2f2f2;
+  border: 1px solid var(--gray);
+}
+.addons-table tbody tr td {
+  padding: 10px 10px;
+  border: 1px solid var(--black2);
+}
+.addons-table tbody tr td:nth-child(2),
+.addons-table tbody tr td:nth-child(3),
+.addons-table tbody tr td:nth-child(4),
+.addons-table tbody tr td:nth-child(5) {
+  text-align: center;
+  width: 200px;
+}
+.addons-table tbody tr td:nth-child(6),
+.addons-table tbody tr td:nth-child(7),
+.addons-table tbody tr td:nth-child(8),
+.addons-table tbody tr td:nth-child(9) {
+  text-align: center;
+  width: 100px;
+}
+.addons-table tbody tr td:last-child {
+  width: 150px;
+}
+.addonsmodal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.addonsmodal .modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 30px 20px 20px 20px;
+  border: 1px solid #888;
+  width: 30%;
+}
+
+.addonsmodal .close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: -20px;
+}
+
+.addonsmodal .close:hover,
+.addonsmodal .close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.addons-flex {
+  display: flex;
+}
+.addons-flex .col1,
+.addons-flex .col2 {
+  width: 50%;
+}
+.addons-flex h1 {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+}
+.addons-flex .col1 input,
+.addons-flex select {
+  width: 90%;
+  border: 1px solid var(--black1);
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 12px;
+
+  margin: 15px 20px;
+}
+
+.addons-flex .col2 input {
+  width: 91%;
+  border: 1px solid var(--black1);
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 12px;
+
+  margin: 15px 20px;
+}
+.addonsmodal select {
+  width: 93%;
+  border: 1px solid var(--black1);
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 12px;
+  margin: 15px 20px;
+}
+.addonsmodal button {
+  text-align: center;
+  background-color: var(--black1);
+  color: white;
+  border-radius: 5px;
+  padding: 10px 50px;
+  width: 93%;
+  margin: 30px 20px;
+  border: 1px solid var(--black1);
 }
 @media (max-width: 991px) {
   .navigation {

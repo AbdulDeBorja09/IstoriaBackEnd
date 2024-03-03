@@ -60,11 +60,11 @@
                 <h1><?php echo $num_of_product; ?> PRODUCTS</h1>
             </div>
 
-            <button class="sortby btn btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+            <button class="sortby  dropdown-toggle" type="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 SORT BY:
             </button>
-            <ul class="dropdown-menu">
+            <ul class="sort-by dropdown-menu">
                 <li><a class="dropdown-item" href="?sort=low_high">Price: Low - High</a></li>
                 <li><a class="dropdown-item" href="?sort=high_low">Price: High - Low</a></li>
                 <li><a class="dropdown-item" href="?sort=alphabetical">Alphabetically</a></li>
@@ -133,7 +133,7 @@
                   
                     <div class="description">
                       <h5><?php echo $fetch_products['name']; ?></h5>
-                      <h6><?php echo $fetch_products['price_range']; ?></h6>
+                      <h6>₱ <?php echo $fetch_products['price']; ?>.00 - ₱ <?php echo $fetch_products['price_range']; ?>.00</h6>
                       <h4><i>*UNAVAILABLE</i></h4>
                   </div>
 

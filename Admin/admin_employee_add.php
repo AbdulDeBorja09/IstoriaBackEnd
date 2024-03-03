@@ -15,7 +15,6 @@
         $password = mysqli_real_escape_string($conn, $filter_password);
         $type = mysqli_real_escape_string($conn, $_POST['type']);
         
-        
         $employee_id = mysqli_real_escape_string($conn, $_POST['employee_id']);
         $position = mysqli_real_escape_string($conn, $_POST['rank']);
         $name =  mysqli_real_escape_string($conn,$_POST['lname'].', ' .$_POST['fname']);
@@ -114,48 +113,50 @@
                 <hr>
                 <div class="employee-info">
                     <div class="ecol1">
-                        <label for="eid">Employee ID</label>
-                        <input name="employee_id" type="text" id="eid" required>
 
                         <label for="fname">First Name</label>
                         <input name="fname" type="text" id="fname" required>
 
+                        <label for="lname">Last Name</label>
+                        <input name="lname" type="text" id="lname" required>
+
                         <label for="gender">Gender</label>
                         <input name="gender" type="text" id="gender" required>
+                        
+                        <label for="age">Age</label>
+                        <input name="age" type="number"  id="age" required>
 
                         <label for="bday">Birthday</label>
                         <input name="bday" type="date"  id="bday" required>
-                        
-                        <label for="house">House #/ Barangay</label>
-                        <input name="house" type="text"  id="house" required>
 
-                        <label for="province">Province</label>
-                        <input name="province" type="text"  id="province" required>
+                        <label for="bplace">Birth Place</label>
+                        <input name="bplace" type="text"  id="bplace" required>
 
                         <label for="number">Contact #</label>
                         <input name="contact" type="number"  id="number" required>
                     </div>
                     <div class="ecol2">
+                        <label for="eid">Employee ID</label>
+                        <input name="employee_id" type="text" id="eid" required>
+
                         <label for="rank">Position</label>
                         <input name="rank" type="text" id="rank" required>
 
-                        <label for="lname">Last Name</label>
-                        <input name="lname" type="text" id="lname" required>
+                        <label for="email">Email</label>
+                        <input name="email" type="email"  id="email" required>
 
-                        <label for="age">Age</label>
-                        <input name="age" type="number"  id="age" required>
-
-                        <label for="bplace">Birthplace</label>
-                        <input name="bplace" type="text" id="bplace" required>
+                        <label for="house">House #/ Barangay</label>
+                        <input name="house" type="text"  id="house" required>
 
                         <label for="city">City</label>
                         <input name="city" type="text"  id="city" required>
 
+                        <label for="province">Province</label>
+                        <input name="province" type="text"  id="province" required>
+
                         <label for="postal">Postal</label>
                         <input name="postal" type="number"  id="postal" required>
 
-                        <label for="email">Email</label>
-                        <input name="email" type="email"  id="email" required>
                     </div>
                 </div>
                 <hr>

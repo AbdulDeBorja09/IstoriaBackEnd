@@ -267,8 +267,14 @@ footer a {
   font-size: 30px;
 }
 .sortby {
-  border: 1px solid var(--browncolor);
+  border: 0px solid var(--browncolor);
   margin-top: -5px;
+  background-color: white;
+  padding: 0px 20px;
+  font-size: 12px;
+}
+.sort-by {
+  font-size: 12px;
 }
 
 .menu-flex {
@@ -2706,5 +2712,7 @@ footer a {
 }
 .no-product-div h1 {
   font-weight: 700;
-  
+}
+.sort-by {
+  font-size: 12px;
 }

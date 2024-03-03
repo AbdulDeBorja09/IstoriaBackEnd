@@ -1,5 +1,5 @@
 <?php 
-$pid = 1;
+$pid = 7;
 ?>
 <div class="modal fade" id="exampleModal" class="exampleModal" tabindex="-1" aria-hidden="true" aria-labelledby="exampleModalLabel">
     <div class="modal-dialog modal-dialog-centered modal-xl">
@@ -11,7 +11,7 @@ $pid = 1;
         ?>
             <div class="row">
                 <div class="col-lg-6">
-                    <img class="modal-coffee-img" src="../products/<?php echo  $product['image']?>" alt="coffee" />
+                    <img class="modal-coffee-img" src="../assets/products/<?php echo  $product['image']?>" alt="coffee" />
                 </div>
                 <div class="modal-div-2 col-lg-6">
                     <h1><?php echo  $product['name']?></h1>

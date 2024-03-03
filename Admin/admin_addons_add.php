@@ -20,7 +20,7 @@
   </head>
   <body>
     <div class="container">
-      <?php include 'sidenav.php' ?>
+    <?php include 'sidenav.php' ?>
       <div class="main">
         <div class="topbar">
           <div class="toggle">
@@ -28,9 +28,13 @@
           </div>
         </div>
 
-        <div class="container-box ">
-          <h1>CUSTOMERS</h1>
+        <div class="container-box employee-title">
+          <h1>ADDONS</h1>
         </div>
+        <div class="container-box">
+          
+        </div>
+
       </div>
     </div>
     <script src="../Src/Javascript/index.js"></script>
