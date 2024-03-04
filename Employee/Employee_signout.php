@@ -49,7 +49,7 @@
              $fetch_employee = mysqli_fetch_assoc($select_employee);
 
             ?>
-            <img src="../assets/Images/profile.png" width="250px" />
+            <img src="../assets/profiles/<?php echo $fetch_employee['image'] ?>" width="250px" />
             <h1><?php echo $fetch_employee['name'] ?></h1>
             <hr />
             <?php 

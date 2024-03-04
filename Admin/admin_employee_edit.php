@@ -33,7 +33,7 @@
     $date_hired = mysqli_real_escape_string($conn, $_POST['date-hired']);
     $image = $_FILES['image']['name'];
     $image_tmp_name = $_FILES['image']['tmp_name'];
-    $image_folder='../assets/profiles'.$image; 
+    $image_folder='../assets/profiles/'.$image; 
 
     $update_employee = mysqli_query($conn, "UPDATE `employee` SET 
     `employee_id` = '$employee_id', 

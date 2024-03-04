@@ -9,7 +9,7 @@
             width="50px"
           />
         </span>
-        <span class="brand-title">Brand Name</span>
+        <span class="brand-title">Istoria Admin</span>
       </a>
     </li>
     <li>
@@ -53,7 +53,7 @@
       </a>
     </li>
     <li>
-      <a href="admin_sales.php">
+      <a href="admin_salary.php">
         <span class="icon">
           <ion-icon name="cash-outline"></ion-icon>
         </span>
@@ -90,6 +90,14 @@
           <ion-icon name="lock-closed-outline"></ion-icon>
         </span>
         <span class="title">Accounts</span>
+      </a>
+    </li>
+    <li>
+      <a href="admin_settings.php">
+        <span class="icon">
+          <ion-icon name="settings-outline"></ion-icon>
+        </span>
+        <span class="title">Settings</span>
       </a>
     </li>
 

@@ -29,7 +29,7 @@
         </div>
         <div class="cardBox">
         <?php $total = 0; 
-                    $select_total = mysqli_query($conn, "SELECT * FROM `orders` WHERE status = 'completed'") or die ('query failed');
+                    $select_total = mysqli_query($conn, "SELECT * FROM `sales` ") or die ('query failed');
                     while ($fetch_total = mysqli_fetch_assoc($select_total)){
                         $total  += $fetch_total['total'];
                     }

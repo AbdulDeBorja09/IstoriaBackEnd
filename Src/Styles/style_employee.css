@@ -1113,7 +1113,108 @@ h1 {
   margin-top: 7px;
   cursor: pointer;
 }
-
+.sales-table {
+  border-collapse: collapse;
+}
+.sales-table tr th {
+  padding: 10px;
+  background-color: var(--brown);
+  color: var(--white);
+  border: 1px solid var(--brown);
+}
+.sales-table tr td {
+  padding: 10px;
+  border: 1px solid var(--black2);
+}
+.sales-table tr th:first-child {
+  width: 50px;
+}
+.sales-table tr th:nth-child(3) {
+  width: 200px;
+}
+.sales-table tr th:last-child {
+  width: 200px;
+}
+.bin-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--brown);
+  cursor: pointer;
+  border: var(--black1);
+  transition-duration: 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.bin-bottom {
+  width: 10px;
+  z-index: 2;
+}
+.bin-top {
+  width: 10px;
+  transform-origin: right;
+  transition-duration: 0.3s;
+  z-index: 2;
+}
+.bin-button:hover .bin-top {
+  transform: rotate(45deg);
+}
+.bin-button:hover {
+  background-color: rgb(255, 0, 0);
+}
+.bin-button:active {
+  transform: scale(0.9);
+}
+.garbage {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.3s;
+}
+.bin-button:hover .garbage {
+  animation: throw 0.4s linear;
+}
+.addsales .flex {
+  display: flex;
+  justify-content: space-between;
+}
+.addsales .flex input {
+  padding: 5px;
+  font-size: 15px;
+  width: 100%;
+  border: 1px solid var(--black1);
+  border-radius: 5px;
+  margin-top: 10px;
+}
+.addsales .flex label {
+  font-weight: 600;
+}
+.addsales .flex .input1,
+.addsales .flex .input2 {
+  width: 49%;
+}
+.addsales button {
+  text-align: center;
+  font-size: 15px;
+  text-transform: uppercase;
+  width: 30%;
+  background-color: var(--white2);
+  border-radius: 6px;
+  border: 1px solid var(--black1);
+  padding: 6px;
+  margin: 20px auto;
+}
+.addsales .submit {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px 0px -20px 0px;
+}
 @media (max-width: 991px) {
   .navigation {
     left: -300px;
@@ -1173,5 +1274,15 @@ h1 {
     position: fixed;
     right: 0;
     left: initial;
+  }
+}
+@keyframes throw {
+  from {
+    transform: translate(-400%, -700%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(0%, 0%);
+    opacity: 1;
   }
 }

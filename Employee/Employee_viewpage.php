@@ -30,11 +30,9 @@
             $type = 'online';
             $total = $_POST['total'];
             $time = date('H:i:s A');
-            $day = date('d');
-            $month = date('m');
-            $year = date('Y');
-            $sales_insert = mysqli_prepare($conn, "INSERT INTO `sales` (`total`, `type`, `time`, `day`, `month`, `year`, `reference`) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            mysqli_stmt_bind_param($sales_insert, "dssssss", $total, $type, $time, $day, $month, $year, $ref);
+            $date = date('d-m-y');
+            $sales_insert = mysqli_prepare($conn, "INSERT INTO `sales` (`eid`, `total`, `type`, `date`, `time`, `reference`) VALUES (?, ?, ?, ?, ?, ?)");
+            mysqli_stmt_bind_param($sales_insert, "dsssss", $employee_id, $total, $type, $date, $time, $ref);
             mysqli_stmt_execute($sales_insert);
             mysqli_stmt_close($sales_insert);
 

@@ -6,7 +6,6 @@
     date_default_timezone_set('Asia/Manila');
     $time = date('H:i:s');
     $date = date('m-d-y');
-    $month = date('m');
 
     if (!isset($employee_id)){
         header('location:../login/login.php');
@@ -17,8 +16,8 @@
     $employee_name = $_POST['name'];
     $employee_rank = $_POST['rank'];
 
-    $insert_attendance = mysqli_query($conn, "INSERT INTO `attendance` (`eid`, `employee_id`, `name`, `rank`, `time_in`, `date`, `month`)
-    VALUES ('$employee_id', '$eid', '$employee_name', '$employee_rank', '$time', '$date', '$month')") or die('query failed');
+    $insert_attendance = mysqli_query($conn, "INSERT INTO `attendance` (`eid`, `employee_id`, `name`, `rank`, `time_in`, `date`)
+    VALUES ('$employee_id', '$eid', '$employee_name', '$employee_rank', '$time', '$date')") or die('query failed');
     header('location:Employee_home.php');
      
     }

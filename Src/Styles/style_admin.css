@@ -784,6 +784,7 @@
 }
 .edit-employee-profile-img {
   border-radius: 50%;
+  margin-bottom: 20px;
 }
 .addons-table {
   border-collapse: collapse;
@@ -1179,6 +1180,100 @@
   font-size: 15px;
   border-radius: 6px;
   border: 1px solid var(--black1);
+}
+.salesgraph {
+  margin: -30px 10px 0px 10px;
+  grid-gap: 30px;
+  position: relative;
+  display: grid;
+  padding: 20px;
+}
+.sale-search {
+  margin-top: -10px;
+  border-collapse: collapse;
+  text-transform: capitalize;
+}
+.sale-search tr th {
+  border: 1px solid var(--black1);
+  padding: 7px;
+  background-color: var(--black1);
+  color: var(--white2);
+}
+.sale-search tr td {
+  border: 1px solid var(--black2);
+  padding: 7px;
+}
+.sale-search tr td:first-child,
+.sale-search tr th:first-child {
+  width: 50px;
+  text-align: center;
+  font-weight: 600;
+}
+.sale-search tr td:last-child,
+.sale-search tr th:last-child {
+  width: 150px;
+  text-align: center;
+  font-weight: 500;
+}
+.sale-search tr td:nth-child(2),
+.sale-search tr th:nth-child(2) {
+  width: 100px;
+  text-align: start;
+  font-weight: 500;
+}
+.sale-search tr td:nth-child(3),
+.sale-search tr th:nth-child(3) {
+  text-align: start;
+  font-weight: 500;
+}
+.sale-search tr td:nth-child(4),
+.sale-search tr th:nth-child(4) {
+  text-align: center;
+  font-weight: 500;
+  width: 200px;
+}
+.sales-flex {
+  display: flex;
+  justify-content: space-between;
+}
+.sales-input {
+  width: 50%;
+}
+.sales-input input {
+  width: 50%;
+  padding: 7px;
+  font-size: 15px;
+  border: 1px solid var(--black1);
+  border-radius: 6px;
+  margin-top: 25px;
+}
+.sales-flex .col1 select {
+  width: 150px;
+  margin: 5px;
+  border: 1px solid var(--black1);
+  border-radius: 3px;
+  background-color: var(--white);
+  font-size: 15px;
+  height: 30px;
+}
+.sales-flex .col2 {
+  display: flex;
+  justify-content: space-around;
+}
+.sales-flex .col2 button {
+  border: 1px solid var(--black1);
+  border-radius: 3px;
+  background-color: var(--white);
+  font-size: 13px;
+  padding: 4px;
+  width: 40%;
+  margin-top: 10px;
+}
+.sales-flex .form {
+  width: 34%;
+}
+.sale-search-table {
+  margin-top: -10px;
 }
 @media (max-width: 991px) {
   .navigation {
