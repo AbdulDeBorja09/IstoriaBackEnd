@@ -34,7 +34,8 @@
         </div>
 
         <div class="container-box">
-         <table class="salary-table">
+            <input type="text" class="table-search-input" id="searchInput" placeholder="Search...">
+         <table class="salary-table" id="salary-table">
             <thead>
                 <tr>
                     <td>#</td>
@@ -42,7 +43,6 @@
                     <td>view</td>
                 </tr>
             </thead>
-            <tbody>
             <tbody>
               <?php 
                 $select_employee = mysqli_query($conn, "SELECT * FROM `employee` ") or die ('query failed');
@@ -55,7 +55,7 @@
                 <tr> 
                     <td><?php echo $count ?></td>
                     <td><?php echo $fetch_employee['name'] ?></td>
-                    <td><a href="admin_salary_view.php?delete=<?php echo $fetch_employee['id'] ?>">VIEW</a></td>
+                    <td><a href="admin_salary_view.php?eid=<?php echo $fetch_employee['eid'] ?>">VIEW</a></td>
                 </tr>
                 <?php 
                     }
@@ -64,6 +64,21 @@
             </tbody>
          </table>
       </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const searchInput = document.getElementById('searchInput');
+        const rows = document.querySelectorAll("#salary-table tbody tr");
+
+        searchInput.addEventListener("keyup", function(event) {
+          const query = event.target.value.toLowerCase();
+
+          rows.forEach(row => {
+            const text = row.innerText.toLowerCase();
+            row.style.display = text.includes(query) ? "" : "none";
+          });
+        });
+      });
+    </script>
     <script src="../Src/Javascript/index.js"></script>
     <script
       type="module"

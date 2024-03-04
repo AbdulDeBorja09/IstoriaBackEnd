@@ -56,11 +56,26 @@
             $select_attendance = mysqli_query($conn, "SELECT * FROM `attendance` WHERE eid = ' $employee_id' AND status = 'on' ") or die ('query failed');
             $fetch_attendance = mysqli_fetch_assoc($select_attendance);
             $time_in = date("h:i A", strtotime($fetch_attendance['time_in']));
+
+            $time_in_seconds = strtotime($fetch_attendance['time_in']);
+            $current_time_seconds = time();
+            $time_difference_seconds = $current_time_seconds - $time_in_seconds;
+            $total_hours_worked = $time_difference_seconds / 3600; 
+
+            if ($total_hours_worked < 1) {
+              $total_hours_worked = $total_hours_worked * 60;
+              $total_hours_worked_formatted = sprintf("%0.0f", $total_hours_worked); 
+              $time_unit = "min";
+            } else {
+                $total_hours_worked_formatted = sprintf("%0.2f", $total_hours_worked);
+                $time_unit = "hrs";
+            }
             ?>
             
             <h4>TIME IN</h4>
             <h5><?php echo $time_in ?></h5> 
-            <h6><?php echo $fetch_attendance['date'] ?></h6>
+            <h6><?php echo $fetch_attendance['day'] ?>-<?php echo $fetch_attendance['month'] ?>-<?php echo $fetch_attendance['year'] ?></h6>
+            <h3 class="total-hrs"><?php echo $total_hours_worked_formatted ?> <?php echo $time_unit ?></h3>
             <br />
 
            <form method="post">

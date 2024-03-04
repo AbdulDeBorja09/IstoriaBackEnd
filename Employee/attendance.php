@@ -4,9 +4,9 @@
     $employee_id = $_SESSION['employee_id'];
 
     date_default_timezone_set('Asia/Manila');
-    $time = date('H:i:s');
-    $date = date('m-d-y');
-    $Meridiem = date('A');
+    $day = date('d');
+    $month = date('m');
+    $year = date('y');
 
     if (!isset($employee_id)){
         header('location:../login/login.php');
@@ -18,7 +18,6 @@
     $employee_rank = $_POST['rank'];
     date_default_timezone_set('Asia/Manila');
     $time = date('H:i:s');
-    $date = date('m-d-y');
     $Meridiem = date('A');
 
     if($Meridiem == 'AM'){
@@ -34,9 +33,9 @@
         $duty = "On Time";
       }
     }
-    
-    $insert_attendance = mysqli_query($conn, "INSERT INTO `attendance` (`eid`, `employee_id`, `name`, `rank`, `time_in`, `date`, `duty`)
-    VALUES ('$employee_id', '$eid', '$employee_name', '$employee_rank', '$time', '$date', '$duty')") or die('query failed');
+
+    $insert_attendance = mysqli_query($conn, "INSERT INTO `attendance` (`eid`, `employee_id`, `name`, `rank`, `time_in`, `duty`, `day`, `month`, `year`)
+    VALUES ('$employee_id', '$eid', '$employee_name', '$employee_rank', '$time', '$duty', '$day', '$month', '$year')") or die('query failed');
     header('location:Employee_home.php');
      
     }
@@ -78,8 +77,8 @@
           <input type="hidden" name="name" value="<?php echo $fetch_employee['name'] ?>">
           <input type="hidden" name="rank" value="<?php echo $fetch_employee['rank'] ?>">
           <?php 
-            $query1 = mysqli_query($conn, "SELECT * FROM `attendance` WHERE eid = '$employee_id' AND time_out = '0' AND date = '$date'") or die ('query failed');
-            $query2 = mysqli_query($conn, "SELECT * FROM `attendance` WHERE eid = '$employee_id' AND date = '$date' AND status  = 'off' ") or die ('query failed');
+            $query1 = mysqli_query($conn, "SELECT * FROM `attendance` WHERE eid = '$employee_id' AND time_out = '0' AND day = '$day' AND month = '$month' AND year = '$year'") or die ('query failed');
+            $query2 = mysqli_query($conn, "SELECT * FROM `attendance` WHERE eid = '$employee_id' AND day = '$day' AND month = '$month' AND year = '$year' AND status  = 'off' ") or die ('query failed');
             if(mysqli_num_rows($query1)>0){   
           ?>
             <a name="time_in" href="Employee_home.php" type="submit" class="timein btn">CONTINUE</a>

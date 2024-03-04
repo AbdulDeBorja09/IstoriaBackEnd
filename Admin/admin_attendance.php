@@ -50,7 +50,7 @@
                 </thead>
                 <tbody>
                 <?php
-                $select_attendance = mysqli_query($conn, "SELECT * FROM `attendance` WHERE status = 'off' ORDER BY date ASC ") or die ('query failed');
+                $select_attendance = mysqli_query($conn, "SELECT * FROM `attendance` WHERE status = 'off'") or die ('query failed');
                 $count = 0;
                 if(mysqli_num_rows($select_attendance)>0){
                     while($fetch_attendance = mysqli_fetch_assoc($select_attendance)){
@@ -68,7 +68,7 @@
                         <?php
                             $time_in =  $fetch_attendance['time_in'] ;
                             $time_out = $fetch_attendance['time_out'] ;
-                            $date = $fetch_attendance['date'] ;
+                            $date = $fetch_attendance['day'].'-'.$fetch_attendance['month'].'-'.$fetch_attendance['year'];
 
                             $time_in_dt = DateTime::createFromFormat('H:i:s', $time_in);
                             $time_out_dt = DateTime::createFromFormat('H:i:s', $time_out);
@@ -81,7 +81,7 @@
                             ?>
                         <td><?php echo $total_hours ?></td>
                         <td><?php echo $fetch_attendance['duty'] ?></td>
-                        <td><?php echo $fetch_attendance['date'] ?></td>
+                        <td><?php echo $fetch_attendance['day'] ?>-<?php echo $fetch_attendance['month'] ?>-<?php echo $fetch_attendance['year'] ?></td>
                     </tr>
                 <?php 
                     }    
