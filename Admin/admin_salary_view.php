@@ -1,12 +1,12 @@
 <?php 
   include '../connection.php';
   session_start();
-
   $admin_id = $_SESSION['admin_id'];
   
   if (!isset($admin_id)){
       header('location:../login/login.php');
   }
+  
     
 ?>
 <!DOCTYPE html>
@@ -34,35 +34,8 @@
         </div>
 
         <div class="container-box">
-         <table class="salary-table">
-            <thead>
-                <tr>
-                    <td>#</td>
-                    <td>Name</td>
-                    <td>view</td>
-                </tr>
-            </thead>
-            <tbody>
-            <tbody>
-              <?php 
-                $select_employee = mysqli_query($conn, "SELECT * FROM `employee` ") or die ('query failed');
-                $count = 0;
-                if(mysqli_num_rows($select_employee)>0){
-                    while($fetch_employee = mysqli_fetch_assoc($select_employee)){
-                      $count++;
-                      
-                ?>
-                <tr> 
-                    <td><?php echo $count ?></td>
-                    <td><?php echo $fetch_employee['name'] ?></td>
-                    <td><a href="admin_salary_view.php?delete=<?php echo $fetch_employee['id'] ?>">VIEW</a></td>
-                </tr>
-                <?php 
-                    }
-                }
-                ?>
-            </tbody>
-         </table>
+
+        </div>
       </div>
     <script src="../Src/Javascript/index.js"></script>
     <script

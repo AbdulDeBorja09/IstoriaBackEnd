@@ -6,6 +6,7 @@
     date_default_timezone_set('Asia/Manila');
     $time = date('H:i:s');
     $date = date('m-d-y');
+    $Meridiem = date('A');
 
     if (!isset($employee_id)){
         header('location:../login/login.php');
@@ -15,9 +16,27 @@
     $eid = $_POST['employee_id'];
     $employee_name = $_POST['name'];
     $employee_rank = $_POST['rank'];
+    date_default_timezone_set('Asia/Manila');
+    $time = date('H:i:s');
+    $date = date('m-d-y');
+    $Meridiem = date('A');
 
-    $insert_attendance = mysqli_query($conn, "INSERT INTO `attendance` (`eid`, `employee_id`, `name`, `rank`, `time_in`, `date`)
-    VALUES ('$employee_id', '$eid', '$employee_name', '$employee_rank', '$time', '$date')") or die('query failed');
+    if($Meridiem == 'AM'){
+      if ($time > '11:15:00'){
+        $duty = "late";
+      }else{
+        $duty = "On Time";
+      }
+    }else if($Meridiem == 'PM'){
+      if ($time > '19:15:00'){
+        $duty = "late";
+      }else{
+        $duty = "On Time";
+      }
+    }
+    
+    $insert_attendance = mysqli_query($conn, "INSERT INTO `attendance` (`eid`, `employee_id`, `name`, `rank`, `time_in`, `date`, `duty`)
+    VALUES ('$employee_id', '$eid', '$employee_name', '$employee_rank', '$time', '$date', '$duty')") or die('query failed');
     header('location:Employee_home.php');
      
     }

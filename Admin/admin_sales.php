@@ -126,7 +126,6 @@
                 <div class="col1">
                 <select name="month" id="month" required>
                     <?php
-                        // Options for months
                         $months = array(
                             1 => 'January', 2 => 'February', 3 => 'March', 4 => 'April', 5 => 'May', 
                             6 => 'June', 7 => 'July', 8 => 'August', 9 => 'September', 10 => 'October', 
@@ -140,7 +139,6 @@
                 </select>
                 <select name="year" id="year" required>
                     <?php
-                        // Options for years
                         $current_year = date("Y");
                         for ($year = 2023; $year <= $current_year; $year++) {
                             $selected = ($year == $selected_year) ? 'selected' : '';
@@ -167,6 +165,7 @@
                 <th>#</th>
                 <th>Category</th>
                 <th>Reference #</th>
+                <th>Employee</th>
                 <th>date (D-M-Y)</th>
                 <th>Total</th>
               </tr>
@@ -176,12 +175,23 @@
                  $count = 0;
                 while ($fetch_sales = mysqli_fetch_assoc($select_sales)){
                   $count++;
-                  
+                  $eid = $fetch_sales['eid'];
+                  if($eid == 0){
+                    $name = "Not Exist";
+                  }else{
+                    $search = $fetch_sales['eid'];
+                    $select_employee = mysqli_query($conn, "SELECT * FROM `employee` WHERE eid = ' $search ' ") or die ('Query failed');
+                    $fetch_employee = mysqli_fetch_assoc($select_employee);
+                    $name = $fetch_employee ['name'];
+                  }
+                 
               ?>
               <tr>
+                               
                 <td><?php echo $count  ?></td>
                 <td><?php echo $fetch_sales['type'] ?></td>
                 <td><?php echo $fetch_sales['reference'] ?></td>
+                <td><?php echo $name ?></td>
                 <td><?php echo $fetch_sales['date']?></td>
                 <td>₱ <?php echo $fetch_sales['total'] ?>.00</td>
               </tr>

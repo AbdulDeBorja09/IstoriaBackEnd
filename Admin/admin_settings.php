@@ -30,39 +30,11 @@
         </div>
 
         <div class="container-box employee-title">
-          <h1>SALARY</h1>
+          <h1>SETTINGS</h1>
         </div>
 
         <div class="container-box">
-         <table class="salary-table">
-            <thead>
-                <tr>
-                    <td>#</td>
-                    <td>Name</td>
-                    <td>view</td>
-                </tr>
-            </thead>
-            <tbody>
-            <tbody>
-              <?php 
-                $select_employee = mysqli_query($conn, "SELECT * FROM `employee` ") or die ('query failed');
-                $count = 0;
-                if(mysqli_num_rows($select_employee)>0){
-                    while($fetch_employee = mysqli_fetch_assoc($select_employee)){
-                      $count++;
-                      
-                ?>
-                <tr> 
-                    <td><?php echo $count ?></td>
-                    <td><?php echo $fetch_employee['name'] ?></td>
-                    <td><a href="admin_salary_view.php?delete=<?php echo $fetch_employee['id'] ?>">VIEW</a></td>
-                </tr>
-                <?php 
-                    }
-                }
-                ?>
-            </tbody>
-         </table>
+         
       </div>
     <script src="../Src/Javascript/index.js"></script>
     <script

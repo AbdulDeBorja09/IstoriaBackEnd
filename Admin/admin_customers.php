@@ -12,6 +12,8 @@
 
     mysqli_query($conn, "DELETE FROM `user` WHERE id = '$delete_id'") or die ('query failed');
     mysqli_query($conn, "DELETE FROM `customer` WHERE uid = '$delete_id'") or die ('query failed');
+    mysqli_query($conn, "DELETE FROM `tray` WHERE user_id = '$delete_id'") or die ('query failed');
+    mysqli_query($conn, "DELETE FROM `message` WHERE user_id = '$delete_id'") or die ('query failed');
     header('location:admin_customers.php');
   }
 ?>
@@ -65,15 +67,13 @@
                       $current_datetime = new DateTime(); 
                       $time_difference = $current_datetime->diff($created_datetime);
                       $account_age = $time_difference->days;
-                      
-                      
                 ?>
               <tr>
                 <td align="center"><?php echo $count?></td>
                 <td><?php echo $fetch_customer['name']?></td>
                 <td><?php echo $fetch_customer['username']?></td>
                 <td><?php echo $fetch_customer['email']?></td>
-                <td><?php echo $account_age ?></td>
+                <td><?php echo $account_age ?> Days</td>
                 <td><div class="flex">
                 <a class="bin-button" name="delete" href="admin_customers.php?delete=<?php echo $fetch_customer['uid']; ?>" class="btn delete" onclick="return confirm('Delete this product?')">
                       <svg

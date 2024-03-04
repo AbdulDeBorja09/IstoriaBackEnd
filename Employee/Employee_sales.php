@@ -190,7 +190,7 @@ if(isset($_GET['delete'])){
                     }else{
                         ?>
                         <tr>
-                          <td colspan="4" style="padding: 150px 0px; border:0px; ">
+                          <td colspan="4" style="padding: 200px 0px; border:0px; ">
                             <h1 style="text-align:center;">NO SALES ADDED FOR TODAY</h1>
                           </td>
                         </tr>

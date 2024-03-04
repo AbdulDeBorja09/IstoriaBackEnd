@@ -82,10 +82,10 @@
             </div>
             <h3>PAY WITH:</h3>
             <div class="payment">
-                <input type="radio" class="btn-check" name="payment" value="gcash" id="gcash" autocomplete="off"  />
+                <input type="radio" class="btn-check" name="payment" id="gcash" value="gcash" autocomplete="off"  />
                 <label class="btn" for="gcash">G-CASH</label>
 
-                <input type="radio" class="btn-check" name="payment" value="cash" id="cash" autocomplete="off" checked/>
+                <input type="radio" class="btn-check" name="payment" id="cash" value="cash" autocomplete="off" checked/>
                 <label class="btn" for="cash">CASH</label>
             </div>
             <input name="gcashnumber" class="gcash" type="number" placeholder="G-CASH NUMBER" />
@@ -163,6 +163,7 @@
     </div>
     </form>
     <?php include 'footer.php' ?>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
     $(document).ready(function() {
         function handlePaymentSelection() {

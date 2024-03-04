@@ -15,6 +15,8 @@
 
     mysqli_query($conn, "DELETE FROM `user` WHERE id = '$delete_id'") or die ('query failed');
     mysqli_query($conn, "DELETE FROM `employee` WHERE eid = '$delete_id'") or die ('query failed');
+    mysqli_query($conn, "DELETE FROM `attendance` WHERE eid = '$delete_id'") or die ('query failed');
+    mysqli_query($conn, "UPDATE  `sales` SET eid = '0' WHERE eid = '$delete_id '") or die ('query failed');
     header('location:admin_home.php');
 }
 
@@ -60,7 +62,7 @@
                </tr>
             </thead>
             <tbody>
-            <?php 
+              <?php 
                 $select_employee = mysqli_query($conn, "SELECT * FROM `employee` ") or die ('query failed');
                 $count = 0;
                 if(mysqli_num_rows($select_employee)>0){

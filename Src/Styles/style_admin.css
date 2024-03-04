@@ -304,9 +304,11 @@
 }
 .products-table {
   width: 100%;
+  text-transform: capitalize;
 }
 .products-table tbody tr td {
   padding: 0px 5px;
+  font-weight: 500;
 }
 .products-table tbody tr td:first-child {
   width: 50px;
@@ -600,6 +602,7 @@
 }
 .order-table {
   border-collapse: collapse;
+  text-transform: capitalize;
 }
 .order-table tr td:first-child,
 .order-table tr th:first-child {
@@ -620,6 +623,7 @@
 .order-table td {
   padding: 10px;
   border: 1px solid var(--black2);
+  font-weight: 500;
 }
 .order-table td a {
   text-decoration: none;
@@ -721,6 +725,7 @@
 .employee-table tr td {
   border-bottom: 1px solid var(--black2);
   padding: 0px 20px;
+  font-weight: 500;
 }
 .employee-table tr th:first-child {
   width: 50px;
@@ -759,6 +764,7 @@
 .accounts-table tbody tr td {
   border: 1px solid var(--black2);
   padding: 9px;
+  font-weight: 500;
 }
 .accounts-table thead tr th:first-child,
 .accounts-table tbody tr td:first-child {
@@ -789,6 +795,7 @@
 .addons-table {
   border-collapse: collapse;
   text-transform: uppercase;
+  font-weight: 500;
 }
 .addons-table thead tr th {
   padding: 9px;
@@ -1016,14 +1023,20 @@
 }
 .table-attendance tr td:nth-child(2) {
   width: 150px;
+  font-weight: 500;
+}
+.table-attendance tr td:nth-child(3) {
+  font-weight: 500;
 }
 .table-attendance tr td:nth-child(4),
 .table-attendance tr td:nth-child(5),
 .table-attendance tr td:nth-child(6),
 .table-attendance tr td:nth-child(7),
-.table-attendance tr td:nth-child(8) {
+.table-attendance tr td:nth-child(8),
+.table-attendance tr td:nth-child(9) {
   width: 150px;
   text-align: center;
+  font-weight: 500;
 }
 .order-flex1 {
   display: flex;
@@ -1149,6 +1162,7 @@
 .customers-table tbody tr td {
   border: 1px solid var(--black2);
   padding: 5px 10px;
+  font-weight: 500;
 }
 .customers-table tbody tr td:last-child {
   text-align: center;
@@ -1228,6 +1242,12 @@
 }
 .sale-search tr td:nth-child(4),
 .sale-search tr th:nth-child(4) {
+  text-align: start;
+  font-weight: 500;
+  width: 300px;
+}
+.sale-search tr td:nth-child(5),
+.sale-search tr th:nth-child(5) {
   text-align: center;
   font-weight: 500;
   width: 200px;
@@ -1247,9 +1267,13 @@
   border-radius: 6px;
   margin-top: 25px;
 }
+.sales-flex .col1 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
 .sales-flex .col1 select {
-  width: 150px;
-  margin: 5px;
+  width: 30%;
   border: 1px solid var(--black1);
   border-radius: 3px;
   background-color: var(--white);
@@ -1258,7 +1282,7 @@
 }
 .sales-flex .col2 {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 .sales-flex .col2 button {
   border: 1px solid var(--black1);
@@ -1266,7 +1290,7 @@
   background-color: var(--white);
   font-size: 13px;
   padding: 4px;
-  width: 40%;
+  width: 48%;
   margin-top: 10px;
 }
 .sales-flex .form {

@@ -33,7 +33,8 @@
             <h1>ATTENDACE</h1>
         </div>
         <div class="container-box">
-            <table class="table-attendance">
+            <input type="text" class="table-search-input" id="searchInput" placeholder="Search...">
+            <table class="table-attendance" id="searchInput">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -43,6 +44,7 @@
                         <th>Time In</th>
                         <th>Time Out</th>
                         <th>Hours</th>
+                        <th>Duty</th>
                         <th>Date</th>
                     </tr>
                 </thead>
@@ -78,6 +80,7 @@
 
                             ?>
                         <td><?php echo $total_hours ?></td>
+                        <td><?php echo $fetch_attendance['duty'] ?></td>
                         <td><?php echo $fetch_attendance['date'] ?></td>
                     </tr>
                 <?php 
@@ -98,6 +101,21 @@
         
       </div>
     </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const searchInput = document.getElementById('searchInput');
+        const rows = document.querySelectorAll("#searchInput tbody tr");
+
+        searchInput.addEventListener("keyup", function(event) {
+          const query = event.target.value.toLowerCase();
+
+          rows.forEach(row => {
+            const text = row.innerText.toLowerCase();
+            row.style.display = text.includes(query) ? "" : "none";
+          });
+        });
+      });
+    </script>
     <script src="../Src/Javascript/index.js"></script>
     <script
       type="module"

@@ -28,20 +28,18 @@
           </div>
         </div>
         <div class="cardBox">
-        <?php $total = 0; 
-                    $select_total = mysqli_query($conn, "SELECT * FROM `sales` ") or die ('query failed');
-                    while ($fetch_total = mysqli_fetch_assoc($select_total)){
-                        $total  += $fetch_total['total'];
-                    }
-                ?>
+            <?php 
+              $select_products = mysqli_query($conn, "SELECT * FROM `products` ") or die ('query failed');
+              $fetch_products = mysqli_num_rows($select_products);
+            ?>
           <div class="card">
             <div>
-              <div class="numbers">₱ <?php echo $total ?></div>
-              <div class="cardName">Sales</div>
+              <div class="numbers"><?php echo $fetch_products ?></div>
+              <div class="cardName">Products</div>
             </div>
 
             <div class="iconBx">
-              <ion-icon name="cash-outline"></ion-icon>
+              <ion-icon name="cafe-outline"></ion-icon>
             </div>
           </div>
 
