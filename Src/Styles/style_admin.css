@@ -669,7 +669,8 @@
 .empolyee-add-email .col2 img {
   margin-right: 250px;
 }
-.employee-info input {
+.employee-info input,
+.employee-info select {
   width: 96%;
   padding: 9px;
   border-radius: 6px;

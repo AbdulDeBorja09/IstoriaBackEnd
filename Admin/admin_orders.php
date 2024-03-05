@@ -32,7 +32,8 @@
           <h1 class="orders-title">ORDERS</h1>
         </div>
         <div class="container-box">
-          <table class="order-table">
+        <input type="text" class="table-search-input" id="searchInput" placeholder="Search...">
+          <table class="order-table" id="order-table">
             <thead>
               <tr>
                 <th>#</th>
@@ -81,6 +82,21 @@
         </div>
       </div>
     </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const searchInput = document.getElementById('searchInput');
+        const rows = document.querySelectorAll("#order-table tbody tr");
+
+        searchInput.addEventListener("keyup", function(event) {
+          const query = event.target.value.toLowerCase();
+
+          rows.forEach(row => {
+            const text = row.innerText.toLowerCase();
+            row.style.display = text.includes(query) ? "" : "none";
+          });
+        });
+      });
+    </script>
     <script src="../Src/Javascript/index.js"></script>
     <script
       type="module"

@@ -1,12 +1,5 @@
 <?php 
-  date_default_timezone_set('Asia/Manila');
-  $current_datetime = date('m-d-y');
-  $atendance_querys = mysqli_query($conn, "SELECT * FROM `attendance` WHERE eid ='$employee_id' AND status = 'on'") or die ('queryfailed');
-  $attendances = mysqli_fetch_assoc($atendance_querys);
-  $current_status = $attendances['time_out'];
-  if ($current_status !== "0"){
-    header('location:../login/login.php');
-  }
+
 
   $select_employee = mysqli_query($conn, "SELECT * FROM `employee` WHERE eid ='$employee_id'") or die ('queryfailed');
   $fetch_employee = mysqli_fetch_assoc($select_employee);

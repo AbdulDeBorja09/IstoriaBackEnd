@@ -80,7 +80,7 @@
             if ($total_hours_worked < 1) {
               $total_hours_worked = $total_hours_worked * 60;
               $total_hours_worked_formatted = sprintf("%0.0f", $total_hours_worked); 
-              $time_unit = "min";
+              $time_unit = "mins";
             } else {
                 $total_hours_worked_formatted = sprintf("%0.2f", $total_hours_worked);
                 $time_unit = "hrs";

@@ -10,6 +10,7 @@
       header('location:../404.php');
       
     }
+    $id = $_GET['id'];
     if(isset($_POST['send'])){
         date_default_timezone_set('Asia/Manila');
         $sender = mysqli_real_escape_string($conn, $_POST['sender']);
@@ -78,9 +79,9 @@
         </div>
           <div class="container-box">
           <?php 
-            if(isset($_GET['edit'])){
+            if(isset($_GET['id'])){
               $id = $_GET['id'];
-              $select_message = mysqli_query($conn, "SELECT * FROM `message` WHERE user_id = '$id' ORDER BY date ASC") or die ('query failed');
+              $select_message = mysqli_query($conn, "SELECT * FROM `message` WHERE user_id = '$id'") or die ('query failed');
                 if(mysqli_num_rows($select_message)>0){
                   while($fetch_message = mysqli_fetch_assoc($select_message)){
                     $sender = $fetch_message['sender'];

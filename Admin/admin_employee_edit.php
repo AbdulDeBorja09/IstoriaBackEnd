@@ -142,7 +142,10 @@
                         <input name="fname" type="text" id="fname" required value="<?php echo $name[1] ?>">
 
                         <label for="gender">Gender</label>
-                        <input name="gender" type="text" id="gender" required value="<?php echo $fetch_edit['gender']?>">
+                        <select name="gender">
+                            <option value="Male" <?php if ($fetch_edit['gender'] == 'Male') echo 'selected';?>>Male</option>
+                            <option value="Female" <?php if ($fetch_edit['gender'] == 'Female') echo 'selected';?>>Female</option>
+                        </select>
 
                         <label for="age">Age</label>
                         <input name="age" type="number"  id="age" required value="<?php echo $fetch_edit['age']?>">
@@ -162,7 +165,11 @@
                         <input name="employee_id" type="text" id="eid" required value="<?php echo $fetch_edit['employee_id']?>">
 
                         <label for="rank">Position</label>
-                        <input name="rank" type="text" id="rank" required value="<?php echo $fetch_edit['rank']?>">
+                        <select name="rank">
+                            <option value="Cashier" <?php if ($fetch_edit['rank'] == 'Cashier') echo 'selected';?>>Cashier</option>
+                            <option value="Bartender" <?php if ($fetch_edit['rank'] == 'Bartender') echo 'selected';?>>Bartender</option>
+                            <option value="Manager" <?php if ($fetch_edit['rank'] == 'Manager') echo 'selected';?>>Manager</option>
+                        </select>
 
                         <label for="email">Email</label>
                         <input name="email" type="email"  id="email" required value="<?php echo $fetch_edit['email']?>">

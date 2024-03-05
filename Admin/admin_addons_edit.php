@@ -9,7 +9,7 @@
   }
   $edit_id = $_GET['edit'];
   if (!isset($_GET['edit'])) {
-    header('location:../404.php');
+    header('location:../404.php'); 
     
   }
 
@@ -126,10 +126,10 @@
           </form>
           <?php 
                 }
-              }else{
-                header('location:../404.php');
-            }   
-          }
+              }  
+          }else{
+            header('location:../404.php');
+        } 
           ?>
         </div>
 

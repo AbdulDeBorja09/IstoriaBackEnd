@@ -100,7 +100,7 @@
                 <tr>
                   <td>Name</td>
                   <td>Employee ID</td>
-                  <td>Rank</td>
+                  <td>Position</td>
                   <td colspan="2">Status</td>
                   
                 </tr>

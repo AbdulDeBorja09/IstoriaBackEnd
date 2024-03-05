@@ -132,7 +132,10 @@
                         <input name="lname" type="text" id="lname" required>
 
                         <label for="gender">Gender</label>
-                        <input name="gender" type="text" id="gender" required>
+                        <select name="gender">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
                         
                         <label for="age">Age</label>
                         <input name="age" type="number"  id="age" required>
@@ -151,7 +154,11 @@
                         <input name="employee_id" type="text" id="eid" required>
 
                         <label for="rank">Position</label>
-                        <input name="rank" type="text" id="rank" required>
+                        <select name="rank">
+                            <option value="Cashier">Cashier</option>
+                            <option value="Bartender">Bartender</option>
+                            <option value="Manager">Manager</option>
+                        </select>
 
                         <label for="email">Email</label>
                         <input name="email" type="email"  id="email" required>

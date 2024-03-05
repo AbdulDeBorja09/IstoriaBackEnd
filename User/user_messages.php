@@ -95,9 +95,13 @@
                             <button name="sendmsg" type="submit"><ion-icon name="paper-plane"></ion-icon></button>
                         </div>
                    </form>
+                   <div style="padding: 150px;"></div>
                 <?php
                 }else{
                 ?>
+                <div class="text-center">
+                        <img src="../assets/Images/logo.png" width="200px">
+                </div>
                 <p>communicate with us in real-time! our customer service Team is here to assist you with anything you need.</p>
                 <form method="post" class="msg-form">
                     <div class="sendmsg">
@@ -109,6 +113,7 @@
                         <button name="sendmsg" type="submit"><ion-icon name="paper-plane"></ion-icon></button>
                     </div>
                 </form>
+                <div style="padding: 70px;"></div>
             <?php     
             }
             ?>

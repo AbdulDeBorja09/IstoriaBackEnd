@@ -232,8 +232,8 @@ $button_text = $existing_salary ? "Update Salary" : "Release Salary";
                                 <input type="hidden" name="mins" value="<?php echo $total_mins; ?>">
                                 <input type="hidden" name="days" value="<?php echo $total_rows; ?>">
                                 <input type="hidden" name="late" value="<?php echo $fetch_late ?>">
-                                <input type="number" name="bonus" placeholder="Deduction">
-                                <input type="number" name="deduction" placeholder="Bonus">
+                                <input type="number" name="deduction" placeholder="Deduction">
+                                <input type="number" name="bonus" placeholder="Bonus">
                             </div>
                             <button name="release" type="submit"><?php echo $button_text; ?></button> 
                         </div>
