@@ -2727,3 +2727,15 @@ footer a {
 .errormsg404 h6 {
   font-size: 20px;
 }
+.store-close-div {
+  width: 100%;
+}
+.store-close-div button:disabled {
+  background-color: white;
+  border-radius: 6px;
+  padding: 7px;
+  color: var(--color);
+  cursor: not-allowed;
+  border: 1px solid var(--browncolor);
+  width: 100%;
+}

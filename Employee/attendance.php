@@ -3,10 +3,6 @@
     session_start();
     $employee_id = $_SESSION['employee_id'];
 
-    if (isset($_POST['time-out'])){
-      session_destroy();
-      header('location:../login/login.php');
-    }
 
     date_default_timezone_set('Asia/Manila');
     $day = date('d');
@@ -43,6 +39,11 @@
     VALUES ('$employee_id', '$eid', '$employee_name', '$employee_rank', '$time', '$duty', '$day', '$month', '$year')") or die('query failed');
     header('location:Employee_home.php');
      
+    }
+    if(isset($_POST['logout'])){
+      session_destroy(); 
+      header('location:../login/login.php');
+      exit(); 
     }
 ?>
 <!DOCTYPE html>
@@ -87,17 +88,17 @@
             if(mysqli_num_rows($query1)>0){   
           ?>
             <a name="time_in" href="Employee_home.php" type="submit" class="timein btn">CONTINUE</a>
-            <button class="timeout btn">LOGOUT</button>
+            <button class="timeout btn"  name="logout">LOGOUT</button>
 
             <?php 
             }else if(mysqli_num_rows($query2 )>0) {?>
               <a name="time_in" href="#" type="submit" class="timein btn" disabled>DUTY COMPLETED</a>
-              <button class="timeout btn" name="time-out" type="submit">LOGOUT</button>
+              <button class="timeout btn" name="logout" type="submit">LOGOUT</button>
             
             <?php
             }else { ?>
               <button class="time-in-btn" name="time_in" type="submit">TIME IN</button>
-              <button class="timeout btn" name="time-out" type="submit">LOGOUT</button>
+              <button class="timeout btn" name="logout" type="submit">LOGOUT</button>
             <?php
               }
             ?>

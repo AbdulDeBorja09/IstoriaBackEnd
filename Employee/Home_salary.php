@@ -3,6 +3,12 @@
     session_start();
     $employee_id = $_SESSION['employee_id'];
     date_default_timezone_set('Asia/Manila');
+    $month = date('m');
+    $year = date('y');
+
+    if (!isset($employee_id)){
+      header('location:../login/login.php');
+  }
     
 ?>
 <!DOCTYPE html>
@@ -22,6 +28,22 @@
   </head>
   <body >
     <?php include 'navbar.php'; ?>
+    <?php 
+        $select_salary = mysqli_query($conn, "SELECT * FROM `salary` WHERE eid = '$employee_id' AND month = '$month ' AND year = '$year'") or die('query failed');
+        if(mysqli_num_rows($select_salary)>0){
+            while($fetch_salary = mysqli_fetch_assoc($select_salary)){
+    ?>
+    <div class="container">
+        <div class="payslip-flex-top">
+            <h1>BASTA SALARY TO</h1>
+        </div>
+    </div>
+    <?php 
+            }
+        }else{
+            header('location:../404.php');
+        }
+    ?>
 
 
 

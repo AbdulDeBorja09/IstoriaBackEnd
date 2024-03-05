@@ -1,13 +1,13 @@
 <div class="attendance-nav">
     <div class="attendance-inner">
-    <a href="">
+    <a href="attendance.php">
         <img class="navbrand" src="../assets/Images/logo.png" alt=""
     /></a>
     <div class="time-div text-center">
         <p id="time" class="time"></p>
         <p id="currentDate" class="date">s</p>
     </div>
-    <a href="attendance_profile.php"
+    <a href="home_profile.php"
         ><ion-icon name="person-outline" class="avatar-icon"></ion-icon
     ></a>
     </div>

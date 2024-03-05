@@ -6,11 +6,12 @@
   if (!isset($admin_id)){
       header('location:../login/login.php');
   }
+  date_default_timezone_set('Asia/Manila');
+  $month = date('m');
+  $year = date('y');
   $eid = $_GET['eid'];
+
   if (isset($_POST['release'])) {
-    date_default_timezone_set('Asia/Manila');
-    $month = date('m');
-    $year = date('y');
     $total_salary = mysqli_real_escape_string($conn, $_POST['salary']);
     $total_hrs = mysqli_real_escape_string($conn, $_POST['hrs']);
     $total_mins = mysqli_real_escape_string($conn, $_POST['mins']);
@@ -19,9 +20,18 @@
     $total_bonus = mysqli_real_escape_string($conn, $_POST['bonus']);
     $total_deduc = mysqli_real_escape_string($conn, $_POST['deduction']);
 
-    $select_salary = mysqli_query($conn, "SELECT * FROM `salary` WHERE eid = '$eid' AND month = '$month ' AND year = '$year'") or die('query failed');
-    if (mysqli_num_rows($select_salary) > 0) {
-        $message[] = 'Salary record already exists for this employee';
+    $salary_check = mysqli_query($conn, "SELECT * FROM `salary` WHERE eid = '$eid' AND month = '$month ' AND year = '$year'") or die('query failed');
+    if (mysqli_num_rows($salary_check) > 0) {
+        $update_salary = mysqli_query($conn, "UPDATE `salary` SET 
+        `eid` = '$eid',
+        `total_hrs` = '$total_hrs', 
+        `total_mins` = '$total_mins', 
+        `total_days` = '$total_days', 
+        `total_salary` = '$total_salary', 
+        `lates` = '$total_late', 
+        `bonus` = '$total_bonus',
+        `deduction` = '$total_deduc'
+        WHERE eid = '$eid' AND month = '$month ' AND year = '$year'") or die ('query failed'); 
     } else {
         $insert_salary = mysqli_query($conn, "INSERT INTO `salary` (`eid`, `total_hrs`, `total_mins`, `total_days`, `total_salary`, `lates`, `bonus`, `deduction`, `month`, `year`)
             VALUES ('$eid', '$total_hrs', '$total_mins', '$total_days', '$total_salary', '$total_late', '$total_bonus', '$total_deduc', '$month', '$year')") or die('query failed');
@@ -29,8 +39,9 @@
 
     }
 }
-
-
+$select_salary = mysqli_query($conn, "SELECT * FROM `salary` WHERE eid = '$eid' AND month = '$month ' AND year = '$year'") or die('query failed');
+$existing_salary = mysqli_num_rows($select_salary) > 0;
+$button_text = $existing_salary ? "Update Salary" : "Release Salary";
     
     
 ?>
@@ -224,7 +235,7 @@
                                 <input type="number" name="bonus" placeholder="Deduction">
                                 <input type="number" name="deduction" placeholder="Bonus">
                             </div>
-                            <button name="release" type="submit">Release Salary</button> 
+                            <button name="release" type="submit"><?php echo $button_text; ?></button> 
                         </div>
                     </form>
                 <?php 

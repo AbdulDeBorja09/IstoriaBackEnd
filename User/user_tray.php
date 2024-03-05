@@ -186,8 +186,8 @@
             <?php
                 }else{
             ?>
-            <div class="div">
-                <h1>STORE IS NOW CLOSE</h1>
+            <div class="store-close-div">
+               <button disabled>SORRY WE'RE CLOSED</button>
             </div>
 
             <?php
