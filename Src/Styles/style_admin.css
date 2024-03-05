@@ -1020,7 +1020,7 @@
   width: 50px;
 }
 .table-attendance tr td:nth-child(2) {
-  width: 150px;
+  width: 200px;
   font-weight: 500;
 }
 .table-attendance tr td:nth-child(3) {
@@ -1297,9 +1297,17 @@
 .sale-search-table {
   margin-top: -10px;
 }
+.salary-table a {
+  text-decoration: none;
+  color: var(--black1);
+}
+.salary-table a:hover {
+  color: var(--black2);
+}
 .salary-table {
   border-collapse: collapse;
   text-transform: capitalize;
+  font-weight: 500;
 }
 .salary-table thead tr td {
   background-color: var(--black1);
@@ -1324,6 +1332,7 @@
 .salaray-table-div {
   border: 1px solid rgb(207, 206, 206);
   height: 400px;
+  margin-top: 10px;
 }
 
 .salaray-table-div .inner {
@@ -1335,6 +1344,7 @@
   width: 100%;
   border-collapse: collapse;
   font-weight: 500;
+  text-transform: capitalize;
 }
 .view-salary-table thead tr td {
   background-color: var(--black1);
@@ -1352,6 +1362,66 @@
 .view-salary-table tr td:first-child {
   width: 50px;
   text-align: center;
+}
+.salaryview-top-div {
+  display: flex;
+  justify-content: space-between;
+  text-transform: capitalize;
+}
+.salaryview-top-div h1 {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  margin-top: 5px;
+}
+.salaryview-top-div h2 {
+  font-size: 20px;
+}
+.salary-lower-div {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.salary-lower-div .datacol2 {
+  text-align: end;
+}
+.salary-lower-div h2 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+.salary-lower-div h1 {
+  font-size: 17px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.salary-bottom-inputs {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.salary-bottom-inputs input {
+  padding: 7px;
+  font-size: 13px;
+  border: 1px solid var(--black1);
+  border-radius: 6px;
+  width: 250px;
+  margin-right: 40px;
+}
+.salary-bottom-inputs button {
+  padding: 7px;
+  border: 1px solid var(--black1);
+  border-radius: 6px;
+  background-color: var(--black1);
+  color: white;
+  width: 300px;
+  text-transform: uppercase;
+}
+.salary-bottom-inputs button:hover {
+  background-color: var(--white);
+  color: var(--black1);
+  border: 1px solid var(--black1);
 }
 @media (max-width: 991px) {
   .navigation {

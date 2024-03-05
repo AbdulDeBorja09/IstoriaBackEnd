@@ -15,7 +15,7 @@
         $password = mysqli_real_escape_string($conn, $filter_password);
         $type = mysqli_real_escape_string($conn, $_POST['type']);
         
-        $employee_id = mysqli_real_escape_string($conn, $_POST['employee_id']);
+        $employee_id = mysqli_real_escape_string($conn,'EID'.$_POST['employee_id']);
         $position = mysqli_real_escape_string($conn, $_POST['rank']);
         $name =  mysqli_real_escape_string($conn,$_POST['lname'].', ' .$_POST['fname']);
         $gender = mysqli_real_escape_string($conn, $_POST['gender']);

@@ -81,7 +81,7 @@
                             ?>
                         <td><?php echo $total_hours ?></td>
                         <td><?php echo $fetch_attendance['duty'] ?></td>
-                        <td><?php echo $fetch_attendance['day'] ?>-<?php echo $fetch_attendance['month'] ?>-<?php echo $fetch_attendance['year'] ?></td>
+                        <td><?php echo $fetch_attendance['month'] ?>-<?php echo $fetch_attendance['day'] ?>-<?php echo $fetch_attendance['year'] ?></td>
                     </tr>
                 <?php 
                     }    

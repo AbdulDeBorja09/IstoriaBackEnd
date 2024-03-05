@@ -75,6 +75,17 @@
             <form method="post" enctype="multipart/form-data">
                 <label for="name">name</label>
                 <input id="name" name="name" type="text" class="form-control" required />
+                <?php
+                  if(isset($message)){
+                    foreach ($message as $message) {
+                    echo'
+                        <div class="addproduct-errormsg">
+                        '.$message.'
+                        </div>
+                      ';
+                    }
+                  }
+              ?>
                 <label>price</label>
                 <input name="price" type="number" class="form-control" required />
                 <label>Max price</label>
@@ -88,20 +99,11 @@
                 </select>
                 <label for="image">image</label>
                 <input  id="image" name="image" type="file" accept="image/jpg, image/png, image/webp" class="form-control" required />
+                
                <div class="adproduct-submit">
                 <button type="submit" name="add" class="addsubmitbtn">ADD</button>
                </div>
-               <?php
-                  if(isset($message)){
-                    foreach ($message as $message) {
-                    echo'
-                        <div class="alert alert-dark" role="alert text-center p-3"  >
-                        '.$message.'
-                        </div>
-                      ';
-                    }
-                  }
-              ?>
+               
             </form>
         </div>
       </div>
