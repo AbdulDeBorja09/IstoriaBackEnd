@@ -67,6 +67,22 @@
                                     $month = date('m');
                                     $year = date('y');
                                     $count = 0;
+                                    $salary_per_hour = 0;
+                                        $rank = $fetch_employee['rank'];
+                                        switch($rank) {
+                                            case 'bartender':
+                                                $salary_per_hour = 60;
+                                                break;
+                                            case 'manager':
+                                                $salary_per_hour = 70;
+                                                break;
+                                            case 'barista':
+                                                $salary_per_hour = 80;
+                                                break;
+                                            default:
+                                                $salary_per_hour = 0;
+                                                break;
+                                        }
                                     $select_attendance = mysqli_query($conn, "SELECT * FROM `attendance` WHERE eid = '$eid' AND status = 'off' AND month = '$month' AND year = '$year' ") or die ('Query failed: ');
                                     if(mysqli_num_rows($select_attendance) > 0) {
                                         while($fetch_attendance = mysqli_fetch_assoc($select_attendance)) {
@@ -89,10 +105,21 @@
                                         }
                                         $time_diff = $time_out_dt->getTimestamp() - $time_in_dt->getTimestamp();
                                         $total_hours = floor($time_diff / 3600); 
+                                        $total_minutes = floor(($time_diff % 3600) / 60);
 
+                                        if ($total_hours < 8){
+                                            $text_color = 'style="color: red;"';
+                                        }else {
+                                            $text_color = 'style="color: green;"';
+                                        }
+
+
+
+                                        $salary = $total_hours * $salary_per_hour;
                                         ?>
-                                        <td><?php echo $total_hours ?></td>
+                                        <td <?php echo $text_color ?>><?php echo $total_hours ?> Hrs <?php echo $total_minutes ?> Mins</td>
                                         <td><?php echo $fetch_attendance['duty']?></td>
+                                        <td><?php echo $salary ?></td>
                                 
                                     <?php 
                                             }

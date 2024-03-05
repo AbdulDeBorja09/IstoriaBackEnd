@@ -13,12 +13,27 @@
   if(isset($_POST['time-out'])){
     $status = 'off';
     $id = $_POST['id'];
-    $update_addons = mysqli_query($conn, "UPDATE `attendance` SET 
-    `status` = '$status',
-    `time_out` = '$time'
+    $total_hrs = $_POST['total_hrs'];
 
-    WHERE id = '$id'") or die ('query failed'); 
-     header('location:../login/login.php');
+    if ($total_hrs < 8){
+      $late = "Early Out";
+      $update_addons = mysqli_query($conn, "UPDATE `attendance` SET 
+      `status` = '$status',
+      `time_out` = '$time',
+      `duty` = '$late'
+  
+      WHERE id = '$id'") or die ('query failed'); 
+       header('location:../login/login.php');
+
+    }else{
+      $update_addons = mysqli_query($conn, "UPDATE `attendance` SET 
+      `status` = '$status',
+      `time_out` = '$time'
+  
+      WHERE id = '$id'") or die ('query failed'); 
+       header('location:../login/login.php');
+      
+    }
 
   }
 ?>
@@ -79,6 +94,7 @@
             <br />
 
            <form method="post">
+              <input type="hidden" name="total_hrs" value="<?php echo $total_hours_worked_formatted ?>">
               <input type="hidden" name="id" value="<?php echo $fetch_attendance['id'] ?>">
               <button name="time-out" class="button">CLOCK OUT</button>
            </form>

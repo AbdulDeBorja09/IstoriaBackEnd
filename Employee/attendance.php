@@ -21,7 +21,7 @@
     $Meridiem = date('A');
 
     if($Meridiem == 'AM'){
-      if ($time > '11:15:00'){
+      if ($time > '11:15:00' ){
         $duty = "late";
       }else{
         $duty = "On Time";
