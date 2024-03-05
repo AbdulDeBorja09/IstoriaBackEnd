@@ -28,7 +28,69 @@
           </div>
         </div>
 
-        <div class="container-box">messages</div>
+        <div class="container-box">
+          <h1>MESSAGE</h1>
+        </div>
+        <div class="container-box">
+            <table class="messages-table" id="message-table" >
+              <tbody>
+              <?php
+                $count = 0;
+                $select_message = mysqli_query($conn, "SELECT * FROM `message` ORDER BY user_id, date DESC") or die ('Query failed');
+                $current_user_id = null;
+                if(mysqli_num_rows( $select_message)>0){
+                while($fetch_message = mysqli_fetch_assoc($select_message)){
+                    if($fetch_message['user_id'] != $current_user_id){
+                      $count++;
+                      $sender = $fetch_message['sender'];
+                      $date = strtok($fetch_message["date"], " ");
+                      $time = substr(strstr($fetch_message["date"], " "), 1);
+                  ?>    
+                  <tr>
+                    <td><h1><?php echo $count ?></h1></td>
+                    <td> <?php if ($sender == "user") { ?>
+                            <h1><strong><?php echo $fetch_message['name'] ?></strong></h1>
+                            <div class="time">
+                              <h2><strong><?php echo $date ?></strong></h2>
+                              <h2><strong><?php echo $time ?></strong></h2>
+                            </div>
+                      <?php } else { ?>
+                        <h1><?php echo $fetch_message['name'] ?></h1>
+                            <div class="time">
+                              <h2><?php echo $date ?></h2>
+                              <h2><?php echo $time ?></h2>
+                            </div>
+                        <?php } ?>
+                    </td>
+                    <td>
+                    <?php if ($sender == "user") { ?>
+                        <div class="msg">
+                          <p><strong><?php echo $fetch_message['message'] ?> </strong></p>
+                          <div class="dot"></div>
+                        </div>
+                      <?php } else { ?>
+                        <p><?php echo $fetch_message['message'] ?></p>
+                      <?php } ?> 
+                    </td>
+                    <td><a href="admin_message_view.php?id=<?php echo $fetch_message['user_id']?>">VIEW MESSAGE</a></td>
+                  </tr>
+                 <?php    
+                 $current_user_id = $fetch_message['user_id'];
+                      }
+                } 
+              }else{
+                ?>
+                <tr>
+                  <td colspan="8" style="padding: 150px 0px; border:0px;">
+                    <h1 style="font-size: 30px;">NO MESSAGE</h1>
+                  </td>
+                </tr>
+                <?php  
+              }  
+                ?>
+              </tbody>
+            </table>
+        </div>
       </div>
     </div>
     <script src="../Src/Javascript/index.js"></script>

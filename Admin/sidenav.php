@@ -61,6 +61,14 @@
       </a>
     </li>
     <li>
+      <a href="admin_messages.php">
+        <span class="icon">
+          <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+        </span>
+        <span class="title">Messages</span>
+      </a>
+    </li>
+    <li>
       <a href="admin_attendance.php">
         <span class="icon">
           <ion-icon name="alarm-outline"></ion-icon>

@@ -18,26 +18,32 @@
     $product_price_range = mysqli_real_escape_string($conn, $_POST['price_range']);
     $product_category = mysqli_real_escape_string($conn, $_POST['category']);
     $product_status = mysqli_real_escape_string($conn, $_POST['status']);
-    $image = $_FILES['image']['name'];
-    $image_tmp_name = $_FILES['image']['tmp_name'];
-    $image_folder='../products/'.$image; 
-    
-    $update_product = mysqli_query($conn, "UPDATE `products` SET 
-    `id` = '$update_id',
-    `name` = '$product_name', 
-    `price` = '$product_price', 
-    `price_range` = '$product_price_range', 
-    `image` = '$image', 
-    `category` = '$product_category', 
-    `status` = '$product_status' 
-    WHERE id = '$update_id'") or die ('query failed'); 
 
-    if($update_product){
-        move_uploaded_file($image_tmp_name, $image_folder);
-        $message[] = 'Product updated successfully'; 
-        header('location: admin_products.php');
-    } else {
-        $message[] = 'Failed to update product'; 
+    if(isset($_FILES['image'])) {
+      $image = $_FILES['image']['name'];
+      $image_size = $_FILES['image']['size'];
+      $image_tmp_name = $_FILES['image']['tmp_name'];
+      $image_folder = '../assets/products/'.$image;
+
+      $update_product = mysqli_query($conn, "UPDATE `products` SET 
+      `id` = '$update_id',
+      `name` = '$product_name', 
+      `price` = '$product_price', 
+      `price_range` = '$product_price_range', 
+      `image` = '$image', 
+      `category` = '$product_category', 
+      `status` = '$product_status' 
+      WHERE id = '$update_id'") or die ('query failed'); 
+      if ($update_product) {
+        if ($image_size > 2000000) {
+            $message[] = 'Image is too large';
+        } else {
+            move_uploaded_file($image_tmp_name, $image_folder);
+            $message[] = 'Product added successfully';
+            header('location: admin_products.php');
+        }
+      }
+
     }
 }
   ?>
