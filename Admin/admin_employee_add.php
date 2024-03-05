@@ -22,7 +22,7 @@
         $age = mysqli_real_escape_string($conn, $_POST['age']);
         $bday = mysqli_real_escape_string($conn, $_POST['bday']);
         $bplace = mysqli_real_escape_string($conn, $_POST['bplace']);
-        $address =  mysqli_real_escape_string($conn,$_POST['house'].', '.$_POST['city'].', '.$_POST['province'].',  ('.$_POST['postal'].')' );
+        $address =  mysqli_real_escape_string($conn,$_POST['house'].', '.$_POST['city'].', '.$_POST['province'].',  '.$_POST['postal']);
         $contact = mysqli_real_escape_string($conn, $_POST['contact']);
         $email = mysqli_real_escape_string($conn, $_POST['email']);
         $date_hired = mysqli_real_escape_string($conn, $_POST['date-hired']);
