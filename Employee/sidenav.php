@@ -7,7 +7,7 @@
   if ($current_status !== "0"){
     header('location:../login/login.php');
   }
-  
+
   $select_employee = mysqli_query($conn, "SELECT * FROM `employee` WHERE eid ='$employee_id'") or die ('queryfailed');
   $fetch_employee = mysqli_fetch_assoc($select_employee);
 ?>
@@ -56,6 +56,14 @@
           <ion-icon name="cafe-outline"></ion-icon>
         </span>
         <span class="title">Products</span>
+      </a>
+    </li>
+    <li>
+      <a href="Employee_addons.php">
+        <span class="icon">
+          <ion-icon name="leaf-outline"></ion-icon>
+        </span>
+        <span class="title">Addons</span>
       </a>
     </li>
     <li>

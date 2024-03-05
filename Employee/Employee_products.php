@@ -36,7 +36,6 @@
     mysqli_stmt_execute($update_query);
     mysqli_stmt_close($update_query);
     mysqli_query($conn, "DELETE FROM `tray` WHERE pid = '$pid'");
-    $message[] = 'order placed successfully';
     header('location: employee_products.php');
     exit(); 
   }
@@ -126,7 +125,7 @@
                   <?php 
 
                     $addons_category = $fetch_products['category'];
-                      $select_addons = mysqli_query($conn, "SELECT * FROM `addons` WHERE category = '$addons_category'") or die ('query failed');
+                      $select_addons = mysqli_query($conn, "SELECT * FROM `addons` WHERE category = '$addons_category' AND status = 'available'") or die ('query failed');
                       if(mysqli_num_rows($select_addons)>0){
                         while($fetch_addons = mysqli_fetch_assoc($select_addons)){
                       ?>

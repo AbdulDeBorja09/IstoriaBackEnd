@@ -7,7 +7,7 @@
         <p id="time" class="time"></p>
         <p id="currentDate" class="date">s</p>
     </div>
-    <a href="attendance_profile.html"
+    <a href="attendance_profile.php"
         ><ion-icon name="person-outline" class="avatar-icon"></ion-icon
     ></a>
     </div>

@@ -3,6 +3,11 @@
     session_start();
     $employee_id = $_SESSION['employee_id'];
 
+    if (isset($_POST['time-out'])){
+      session_destroy();
+      header('location:../login/login.php');
+    }
+
     date_default_timezone_set('Asia/Manila');
     $day = date('d');
     $month = date('m');
@@ -87,11 +92,12 @@
             <?php 
             }else if(mysqli_num_rows($query2 )>0) {?>
               <a name="time_in" href="#" type="submit" class="timein btn" disabled>DUTY COMPLETED</a>
+              <button class="timeout btn" name="time-out" type="submit">LOGOUT</button>
+            
             <?php
             }else { ?>
               <button class="time-in-btn" name="time_in" type="submit">TIME IN</button>
-              <button class="timeout btn">LOGOUT</button>
-
+              <button class="timeout btn" name="time-out" type="submit">LOGOUT</button>
             <?php
               }
             ?>

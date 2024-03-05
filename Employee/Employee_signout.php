@@ -15,8 +15,6 @@
     $id = $_POST['id'];
     $total_hrs = $_POST['total_hrs'];
 
-    
-
     if ($total_hrs < 8){
       $late = "Early Out";
       $update_addons = mysqli_query($conn, "UPDATE `attendance` SET 
@@ -36,7 +34,7 @@
        header('location:../login/login.php');
       
     }
-
+    session_destroy();
   }
 ?>
 <!DOCTYPE html>

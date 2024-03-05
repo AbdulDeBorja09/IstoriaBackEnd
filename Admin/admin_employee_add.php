@@ -89,6 +89,17 @@
         </div>
 
         <div class="container-box">
+            <?php
+                if(isset($message)){
+                foreach ($message as $message) {
+                echo'
+                    <div class="addproduct-errormsg">
+                    *'.$message.'
+                    </div>
+                    ';
+                }
+                }
+            ?>
           <form method="post" enctype="multipart/form-data">
             <div class="employee-div">
             <div class="empolyee-add-email">

@@ -21,7 +21,7 @@
     $image = $_FILES['image']['name'];
     $image_tmp_name = $_FILES['image']['tmp_name'];
     $image_folder='../products/'.$image; 
-
+    
     $update_product = mysqli_query($conn, "UPDATE `products` SET 
     `id` = '$update_id',
     `name` = '$product_name', 
@@ -105,18 +105,20 @@
                 <label for="image">image</label>
                 <input  id="image" name="image" type="file" accept="image/jpg, image/png, image/webp" required value="<?php echo $fetch_edit['image'];?>" />
                 <img src="../assets/products/<?php echo $fetch_edit['image'];?>" width="100px" alt="Current Image">
-               <div class="adproduct-submit">
-                <button type="submit" name="submit" class="addsubmitbtn">SUBMIT</button>
-               </div>
-               <?php
+                <?php
                   if(isset($message)){
                     foreach ($message as $message) {
                     echo'
-                        
+                        <div class="addproduct-errormsg">
+                        *'.$message.'
+                        </div>
                       ';
                     }
                   }
-              ?>
+                ?>
+                <div class="adproduct-submit">
+                <button type="submit" name="submit" class="addsubmitbtn">SUBMIT</button>
+               </div>
             </form>
             <?php
                 }

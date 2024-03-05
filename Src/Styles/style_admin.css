@@ -646,6 +646,7 @@
   margin-top: 30px;
   justify-content: space-between;
   margin-left: 10px;
+  margin-bottom: 30px;
 }
 .empolyee-add-email {
   display: flex;
@@ -1422,6 +1423,11 @@
   background-color: var(--white);
   color: var(--black1);
   border: 1px solid var(--black1);
+}
+.addproduct-errormsg {
+  color: rgb(255, 1, 1);
+  font-style: italic;
+  margin-top: 20px;
 }
 @media (max-width: 991px) {
   .navigation {

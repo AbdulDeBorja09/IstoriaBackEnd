@@ -1215,6 +1215,40 @@ h1 {
   justify-content: space-around;
   margin: 10px 0px -20px 0px;
 }
+.addons-table {
+  border-collapse: collapse;
+  text-transform: capitalize;
+}
+.addons-table thead tr th {
+  background-color: var(--brown);
+  color: var(--white);
+  border: 1px solid var(--brown);
+  padding: 10px;
+}
+.addons-table tbody tr td {
+  border: 1px solid var(--black2);
+  padding: 10px;
+}
+.addons-table tbody tr td .avail {
+  font-size: 15px;
+  border: 1px solid rgb(151, 7, 7);
+  background-color: var(--white2);
+  color: rgb(151, 7, 7);
+  padding: 6px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.addons-table tbody tr td .Unavail {
+  font-size: 15px;
+  text-transform: uppercase;
+  border: 1px solid green;
+  background-color: var(--white2);
+  color: green;
+  padding: 6px;
+  border-radius: 5px;
+  cursor: pointer;
+}
 @media (max-width: 991px) {
   .navigation {
     left: -300px;

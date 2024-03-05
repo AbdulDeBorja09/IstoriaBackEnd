@@ -61,7 +61,7 @@
       $message[] = 'Product updated successfully'; 
       header('location: admin_employee.php');
     } else {
-        $message[] = 'Failed to update product'; 
+        $message[] = 'Failed to Update Employee'; 
     }
 }
   
@@ -89,6 +89,17 @@
           <h1>Edit Employee</h1>
         </div>
         <div class="container-box">
+          <?php
+            if(isset($message)){
+            foreach ($message as $message) {
+            echo'
+                <div class="addproduct-errormsg">
+                *'.$message.'
+                </div>
+                ';
+            }
+            }
+            ?>
           <?php  
           if(isset($_GET['edit'])){
               $edit_id = $_GET['edit'];
