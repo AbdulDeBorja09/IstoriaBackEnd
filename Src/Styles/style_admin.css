@@ -1692,6 +1692,7 @@ button {
   color: var(--black1);
   border-radius: 6px;
   border: 1px solid var(--black1);
+  text-align: center;
   padding: 10px;
   width: 40%;
   font-size: 12px;

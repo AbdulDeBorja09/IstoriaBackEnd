@@ -150,7 +150,7 @@
                 <h1>"Are you sure you want to reset?"</h1>
             </div>
             <div class="buttons">
-                <button class="closes">CLOSE</button>
+                <a class="closes" id="close2">CLOSE</a>
                 <button class="confirm" name="reset" type="submit">CONFIRM</button>
             </div>
           </form>
@@ -159,11 +159,15 @@
       <script>
         var modal = document.getElementById("Modal");
         var btn = document.getElementById("openModalBtn");
+        var btn2 = document.getElementById("close2");
         var span = document.getElementsByClassName("close")[0];
         btn.onclick = function() {
             modal.style.display = "block";
         }
         span.onclick = function() {
+            modal.style.display = "none";
+        }
+        btn2.onclick = function() {
             modal.style.display = "none";
         }
     </script>
