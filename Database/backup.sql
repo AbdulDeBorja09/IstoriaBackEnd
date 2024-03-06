@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 05, 2024 at 11:13 AM
+-- Generation Time: Mar 06, 2024 at 08:52 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -46,7 +46,8 @@ CREATE TABLE `addons` (
 --
 
 INSERT INTO `addons` (`id`, `category`, `addons1`, `addons2`, `addons3`, `addons4`, `price1`, `price2`, `price3`, `price4`, `status`) VALUES
-(1, 'coffee', 'espresso shot', 'sauce', 'drizzle', 'syrup', 10, 15, 15, 20, 'available');
+(1, 'coffee', 'espresso shot', 'sauce', 'drizzle', 'syrup', 30, 20, 25, 25, 'available'),
+(2, 'latte', 'espresso shot', 'sauce', 'drizzle', 'syrup', 30, 20, 20, 25, 'available');
 
 -- --------------------------------------------------------
 
@@ -74,11 +75,7 @@ CREATE TABLE `attendance` (
 --
 
 INSERT INTO `attendance` (`id`, `eid`, `employee_id`, `status`, `name`, `rank`, `time_in`, `time_out`, `duty`, `day`, `month`, `year`) VALUES
-(14, 10, 'EID2024-5314343', 'off', 'Young,Ethan', 'Bartender', '11:00:09', '19:20:48', 'late', '02', '03', '24'),
-(18, 10, 'EID2024-5314343', 'off', 'Young,Ethan', 'Bartender', '00:34:14', '04:30:36', 'Early Out', '04', '03', '24'),
-(19, 10, 'EID2024-5314343', 'on', 'Young,Ethan', 'Bartender', '04:03:25', '0', 'On Time', '05', '03', '24'),
-(24, 13, 'EID2024-1231232', 'off', 'Ongchad, Mae Joy', 'Cashier', '11:58:35', '12:58:58', 'Early Out', '04', '03', '24'),
-(26, 13, 'EID2024-1231232', 'on', 'Ongchad, Mae Joy', 'Cashier', '17:24:00', '0', 'On Time', '05', '03', '24');
+(1, 3, 'EID2342-2312312', 'off', 'celino, Andrea', 'Cashier', '00:32:45', '08:57:16', 'On Time', '07', '03', '24');
 
 -- --------------------------------------------------------
 
@@ -102,8 +99,7 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`id`, `uid`, `name`, `username`, `email`, `address`, `contact`, `created`) VALUES
-(1, 1, 'De Borja, abdulsss', 'AbdulDb09', '2', 'Bay laguna', 'No Contact', '03-02-24'),
-(3, 5, 'Kezuke, jose', 'Josekzk', 'Jose@gmail.com', 'bay laguna', 'No Contact', '03-02-24');
+(1, 2, 'bata, Ethan', 'celino@gmail.com', 'young@gmail.com', 'calamba', 'No Contact', '03-07-24');
 
 -- --------------------------------------------------------
 
@@ -133,9 +129,7 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`id`, `eid`, `employee_id`, `rank`, `name`, `gender`, `age`, `birthdate`, `birthplace`, `address`, `contact`, `email`, `image`, `hire_date`) VALUES
-(2, 10, 'EID2024-5314343', 'Bartender', 'Young, Ethan', 'Male', '23', '2024-03-02', 'bay lagunaaaa', '09123 Dilaa, bay, laguna,(4033)', '091231231231', 'young@gmail.com', 'a.png', '2024-03-07'),
-(4, 13, 'EID2024-1231232', 'Cashier', 'Ongchad, Mae Joy', 'Female', '20', '2003-10-20', 'Baguio City', '0212, Baguio City, Benguet,  (15602)', '091231231231', 'mjongchad@gmail.com', 'Favicon.png', '2024-03-05'),
-(5, 14, 'EID2024-2123123', 'Manager', 'De Borja, abdul', 'male', '20', '2004-08-09', 'bay laguna', '0912 Dila, bay, laguna,  (4033)', '0912312312312', 'abduldb09@gmail.com', 'profile.png', '2024-03-05');
+(1, 3, 'EID2342-2312312', 'Bartender', 'celino, Andrea', 'Female', '20', '2003-10-27', 'san pabloooo', '0912, san pablo, laguna,  20312', '0912312312', 'celino@gmail.com', 'andrea.png', '2024-03-07');
 
 -- --------------------------------------------------------
 
@@ -152,6 +146,14 @@ CREATE TABLE `message` (
   `message` varchar(1000) NOT NULL,
   `date` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `message`
+--
+
+INSERT INTO `message` (`id`, `user_id`, `sender`, `name`, `email`, `message`, `date`) VALUES
+(1, 2, 'user', 'Young, Ethan', 'young@gmail.com', 'pwede ba bulk order?', '03-07-24 12:50:27AM'),
+(2, 2, 'employee', 'ISTORIA', 'ISTORIACAFE@GMAIL.COM', 'bawal po', '03-07-24 12:50:46AM');
 
 -- --------------------------------------------------------
 
@@ -183,11 +185,10 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `name`, `product`, `size`, `type`, `addons`, `info`, `contact`, `note`, `payment`, `total`, `date`, `status`, `transaction`, `reference`) VALUES
-(1, 1, '123123 123123', '1 Caramel', '16 oz', 'hot', '[] | ', '2222-12-31 | 12:31', '123123', '123123', 'cash ', 250, '10:13PM 03-03-24 ', 'completed', 'pickup', 'Istoria52045848672d'),
-(2, 1, 'sdas asda', '1 Caramel, 1 Caramel', '16 oz, 16 oz', 'hot, hot', ' | [],   | [\"espresso shot\",\"sauce\",\"drizzle\",\"syrup\"]', 'dasd | asdasasd', 'asd1231', '23123', 'cash ', 620, '10:15PM 03-03-24 ', 'completed', 'delivery', 'Istoria5332604494f8'),
-(3, 1, 'De Borja abdul', '1 Caramel', '16 oz', 'hot', ' | []', 'asdasda | 123123', '123123', '123123123', 'gcash ', 310, '08:47PM 03-04-24 ', 'completed', 'delivery', 'Istoria64482e06bdfa'),
-(4, 1, '123 123123', '1 Caramel', '16 oz', 'hot', ' | []', '123123 | 123123', '12312', '312312', 'gcash ', 310, '08:53PM 03-04-24 ', 'completed', 'delivery', 'Istoria679743dd120f'),
-(5, 12, 'manalo Jose', '1 Caramel', '16 oz', 'hot', '[] | ', '2024-03-06 | 09:35', '0912312312', 'Helo', 'cash ', 250, '09:35PM 03-04-24 ', 'pending', 'pickup', 'Istoria9308e0c4a1b8');
+(1, 2, 'brofar pau', '5 Caramel, 1 Caramel', '22 oz, 22 oz', 'iced, iced', '[\"espresso shot\",\"sauce\",\"syrup\"] | ,  [] | ', 'calabma | lianas', '01923123', 'wala ', 'gcash 0912312312', 1209, '12:37AM 03-07-24 ', 'completed', 'delivery', 'Istoria3072be0ba7f4'),
+(2, 2, 'Brofar pau', '1 Caramel', '22 oz', 'iced', '[\"espresso shot\",\"sauce\",\"drizzle\",\"syrup\"] | ', '2024-03-06 | 11:39', '0912312312', '', 'cash ', 229, '12:39AM 03-07-24 ', 'pending', 'pickup', 'Istoria3172c44c9df6'),
+(3, 2, 'brofar pau', '1 Caramel', '16 oz', 'hot', '[] | ', '2024-03-06 | 10:40', '9091923123', 'sdsad', 'cash ', 99, '12:40AM 03-07-24 ', 'completed', 'pickup', 'Istoria3246c8ea23b0'),
+(4, 2, 'qweqwe qwe', '1 Caramel', '16 oz', 'hot', '[] | ', '2024-03-06 | 09:40', '123123123', '', 'cash ', 99, '12:41AM 03-07-24 ', 'pending', 'pickup', 'Istoria3274caaa40ab');
 
 -- --------------------------------------------------------
 
@@ -210,10 +211,8 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `price`, `price_range`, `image`, `category`, `status`) VALUES
-(7, 'Caramel', 250, '200', '5.png', 'coffee', 'available'),
-(8, 'Java Chip', 150, '200', '5.png', 'latte', 'available'),
-(9, 'Matcha Latte', 150, '200', '5.png', 'coffee', 'available'),
-(10, 'Caramels', 123, '12312', '5.png', 'coffee', 'available');
+(1, 'Caramel', 99, '150', 'caramel.png', 'coffee', 'unavailable'),
+(2, 'Matcha', 100, '99', 'matcha.png', 'coffee', 'available');
 
 -- --------------------------------------------------------
 
@@ -238,7 +237,8 @@ CREATE TABLE `review` (
 --
 
 INSERT INTO `review` (`id`, `user_id`, `name`, `orders`, `comment`, `image`, `rating`, `reference`, `date`) VALUES
-(1, 2, '1', '123', '123', '123', 5, '123', '123');
+(1, 2, 'brofar pau', '5 Caramel, 1 Caramel', 'masarap', 'seasalt.png', 4, 'Istoria3072be0ba7f4', '03-07-24'),
+(2, 2, 'brofar pau', '1 Caramel', 'BULOK DI MASARAP', '', 0, 'Istoria3246c8ea23b0', '03-07-24');
 
 -- --------------------------------------------------------
 
@@ -265,7 +265,7 @@ CREATE TABLE `salary` (
 --
 
 INSERT INTO `salary` (`id`, `eid`, `total_hrs`, `total_mins`, `total_days`, `total_salary`, `lates`, `bonus`, `deduction`, `month`, `year`) VALUES
-(6, 10, 12, 16, 2, 770, 1, 100, 200, '03', '24');
+(2, 3, 8, 24, 1, 560, 0, 150, 500, '03', '24');
 
 -- --------------------------------------------------------
 
@@ -288,11 +288,17 @@ CREATE TABLE `sales` (
 --
 
 INSERT INTO `sales` (`id`, `eid`, `total`, `type`, `date`, `time`, `reference`) VALUES
-(17, 10, 500, 'offline', '03-03-24', '17:14:45 PM', 'Store98123123s'),
-(19, 0, 500, 'offline', '04-03-24', '18:38:26 PM', 'Store01923912312321312'),
-(21, 0, 620, 'online', '04-03-24', '18:46:45 PM', 'Istoria5332604494f8'),
-(22, 0, 310, 'online', '04-03-24', '20:54:36 PM', 'Istoria64482e06bdfa'),
-(23, 0, 310, 'online', '04-03-24', '20:54:40 PM', 'Istoria679743dd120f');
+(1, 3, 1209, 'online', '07-03-24', '00:42:39 AM', 'Istoria3072be0ba7f4'),
+(2, 3, 99, 'online', '07-03-24', '00:43:42 AM', 'Istoria3246c8ea23b0'),
+(3, 3, 500, 'offline', '07-03-24', '00:53:46 AM', 'Store23912312321'),
+(4, 3, 500, 'offline', '07-03-24', '00:54:14 AM', 'Store123123123'),
+(5, 3, 200, 'offline', '07-03-24', '00:54:20 AM', 'Store123435463'),
+(6, 3, 300, 'offline', '07-03-24', '00:54:24 AM', 'Store51235346346'),
+(7, 3, 500, 'offline', '07-03-24', '00:54:33 AM', 'Store43513234234234'),
+(8, 3, 500, 'offline', '07-03-24', '00:54:51 AM', 'Store9123123123'),
+(9, 3, 300, 'offline', '07-03-24', '00:55:03 AM', 'Store124312312'),
+(10, 3, 200, 'offline', '07-03-24', '00:55:06 AM', 'Store213123123'),
+(11, 3, 200, 'offline', '07-03-24', '00:55:10 AM', 'Store2342345234');
 
 -- --------------------------------------------------------
 
@@ -314,13 +320,6 @@ CREATE TABLE `tray` (
   `pid` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `tray`
---
-
-INSERT INTO `tray` (`id`, `name`, `category`, `price`, `quantity`, `type`, `size`, `addons`, `image`, `user_id`, `pid`) VALUES
-(16, 'Caramel', 'coffee', 250, 1, 'hot', '16 oz', '[]', '5.png', 1, 7);
-
 -- --------------------------------------------------------
 
 --
@@ -339,12 +338,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `type`, `email`, `password`) VALUES
-(1, 'user', '2', '123'),
-(4, 'admin', '1', '123'),
-(5, 'user', 'Jose@gmail.com', '123'),
-(10, 'employee', '3', '123'),
-(13, 'employee', '123', '123'),
-(14, 'employee', '4', '123');
+(1, 'admin', 'admin', '123'),
+(2, 'user', 'young@gmail.com', '123'),
+(3, 'employee', 'anrdea@employee', '123'),
+(5, 'admin', 'admin2', '123');
 
 --
 -- Indexes for dumped tables
@@ -436,67 +433,67 @@ ALTER TABLE `addons`
 -- AUTO_INCREMENT for table `attendance`
 --
 ALTER TABLE `attendance`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `salary`
 --
 ALTER TABLE `salary`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `tray`
 --
 ALTER TABLE `tray`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

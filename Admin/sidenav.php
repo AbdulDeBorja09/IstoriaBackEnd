@@ -102,19 +102,10 @@
     </li>
     <li>
       <a href="admin_settings.php">
-        <span class="icon">
-          <ion-icon name="settings-outline"></ion-icon>
-        </span>
-        <span class="title">Settings</span>
-      </a>
-    </li>
-
-    <li>
-      <a href="admin_logout.php">
-        <span class="icon">
+      <span class="icon">
           <ion-icon name="log-out-outline"></ion-icon>
         </span>
-        <span class="title">Sign Out</span>
+        <span class="title">Settings</span>
       </a>
     </li>
   </ul>

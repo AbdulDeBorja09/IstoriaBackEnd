@@ -6,12 +6,28 @@
   padding: 0;
   box-sizing: border-box;
 }
+button {
+  cursor: pointer;
+}
 :root {
   --gray: #2c2c2c;
   --white: #fff;
   --white2: #f5f5f5;
   --black1: #222;
   --black2: #999;
+}
+.panel-time {
+  margin-right: 50px;
+  text-align: center;
+}
+.panel-time .time {
+  font-size: 15px;
+  font-weight: 500;
+}
+.panel-time .date {
+  font-size: 15px;
+  margin-top: 7px;
+  margin-right: 5px;
 }
 .navigation {
   position: fixed;
@@ -862,42 +878,6 @@
   cursor: pointer;
 }
 
-.editmodal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-.editmodal .modal-content {
-  background-color: #fefefe;
-  margin: 10% auto;
-  padding: 30px 20px 20px 20px;
-  border: 1px solid #888;
-  width: 30%;
-}
-
-.editmodal .close2 {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  margin-top: -20px;
-}
-
-.editmodal .close2:hover,
-.editmodal .close2:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
 .addons-flex {
   display: flex;
 }
@@ -1564,6 +1544,179 @@
   width: 40px;
   height: 40px;
   margin-left: 20px;
+}
+.add-admin input {
+  font-size: 12px;
+  border: 1px solid var(--black1);
+  border-radius: 5px;
+  padding: 10px;
+  width: 80%;
+  margin-top: 24px;
+}
+.add-admin button {
+  border: 1px solid var(--black1);
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #222;
+  width: 80%;
+  margin-top: 24px;
+  color: white;
+  cursor: pointer;
+}
+.add-admin-div {
+  display: flex;
+  justify-content: space-between;
+}
+.add-admin-div .add-admin {
+  margin-top: 45px;
+  padding-left: 40px;
+}
+.add-admin h1 {
+  font-size: 20px;
+  font-weight: 700;
+}
+.add-admin-bottom {
+  display: flex;
+  justify-content: space-around;
+}
+.add-admin-bottom button {
+  width: 300px;
+  padding: 7px;
+  font-size: 15px;
+  border: 1px solid var(--black1);
+  color: var(--black1);
+  background-color: var(--white);
+  border-radius: 6px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  cursor: pointer;
+}
+
+.add-admin button:hover {
+  color: var(--black1);
+  background-color: white;
+  border: 1px solid var(--black1);
+}
+.add-admin-bottom button:hover {
+  background-color: var(--black1);
+  color: var(--white);
+}
+.resetdb {
+  width: 50%;
+}
+.resetdb .icon {
+  text-align: center;
+}
+.resetdb .icon ion-icon {
+  font-size: 100px;
+  color: rgb(153, 5, 5);
+}
+.resetdb button {
+  padding: 7px;
+  font-size: 15px;
+  width: 50%;
+  color: var(--white);
+  border: 1px solid rgb(161, 61, 61);
+  background-color: rgb(153, 5, 5);
+  border-radius: 6px;
+  cursor: pointer;
+}
+.resetdb button:hover {
+  background-color: white;
+  color: rgb(153, 5, 5);
+}
+.resetdb .text {
+  padding: 0px 190px;
+  text-align: justify;
+  margin-top: 0px;
+}
+.resetdb .text span {
+  font-size: 13px;
+  color: red;
+}
+.resetdb .text p {
+  line-height: 2;
+  padding: 0px 10px;
+  font-style: italic;
+  font-size: 12px;
+}
+.resetdb .reset-btn {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+.confirmmodal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.confirmmodal .modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 30px 20px 20px 20px;
+  border: 1px solid #888;
+  width: 30%;
+  border-radius: 10px;
+}
+
+.confirmmodal .close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: -20px;
+}
+
+.confirmmodal .close:hover,
+.confirmmodal .close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.confirmmodal .buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  padding: 0px 20px;
+}
+.confirmmodal .buttons .closes {
+  background-color: white;
+  color: var(--black1);
+  border-radius: 6px;
+  border: 1px solid var(--black1);
+  padding: 10px;
+  width: 40%;
+  font-size: 12px;
+}
+.confirmmodal .buttons .confirm {
+  background-color: rgb(153, 5, 5);
+  color: var(--white);
+  border-radius: 6px;
+  border: 0;
+  padding: 10px;
+  width: 40%;
+}
+.confirmmodal .icon {
+  text-align: center;
+}
+.confirmmodal .icon ion-icon {
+  font-size: 250px;
+  color: rgb(153, 5, 5);
+}
+.confirmmodal .text h1 {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 15px;
+  font-style: italic;
+  margin-bottom: 30px;
 }
 @media (max-width: 991px) {
   .navigation {

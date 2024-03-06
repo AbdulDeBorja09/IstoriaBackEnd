@@ -250,7 +250,7 @@
                 </div>
             </div>
             <div class="termsbutton text-center">
-                <a href="signup.php" class="close btn w-50">CONTINUE</a>
+                <button id="close2" href="signup.php" class="close btn w-50">CONTINUE</button>
             </div>
         </div>
     </div>
@@ -258,6 +258,7 @@
     document.addEventListener("DOMContentLoaded", function() {
         var modal = document.getElementById("termsmodal");
         var span = modal.querySelector(".close");
+        var close = document.getElementById("close2");
         var link = document.getElementById("terms");
 
         link.addEventListener("click", function(event) {
@@ -266,6 +267,9 @@
         });
 
         span.addEventListener("click", function() {
+            modal.style.display = "none";
+        });
+        close.addEventListener("click", function() {
             modal.style.display = "none";
         });
 

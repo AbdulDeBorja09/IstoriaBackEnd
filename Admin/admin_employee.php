@@ -39,15 +39,16 @@
           <div class="toggle">
             <ion-icon name="menu-outline"></ion-icon>
           </div>
+          <?php include 'time.php' ?>
         </div>
 
         <div class="container-box employee-title">
           <h1>Employee</h1>
           <a class="addbutton" href="admin_employee_add.php">
-              <span class="addbtn">
-              <ion-icon name="add-circle-outline"></ion-icon>
-              </span>
-            </a>
+            <span class="addbtn">
+            <ion-icon name="add-circle-outline"></ion-icon>
+            </span>
+          </a>
         </div>
         <div class="container-box">
           <table class="employee-table">

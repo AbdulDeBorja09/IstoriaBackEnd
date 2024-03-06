@@ -27,6 +27,7 @@
           <div class="toggle">
             <ion-icon name="menu-outline"></ion-icon>
           </div>
+          <?php include 'time.php' ?>
         </div>
 
         <div class="container-box employee-title">
@@ -59,8 +60,16 @@
                 </tr>
                 <?php 
                     }
-                }
-                ?>
+                }else{
+                    ?>
+                    <tr>
+                      <td colspan="3" style="padding: 150px 0px; border:0px;">
+                        <h1>NO EMPLOYEE</h1>
+                      </td>
+                    </tr>
+                    <?php  
+                  }
+                  ?>
             </tbody>
          </table>
       </div>

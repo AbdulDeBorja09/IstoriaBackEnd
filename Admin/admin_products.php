@@ -11,7 +11,7 @@
     $delete_id = $_GET['delete'];
     $select_delete_image = mysqli_query($conn, "SELECT image FROM `products` WHERE id = '$delete_id'") or die('query failed');
     $fetch_delete_image = mysqli_fetch_assoc($select_delete_image);
-    unlink('image/'.$fetch_delete_image['image']);
+    unlink('../assets/products/'.$fetch_delete_image['image']);
 
     mysqli_query($conn, "DELETE FROM `products` WHERE id = '$delete_id'") or die ('query failed');
     mysqli_query($conn, "DELETE FROM `tray` WHERE pid = '$delete_id'") or die ('query failed');
@@ -37,6 +37,7 @@
           <div class="toggle">
             <ion-icon name="menu-outline"></ion-icon>
           </div>
+          <?php include 'time.php' ?>
         </div>
 
         <div class="container-box">

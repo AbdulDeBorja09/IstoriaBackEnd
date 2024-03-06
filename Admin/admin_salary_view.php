@@ -63,6 +63,7 @@ $button_text = $existing_salary ? "Update Salary" : "Release Salary";
           <div class="toggle">
             <ion-icon name="menu-outline"></ion-icon>
           </div>
+          <?php include 'time.php' ?>
         </div>
 
         <div class="container-box employee-title">
