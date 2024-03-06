@@ -400,4 +400,13 @@ input[type="checkbox"] {
 .signup-error-msg span {
   color: red;
 }
-
+.index-error-msg {
+  color: var(--browncolor);
+  font-weight: 700;
+  font-style: italic;
+  width: 100%;
+  font-size: 10px;
+  padding: 5px;
+  margin-left: 5px;
+  text-align: start;
+}

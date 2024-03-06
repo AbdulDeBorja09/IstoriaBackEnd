@@ -25,7 +25,7 @@
               $insert_product = mysqli_query($conn, "INSERT INTO `products` (`name`, `price`, `price_range`, `image`, `category`)
                VALUES ('$product_name', '$product_price', '$product_price_range', '$image',  '$product_category')") or die('query failed');
               if ($insert_product) {
-                  if ($image_size > 2000000) {
+                  if ($image_size > 5000000) {
                       $message[] = 'Image is too large';
                   } else {
                       move_uploaded_file($image_tmp_name, $image_folder);

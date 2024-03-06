@@ -5,8 +5,12 @@
 -- - Dinero, Khylle 
 -- - Brofar, Euwayne Paulette
 
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+08:00";
+
 CREATE TABLE `addons` (
-  `id` int(255) NOT NULL PRIMARY KEY,
+  `id` int(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `category` varchar(255) NOT NULL,
   `addons1` varchar(255) NOT NULL,
   `addons2` varchar(255) NOT NULL,
@@ -17,10 +21,10 @@ CREATE TABLE `addons` (
   `price3` int(255) NOT NULL,
   `price4` int(255) NOT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'available'
-)
+);
 
 CREATE TABLE `attendance` (
-  `id` int(255) NOT NULL PRIMARY KEY,
+  `id` int(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `eid` int(255) NOT NULL,
   `employee_id` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'on',
@@ -35,7 +39,7 @@ CREATE TABLE `attendance` (
 );
 
 CREATE TABLE `customer` (
-  `id` int(255) NOT NULL PRIMARY KEY,
+  `id` int(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `uid` int(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
@@ -46,7 +50,7 @@ CREATE TABLE `customer` (
 );
 
 CREATE TABLE `employee` (
-  `id` int(255) NOT NULL PRIMARY KEY,
+  `id` int(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `eid` int(255) NOT NULL,
   `employee_id` varchar(255) NOT NULL,
   `rank` varchar(255) NOT NULL,
@@ -63,7 +67,7 @@ CREATE TABLE `employee` (
 );
 
 CREATE TABLE `message` (
-  `id` int(255) NOT NULL PRIMARY KEY,
+  `id` int(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `user_id` int(255) NOT NULL,
   `sender` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -73,7 +77,7 @@ CREATE TABLE `message` (
 );
 
 CREATE TABLE `orders` (
-  `id` int(255) NOT NULL PRIMARY KEY,
+  `id` int(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `user_id` int(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `product` varchar(255) NOT NULL,
@@ -92,7 +96,7 @@ CREATE TABLE `orders` (
 );
 
 CREATE TABLE `products` (
-  `id` int(255) NOT NULL PRIMARY KEY,
+  `id` int(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(25) NOT NULL,
   `price` int(255) NOT NULL,
   `price_range` varchar(255) NOT NULL,
@@ -102,7 +106,7 @@ CREATE TABLE `products` (
 );
 
 CREATE TABLE `review` (
-  `id` int(255) NOT NULL PRIMARY KEY,
+  `id` int(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `user_id` int(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `orders` varchar(255) NOT NULL,
@@ -114,7 +118,7 @@ CREATE TABLE `review` (
 );
 
 CREATE TABLE `salary` (
-  `id` int(255) NOT NULL PRIMARY KEY,
+  `id` int(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `eid` int(255) NOT NULL,
   `total_hrs` int(255) NOT NULL,
   `total_mins` int(255) NOT NULL,
@@ -128,7 +132,7 @@ CREATE TABLE `salary` (
 );
 
 CREATE TABLE `sales` (
-  `id` int(255) NOT NULL PRIMARY KEY,
+  `id` int(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `eid` int(255) NOT NULL,
   `total` int(255) NOT NULL,
   `type` varchar(255) NOT NULL,
@@ -138,7 +142,7 @@ CREATE TABLE `sales` (
 );
 
 CREATE TABLE `tray` (
-  `id` int(255) NOT NULL PRIMARY KEY,
+  `id` int(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `category` varchar(255) NOT NULL,
   `price` int(255) NOT NULL,
@@ -152,7 +156,7 @@ CREATE TABLE `tray` (
 );
 
 CREATE TABLE `user` (
-  `id` int(255) NOT NULL PRIMARY KEY,
+  `id` int(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `type` varchar(255) NOT NULL DEFAULT 'user',
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
@@ -161,6 +165,3 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `type`, `email`, `password`) VALUES
 (1, 'admin', 'admin', 'istoria123');
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+08:00";

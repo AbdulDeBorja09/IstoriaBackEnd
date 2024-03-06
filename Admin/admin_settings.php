@@ -47,7 +47,7 @@
     }
     foreach ($tables as $table) {
         mysqli_query($conn, "TRUNCATE TABLE $table");
-        mysqli_query($conn, "ALTER TABLE $table AUTO_INCREMENT = 0");
+        mysqli_query($conn, "ALTER TABLE $table");
     }
     $folders_to_clear = array("profiles", "products", "reviews");
     foreach ($folders_to_clear as $folder) {
@@ -62,8 +62,8 @@
     $email = "admin";
     $password = "istoria123";
     $type = "admin";
-    mysqli_query($conn, "INSERT INTO `user` ( `type`, `email` , `password`) 
-        VALUES ('$type','$email','$password')") or die ('query failed');
+    mysqli_query($conn, "INSERT INTO `user` (`id`, `type`, `email` , `password`) 
+        VALUES ('1','$type','$email','$password')") or die ('query failed');
   }
 ?>
 <!DOCTYPE html>
