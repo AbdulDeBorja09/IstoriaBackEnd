@@ -13,30 +13,32 @@
         $filter_email = filter_var($_POST['email'], FILTER_SANITIZE_STRING);
         $email = mysqli_real_escape_string($conn, $filter_email);
     
-        // $filter_password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
-        // $password = mysqli_real_escape_string($conn, $filter_password);
-        // $filter_cpassword = filter_var($_POST['cpassword'], FILTER_SANITIZE_STRING);
-        // $cpassword = mysqli_real_escape_string($conn, $filter_cpassword);
+        $filter_password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
+        $password = mysqli_real_escape_string($conn, $filter_password);
+        $filter_cpassword = filter_var($_POST['cpassword'], FILTER_SANITIZE_STRING);
+        $cpassword = mysqli_real_escape_string($conn, $filter_cpassword);
         
         $username = mysqli_real_escape_string($conn, $_POST['username']);
         $address = mysqli_real_escape_string($conn, $_POST['address']);
         $contact = mysqli_real_escape_string($conn, $_POST['contact']);
 
-        $update_query = mysqli_query($conn, "UPDATE `customer` SET 
-        `uid` = '$user_id',
-        `name` = '$name',
-        `username` = '$username',
-        `address` = '$address',
-        `email` = '$email',
-        `contact` = '$contact'
-        WHERE uid = '$user_id'") or die ('query failed');
+        if ($password != $cpassword){
+            $message[] = 'Password Does Not Match';
+        }else{
+            $update_query = mysqli_query($conn, "UPDATE `customer` SET 
+            `uid` = '$user_id',
+            `name` = '$name',
+            `username` = '$username',
+            `address` = '$address',
+            `email` = '$email',
+            `contact` = '$contact'
+            WHERE uid = '$user_id'") or die ('query failed');
 
-        mysqli_query($conn, "UPDATE `user` SET `email` = '$email' WHERE id = '$user_id' ") or die ('query failed');
-        $message[] = 'Account Created Successfully';
+            mysqli_query($conn, "UPDATE `user` SET `email` = '$email', `password` = '$password' WHERE id = '$user_id' ") or die ('query failed');
+            $message[] = 'Account Edited Successfully';
+        }
+
         
-
-        
-
     }
 ?>
 <!DOCTYPE html>
@@ -78,14 +80,29 @@
                 <input type="text" name="contact" id="" placeholder="CONTACT NUMBER" required value="<?php echo $fetch_user['contact'] ?>"/>
             </div>
             <div class="right">
-                <!-- <input type="text" name="password" id="" placeholder="PASSWORD" required  />
-                <input type="text" name="cpassword" id="" placeholder="CONFIRM PASSWORD" required  /> -->
+                <input type="text" name="password" id="" placeholder="PASSWORD" required  />
+                <input type="text" name="cpassword" id="" placeholder="CONFIRM PASSWORD" required  />
                 <textarea name="address" id="" cols="30" rows="3" placeholder="ADDRESS" required  ><?php echo $fetch_user['address'] ?></textarea>
             </div>
         </div>
 
-        <div class="savebutton text-center">
-            <button name="update" type="submit" class="btn w-25">SAVE CHANGES</button>
+        
+
+        <div class="savebutton container">
+        <?php
+        if(isset($message)){
+            foreach ($message as $message) {
+            echo'
+                <div class="edit-profile-error container">
+                <span>* </span>'.$message.'
+                </div>
+            ';
+            }
+        }
+        ?>
+           <div class="text-center">
+            <button name="update" type="submit"  class="btn w-25 text-center ">SAVE CHANGES</button>
+           </div>
         </div>
         </form>
         <?php 

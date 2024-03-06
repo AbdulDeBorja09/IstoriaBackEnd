@@ -91,7 +91,7 @@
                 <form method="post">
                     <input type="hidden" name="product_id" value="<?php echo $fetch_products['id']; ?>">
                     <div class="enlargebox">
-                        <a  class="enlarge btn" href="?pid=<?php echo $fetch_products['id']; ?>" class="enlarge" data-bs-toggle="modal" data-bs-target="#exampleModal" data-pid="<?php echo $fetch_products['id']; ?>">
+                        <a class="enlarge btn" href="user_viewpage.php?pid=<?php echo $fetch_products['id'];?> ">
                             <ion-icon name="search"></ion-icon>
                         </a>
                     </div>
@@ -125,9 +125,9 @@
               <div class="unavailable">
               <input type="hidden" name="product_id" value="<?php echo $fetch_products['id']; ?>">
               <div class="enlargebox">
-                  <button class="enlarge btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                      <ion-icon name="search"></ion-icon>
-                  </button>
+                 <a class="enlarge btn" href="#">
+                        <ion-icon name="search"></ion-icon>
+                </a>
               </div>
               <br />
                   <input name="product_id" type="hidden" value="<?php echo $fetch_products['id']; ?>">

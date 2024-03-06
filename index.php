@@ -45,7 +45,7 @@
       }
     }
     else{
-      header('location:Admin/admin_home.php');  
+        $message[] = 'Incorrect Email or password';
     }
 
   }
@@ -342,7 +342,17 @@
                                     <p>REMEMBER ME</p>
                                 </label>
                             </div>
-
+                            <?php
+                                if(isset($message)){
+                                    foreach ($message as $message) {
+                                    echo'
+                                        <div class="index-error-msg">
+                                        <span>* </span>'.$message.'
+                                        </div>
+                                    ';
+                                    }
+                                }
+                            ?>
                             <div class="button-login">
                                 <h1>
                                     DON'T HAVE AN ACCOUNT?

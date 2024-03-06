@@ -83,7 +83,7 @@
           $select_prodcuts = mysqli_query($conn, "SELECT * FROM `products` WHERE category ='coffee'") or die ('query failed');
           if(mysqli_num_rows($select_prodcuts)>0){
         ?>
-        <div class="coffe-flex" style="display:flex; justify-content:space-around">
+        <div class="coffe-flex" style="display:flex; justify-content: space-around;">
         <?php 
           $select_prodcuts = mysqli_query($conn, "SELECT * FROM `products` WHERE category ='coffee' AND status = 'available' $sort_order") or die ('query failed');
           if(mysqli_num_rows($select_prodcuts)>0){
@@ -93,7 +93,7 @@
                 <form method="post">
                     <input type="hidden" name="product_id" value="<?php echo $fetch_products['id']; ?>">
                     <div class="enlargebox">
-                    <a class="enlarge btn" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="enlargeModal(<?php echo $fetch_products['id']; ?>)">
+                    <a class="enlarge btn" href="user_viewpage.php?pid=<?php echo $fetch_products['id'];?> ">
                         <ion-icon name="search"></ion-icon>
                     </a>
                     </div>
@@ -126,9 +126,9 @@
               <div class="unavailable">
               <input type="hidden" name="product_id" value="<?php echo $fetch_products['id']; ?>">
               <div class="enlargebox">
-                  <button class="enlarge btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                      <ion-icon name="search"></ion-icon>
-                  </button>
+                <a class="enlarge btn" href="#">
+                    <ion-icon name="search"></ion-icon>
+                </a>
               </div>
               <br />
                   <input name="product_id" type="hidden" value="<?php echo $fetch_products['id']; ?>">
@@ -166,32 +166,7 @@
     <div style=" padding: 150px">
     </div>
     <?php include 'footer.php' ?>
-    <?php include 'user_modal_viewpage.php' ?>
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        function showModal(modalId) {
-            var modal = new bootstrap.Modal(document.getElementById(modalId));
-            modal.show();
-        }
-        var modalTriggerButtons = document.querySelectorAll('.enlarge');
-        modalTriggerButtons.forEach(function (button) {
-            button.addEventListener('click', function (event) {
-                event.preventDefault();
-                var targetModalId = button.getAttribute('data-bs-target');
-                showModal(targetModalId);
-            });
-        });
-        var modalCloseButtons = document.querySelectorAll('[data-bs-dismiss="modal"]');
-        modalCloseButtons.forEach(function (closeButton) {
-            closeButton.addEventListener('click', function () {
-                var modal = closeButton.closest('.modal');
-                var modalInstance = bootstrap.Modal.getInstance(modal);
-                modalInstance.hide();
-            });
-        });
-    });
-    </script>
-
+   
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
