@@ -126,7 +126,14 @@
                     </div>
                     <?php 
                     }
-                }?>
+                }else{?>
+                   <div class="no-order">
+                        <h1>YOU HAVEN'T PLACE ANY ORDERS YET.</h1>
+                   </div>
+
+                <?php 
+                }
+                ?>
                 </div>
             </div>
         </div>

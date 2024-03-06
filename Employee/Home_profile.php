@@ -82,8 +82,7 @@
           <?php 
             }else{
             ?>
-              <h6 class="payslip-note"><i>*Your payslip for this month not available yet.</i></h6>
-
+              <h6 class="payslip-note"><i>*Your payslip for this month is not available yet.</i></h6>
             <?php 
             }
           

@@ -336,7 +336,7 @@ footer a {
 }
 .coffe-flex {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-flow: wrap;
 }
 .coffe-flex .box a {
@@ -634,6 +634,12 @@ footer a {
   font-size: 13px;
   border: 1px solid var(--browncolor);
   font-weight: 700;
+}
+.carousel {
+  margin-top: 30px;
+}
+.carousel-inner {
+  border-radius: 10px;
 }
 .reviewhead h1 {
   font-weight: 700;
@@ -2739,4 +2745,23 @@ footer a {
   cursor: not-allowed;
   border: 1px solid var(--browncolor);
   width: 100%;
+}
+.product-star {
+  margin-top: -10px;
+}
+.reviewimg img {
+  height: 200px;
+  margin-bottom: 30px;
+}
+.no-order h1 {
+  font-size: 12px;
+  margin-top: 35px;
+}
+.no-order {
+  border-bottom: 1px solid var(--browncolor);
+  padding-bottom: 10px;
+}
+.empty-tray h1 {
+  font-size: 20px;
+  margin-top: 50px;
 }

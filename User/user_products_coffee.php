@@ -83,8 +83,8 @@
           $select_prodcuts = mysqli_query($conn, "SELECT * FROM `products` WHERE category ='coffee'") or die ('query failed');
           if(mysqli_num_rows($select_prodcuts)>0){
         ?>
-        <div class="coffe-flex">
-            <?php 
+        <div class="coffe-flex" style="display:flex; justify-content:space-around">
+        <?php 
           $select_prodcuts = mysqli_query($conn, "SELECT * FROM `products` WHERE category ='coffee' AND status = 'available' $sort_order") or die ('query failed');
           if(mysqli_num_rows($select_prodcuts)>0){
               while($fetch_products = mysqli_fetch_assoc($select_prodcuts)){
@@ -113,14 +113,15 @@
                 </form>
             </div>
             <?php  
-            }
+                }
               }
             ?>
             <?php 
-          $select_prodcuts = mysqli_query($conn, "SELECT * FROM `products` WHERE category ='coffee' AND status = 'unavailable' ") or die ('query failed');
-          if(mysqli_num_rows($select_prodcuts)>0){
-              while($fetch_products = mysqli_fetch_assoc($select_prodcuts)){
-          ?>
+         
+            $select_prodcuts = mysqli_query($conn, "SELECT * FROM `products` WHERE category ='coffee' AND status = 'unavailable' ") or die ('query failed');
+            if(mysqli_num_rows($select_prodcuts)>0){
+                while($fetch_products = mysqli_fetch_assoc($select_prodcuts)){
+            ?>
           <div class="box">
               <div class="unavailable">
               <input type="hidden" name="product_id" value="<?php echo $fetch_products['id']; ?>">

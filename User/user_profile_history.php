@@ -83,7 +83,6 @@
                             $time = strtok($fetch_orders["date"], " ");
                             $date = substr(strstr($fetch_orders["date"], " "), 1);
                             $info = explode('|', $fetch_orders["info"]);
-                            // $ref = $fetch_orders['reference'];
                         ?>
                       <tr>
                             <td style="width: 30%;">
@@ -136,8 +135,14 @@
                         </tr>
                     <?php
                         }
-                    } 
-                    ?>
+                    }else{?>
+                        <tr>
+                            <td> <h1>YOU HAVEN'T ORDERD ANY PRODUCTS YET.</h1></td>
+                        </tr>
+     
+                     <?php 
+                     }
+                     ?>
 
                     </tbody>
                 </table>

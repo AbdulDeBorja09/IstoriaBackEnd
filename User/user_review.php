@@ -20,20 +20,38 @@
         $reference = mysqli_real_escape_string($conn, $_POST['reference']);
         $rating= mysqli_real_escape_string($conn, $_POST['rating']);
         $date = date('m-d-y');
-
-        $image = $_FILES['image']['name'];
-        $image_size = $_FILES['image']['size'];
-        $image_tmp_name = $_FILES['image']['tmp_name'];
-        $image_folder = '../Reviews/'.$image;
-
-        $select_product_name = mysqli_query($conn, "SELECT name FROM `review` WHERE reference = '$reference' ") or die('query failed');
-          if (mysqli_num_rows($select_product_name) > 0) {
-              $message[] = "You've already review this order";
-          } else {
-            $insert_product = mysqli_query($conn, "INSERT INTO `review` (`user_id`, `name`, `orders`, `comment`, `image`, `rating`, `reference`, `date`)
-            VALUES ('$user_id','$name', '$order', '$comment', '$image',  '$rating',  '$reference', '$date')") or die('query failed');
-            header('location: user_profile_history.php');
-          }
+        if(isset($_FILES['image'])) {
+            $image = $_FILES['image']['name'];
+            $image_size = $_FILES['image']['size'];
+            $image_tmp_name = $_FILES['image']['tmp_name'];
+            $image_folder = '../assets/reviews/'.$image;
+            $select_product_name = mysqli_query($conn, "SELECT name FROM `review` WHERE reference = '$reference' ") or die('query failed');
+            if (mysqli_num_rows($select_product_name) > 0) {
+                $message[] = "You've already review this order";
+            } else {
+                $insert_review = mysqli_query($conn, "INSERT INTO `review` (`user_id`, `name`, `orders`, `comment`, `image`, `rating`, `reference`, `date`)
+                VALUES ('$user_id','$name', '$order', '$comment', '$image',  '$rating',  '$reference', '$date')") or die('query failed');
+                header('location: user_profile_history.php');
+                if ($insert_review ) {
+                    if ($image_size > 2000000) {
+                        $message[] = 'Image is too large';
+                    } else {
+                        move_uploaded_file($image_tmp_name, $image_folder);
+                        $message[] = 'Product added successfully';
+                        header('location: user_profile_history.php');
+                    }
+                }
+            }
+        }else{
+            $select_product_name = mysqli_query($conn, "SELECT name FROM `review` WHERE reference = '$reference' ") or die('query failed');
+            if (mysqli_num_rows($select_product_name) > 0) {
+                $message[] = "You've already review this order";
+            } else {
+                $insert_review = mysqli_query($conn, "INSERT INTO `review` (`user_id`, `name`, `orders`, `comment`, `image`, `rating`, `reference`, `date`)
+                VALUES ('$user_id','$name', '$order', '$comment', '$image',  '$rating',  '$reference', '$date')") or die('query failed');
+                header('location: user_profile_history.php');
+            }
+        }
     }
 ?>
 <!DOCTYPE html>
@@ -62,7 +80,7 @@
                 if(mysqli_num_rows($select_orders)>0){
                   while($fetch_orders = mysqli_fetch_assoc($select_orders)){
         ?>
-        <form method="post">
+        <form method="post" enctype="multipart/form-data" >
             <div class="reviewform">
                 <div class="text-center">
                     <input type="hidden" name="rating">
@@ -80,7 +98,7 @@
                     <input type="text" name="name" id="" value="<?php echo $fetch_orders['name'] ?>" readonly/>
                     <input type="text" name="order" id="" value="<?php echo $fetch_orders['product'] ?>" readonly />
                     <textarea name="comment" id="" cols="30" rows="10" placeholder="COMMENT"></textarea>
-                    <input type="file" name="image" type="file" accept="image/jpg, image/png, image/webp" required >
+                    <input type="file" name="image" type="file" accept="image/jpg, image/png, image/webp">
                     <button name="send" type="submit">SEND REVIEW</button>
                 </div>
             </div>

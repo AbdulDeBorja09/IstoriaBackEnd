@@ -375,6 +375,28 @@ input[type="checkbox"] {
   background-color: var(--browncolor);
   color: white;
 }
-
-
-
+.login-error-msg {
+  color: var(--browncolor);
+  font-weight: 500;
+  font-style: italic;
+  width: 100%;
+  font-size: 13px;
+  padding: 5px;
+  margin-left: 5px;
+  text-align: start;
+}
+.login-error-msg span {
+  color: red;
+}
+.signup-error-msg {
+  color: var(--browncolor);
+  font-weight: 500;
+  font-style: italic;
+  width: 100%;
+  font-size: 13px;
+  padding: 5px;
+  margin-left: 5px;
+}
+.signup-error-msg span {
+  color: red;
+}

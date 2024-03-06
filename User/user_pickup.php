@@ -134,8 +134,8 @@
                         }
                     }else{
                         echo '
-                        <div class="container text-center" style="padding: 100px;">
-                            <h1>No Product In Your Cart</h1>
+                        <div class="container text-center" style="padding: 170px 0px; ">
+                            <h1 style="font-size: 20px;" >No Product In Your TRAY</h1>
                         </div>
                         ';  
                     }

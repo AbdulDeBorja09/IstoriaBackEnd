@@ -77,7 +77,7 @@
             <button name="delete" type="submit" class="msg-delete-btn" onclick="return confirm('Delete this message?')"><ion-icon class="msg-delete-btn" name="trash"></ion-icon></button>
           </form>
         </div>
-          <div class="container-box">
+        <div class="container-box">
           <?php 
             if(isset($_GET['id'])){
               $id = $_GET['id'];
@@ -89,8 +89,8 @@
                     $time = substr(strstr($fetch_message["date"], " "), 1);
                 ?>  
                 <?php if ($sender == "user"){ ?>
+                  <h6 class="msg-time"><?php echo $fetch_message['date']?></h6>
                     <div class="message-left">
-                        <h6><?php echo $fetch_message['date']?></h6>
                         <div class="msgbox">
                             <img src="../assets/Images/profile3.png" >
                             <div class="info">
@@ -99,16 +99,16 @@
                                 <h3><?php echo $fetch_message['email']?></h3>
                             </div>
                             <div class="msg">
-                                <p><?php echo $fetch_message['message']?></p>
+                                <p  class="p"> <?php echo $fetch_message['message']?></p>
                             </div>
                         </div>
                     </div>
                     <?php } else { ?>
+                      <h6 class="msg-time"><?php echo $fetch_message['date']?></h6>
                     <div class="message-right">
-                        <h6><?php echo $fetch_message['date']?></h6>
                         <div class="msgbox">
                             <div class="msg">
-                                <p><?php echo $fetch_message['message']?></p>
+                                <p class="p"><?php echo $fetch_message['message']?></p>
                             </div>
                             <div class="info">
                                 <h5>CUSTOMER SERVICE</h5>

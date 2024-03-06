@@ -48,8 +48,18 @@
       header('location:Admin/admin_home.php');  
     }
 
-
   }
+
+  $select_review = mysqli_query($conn, "SELECT * FROM `review`") or die ('query failed');
+  $total_ratings = 0;
+  $num_of_reviews = 0;
+  
+  while($fetch_review = mysqli_fetch_assoc($select_review)){
+      $total_ratings += $fetch_review['rating'];
+      $num_of_reviews++;
+  }
+  $average_rating = $num_of_reviews > 0 ? round($total_ratings / $num_of_reviews, 1) : 0;
+  $average_stars = str_repeat('<ion-icon name="star"></ion-icon>&nbsp;', $average_rating);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -135,57 +145,83 @@
         <img src="assets/Images/banner.png" width="100%" alt="banner" />
     </section>
 
-    <section class="products">
+    <section class="products container">
         <h1>HAVE A GLIMPSE OF OUR SPECIALS</h1>
         <div style="padding: 30px"></div>
         <div class="coffe-flex">
+        <?php 
+            $counter = 0;
+          $select_prodcuts = mysqli_query($conn, "SELECT * FROM `products` ") or die ('query failed');
+          if(mysqli_num_rows($select_prodcuts)>0){
+              while($fetch_products = mysqli_fetch_assoc($select_prodcuts)){
+                $counter++;
+          ?>
             <div class="box">
-                <img src="assets/Images/5.png" alt="coffee" />
+                <form method="post">
+                    <input type="hidden" name="product_id" value="<?php echo $fetch_products['id']; ?>">
+                    <br />
+                    <a class="viewpagelink" href="user_viewpage.php?pid=<?php echo $fetch_products['id']; ?>">
+                        <input name="product_id" type="hidden" value="<?php echo $fetch_products['id']; ?>">
+                        <img src="assets/products/<?php echo $fetch_products['image']; ?>" alt="coffee" />
+                        <div class="description">
+                            <h5><?php echo $fetch_products['name']; ?></h5>
+                            <h6>₱ <?php echo $fetch_products['price']; ?>.00 - ₱ <?php echo $fetch_products['price_range']; ?>.00</h6>
+                            <div class="product-star">
+                               <?php echo $average_stars; ?>
+                            </div>
+                           
+                        </div>
+                    </a>
+                </form>
+            </div>
+            <?php  
+                if($counter >= 3) { 
+                    break; 
+                }
+                }
+              }else{
+                ?>
+                <div class="box">
+                <img src="assets/Images/5.png" alt="" />
                 <div class="description">
                     <h5>AMERICANO</h5>
                     <h6>₱69.00 - ₱79.00</h6>
-                    <div class="star">
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star"></ion-icon>
+                    <div class="product-star">
+                        <?php echo $average_stars; ?>
                     </div>
                 </div>
             </div>
             <div class="box">
-                <img src="assets/Images/5.png" alt="coffee" />
+                <img src="assets/Images/5.png" alt="" />
                 <div class="description">
                     <h5>AMERICANO</h5>
                     <h6>₱69.00 - ₱79.00</h6>
-                    <div class="star">
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star"></ion-icon>
+                    <div class="product-star">
+                        <?php echo $average_stars; ?>
                     </div>
                 </div>
             </div>
             <div class="box">
-                <img src="assets/Images/5.png" alt="coffee" />
+                <img src="assets/Images/5.png" alt="" />
                 <div class="description">
                     <h5>AMERICANO</h5>
                     <h6>₱69.00 - ₱79.00</h6>
-                    <div class="star">
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star"></ion-icon>
+                    <div class="product-star">
+                        <?php echo $average_stars; ?>
                     </div>
                 </div>
             </div>
+
+            <?php
+              }
+            ?>
         </div>
         <div class="viewall text-center">
             <a class="open-modal stylishbtn3" href="#">VIEW ALL</a>
         </div>
     </section>
+
+
     <div class="letknow">
         <div class="row">
             <div class="col-lg-6">

@@ -35,7 +35,9 @@
     }
     }
     else{
-      header('location:login.php');  
+      $message[] = 'Incorrect Email or password';
+
+      
     }
   }
 
@@ -78,7 +80,17 @@
                             <p>REMEMBER ME</p>
                         </label>
                     </div>
-
+                    <?php
+                        if(isset($message)){
+                            foreach ($message as $message) {
+                            echo'
+                                <div class="login-error-msg">
+                                <span>* </span>'.$message.'
+                                </div>
+                            ';
+                            }
+                        }
+                      ?>
                     <div class="button">
                         <h1>DON'T HAVE AN ACCOUNT? <a href="signup.php">SIGN UP</a></h1>
                         <button name="login" class="btn w-50" type="submit">LOG IN</button>

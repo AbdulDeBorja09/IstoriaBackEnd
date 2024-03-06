@@ -36,8 +36,54 @@
           <h1>MESSAGE</h1>
         </div>
         <div class="container-box">
-            
-            
+          <?php 
+            if(isset($_GET['id'])){
+              $id = $_GET['id'];
+              $select_message = mysqli_query($conn, "SELECT * FROM `message` WHERE user_id = '$id'") or die ('query failed');
+                if(mysqli_num_rows($select_message)>0){
+                  while($fetch_message = mysqli_fetch_assoc($select_message)){
+                    $sender = $fetch_message['sender'];
+                    $date = strtok($fetch_message["date"], " ");
+                    $time = substr(strstr($fetch_message["date"], " "), 1);
+                ?>  
+                <?php if ($sender == "user"){ ?>
+                  <h6 class="msg-time"><?php echo $fetch_message['date']?></h6>
+                    <div class="message-left">
+                        <div class="msgbox">
+                            <img src="../assets/Images/profile3.png" >
+                            <div class="info">
+                                <h5>CUSTOMER</h5>
+                                <h4><?php echo $fetch_message['name']?></h4>
+                                <h3><?php echo $fetch_message['email']?></h3>
+                            </div>
+                            <div class="msg">
+                                <p  class="p"> <?php echo $fetch_message['message']?></p>
+                            </div>
+                        </div>
+                    </div>
+                    <?php } else { ?>
+                      <h6 class="msg-time"><?php echo $fetch_message['date']?></h6>
+                    <div class="message-right">
+                        <div class="msgbox">
+                            <div class="msg">
+                                <p class="p"><?php echo $fetch_message['message']?></p>
+                            </div>
+                            <div class="info">
+                                <h5>CUSTOMER SERVICE</h5>
+                                <h4>ISTORIA </h4>
+                                <h3>istoriacafe@gmail.com</h3>
+                            </div>
+                            <img src="../assets/Images/profile3.png" >
+                        </div>
+                    </div>
+                    <?php } ?>
+                <?php
+                   }
+                }else{
+                  header('location:../404.php');
+              }
+            }
+                ?>
         </div>
       </div>
     </div>

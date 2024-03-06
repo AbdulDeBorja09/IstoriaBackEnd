@@ -36,6 +36,30 @@
     <div class="reviewhead text-center">
         <h1>CUSTOMER REVIEWS</h1>
     </div>
+    <div class="container">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="../assets/Images/c1.png" class="d-block w-100" alt="Image 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="../assets/Images/c2.png" class="d-block w-100" alt="Image 2">
+                </div>
+                <div class="carousel-item">
+                    <img src="../assets/Images/c3.png" class="d-block w-100" alt="Image 3">
+                </div>
+                <div class="carousel-item">
+                    <img src="../assets/Images/c4.png" class="d-block w-100" alt="Image 4">
+                </div>
+                <div class="carousel-item">
+                    <img src="../assets/Images/c5.png" class="d-block w-100" alt="Image 5">
+                </div>
+                <div class="carousel-item">
+                    <img src="../assets/Images/c6.png" class="d-block w-100" alt="Image 6">
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="review container">
         <div class="star-rating-container">
             <div class="overallrating">
@@ -78,8 +102,6 @@
         </div>
         <hr />
             <div class="scrollbox">
-
-
             <?php
                 $review_query = mysqli_query($conn, "SELECT * FROM `review`") or die ('query failed');
                 if(mysqli_num_rows($review_query) > 0){
@@ -116,6 +138,9 @@
                         <p><?php echo $fetch_review['comment']?></p>
                         <hr />
                     </div>
+                    <div class="reviewimg">
+                        <img src="../assets/reviews/<?php echo $fetch_review['image']?>" alt="">
+                    </div>
                 </div>
                 <?php 
                 }
@@ -125,6 +150,13 @@
     </div>
     <div style="padding: 150px"></div>
     <?php include 'footer.php' ?>
+    <script>
+       
+        $('.carousel').carousel({
+            interval: 100 
+        })
+    </script>
+
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

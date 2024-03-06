@@ -53,7 +53,7 @@
 </head>
 
 <body>
-   
+    <?php include 'navbar.php' ?>
     <div style="padding: 90px"></div>
     <div class="profile-title text-center">
         <h1>ACCOUNT</h1>

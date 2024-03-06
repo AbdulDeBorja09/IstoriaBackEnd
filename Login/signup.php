@@ -25,7 +25,7 @@
     
         }else{
           if ($password != $cpassword){
-            $message[] = 'Password Not Match';
+            $message[] = 'Password Does Not Match';
           }else{
             mysqli_query($conn, "INSERT INTO `user` ( `email` , `password`) 
             VALUES ('$email','$password')") or die ('query failed');
@@ -119,6 +119,18 @@
                                 </p>
                             </label>
                         </div>
+                        <?php
+                        if(isset($message)){
+                            foreach ($message as $message) {
+                            echo'
+                                <div class="signup-error-msg">
+                                <span>* </span>'.$message.'
+                                </div>
+                            ';
+                            }
+                        }
+                        ?>
+
                         <div class="text-center">
                             <h6 class="haveanacc">
                                 ALREADY HAVE AN ACCOUNT? <a href="login.php">LOG IN</a>

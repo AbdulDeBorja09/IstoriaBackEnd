@@ -16,9 +16,7 @@
   --black2: #999;
   --gray2: #1b1815;
 }
-.container {
-  text-transform: capitalize;
-}
+
 h1 {
   color: var(--brown);
 }
@@ -1009,9 +1007,13 @@ h1 {
   padding: 10px 50px;
   color: var(--brown);
 }
-.message-left,
 .message-right {
-  text-transform: uppercase;
+  display: flex;
+  justify-content: end;
+}
+.message-left {
+  display: flex;
+  justify-content: start;
 }
 .message-left h6,
 .message-right h6 {
@@ -1020,17 +1022,17 @@ h1 {
 }
 .message-left .msgbox {
   display: flex;
-  justify-content: end;
 }
 .message-right .msgbox {
-  justify-content: end;
   display: flex;
-  text-align: end;
 }
 .message-left .msgbox img {
   width: 40px;
   height: 40px;
   margin-right: 20px;
+}
+.msg-time {
+  text-align: center;
 }
 
 .message-left .msgbox h5,
@@ -1046,18 +1048,22 @@ h1 {
   font-size: 11px;
   font-weight: 500;
 }
-.message-left .msgbox .msg p {
-  margin-left: 20px;
-  padding: 10px;
-  border-radius: 10px;
-  font-size: 12px;
+
+.message-left .msgbox .msg .p {
   border: 1px solid var(--black1);
-  font-weight: 500;
+  border-radius: 6px;
+  padding: 10px;
+  margin: 0px 150px 0px 10px;
+  text-align: start;
 }
-.message-left .msgbox .msg,
-.message-right .msgbox .msg {
-  width: 100%;
+.message-right .msgbox .msg .p {
+  border: 1px solid var(--black1);
+  border-radius: 6px;
+  padding: 10px;
+  margin: 0px 10px 0px 150px;
+  text-align: start;
 }
+
 .message-right .msgbox .info,
 .message-left .msgbox .info {
   width: 200px;
@@ -1065,16 +1071,7 @@ h1 {
 .message-right .msgbox .info {
   margin-left: 50px;
 }
-.message-right .msgbox .msg p {
-  border: 1px solid var(--black1);
-  width: auto;
-  margin-left: 55px;
-  padding: 10px;
-  border-radius: 10px;
-  text-align: end;
-  font-size: 12px;
-  font-weight: 500;
-}
+
 .message-right .msgbox img {
   width: 40px;
   height: 40px;
@@ -1259,7 +1256,6 @@ h1 {
 .profile-info-container {
   border: 0.5px solid rgb(209, 209, 209);
   padding: 20px 30px;
-  text-transform: capitalize;
 }
 .profile-table1 {
   width: 50%;
@@ -1278,6 +1274,124 @@ h1 {
 .payslip-note {
   font-size: 12px;
   margin-top: 5px;
+}
+.payslip-div {
+  margin-top: 30px;
+  text-transform: uppercase;
+}
+.payslip-div h1 {
+  font-size: 45px;
+  font-weight: 700;
+  text-align: center;
+}
+.payslip-div h6 {
+  margin-top: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.payslip-div h2 {
+  font-size: 13px;
+}
+.payslip-flex {
+  display: flex;
+}
+.payslip-flex .left {
+  margin-right: 60px;
+}
+.slipbox {
+  border: 1px solid var(--black2);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  margin-top: 20px;
+  padding-top: 20px;
+}
+.slipbox .top h3 {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+}
+.slip-table {
+  margin-top: 20px;
+}
+.slip-table thead tr {
+  border-bottom: 1px solid var(--black2);
+}
+.slip-table thead tr td {
+  text-align: center;
+  font-size: 13px;
+  padding-bottom: 8px;
+  font-weight: 700;
+}
+
+.slip-table tr td:first-child {
+  padding-left: 30px;
+}
+.slip-table tr td:last-child {
+  padding-right: 30px;
+}
+.slip-table tbody tr td {
+  text-align: center;
+}
+.slip-table {
+  margin-bottom: 0px;
+}
+.slip-table .scndrow td {
+  border-bottom: 1px solid var(--black2);
+}
+.slip-table .scndrow td:first-child {
+  border: 0;
+}
+.slip-table .scndrow td:nth-child(2) {
+  padding-bottom: 80px;
+  border-bottom: 1px solid var(--black2);
+}
+.slip-table .leftline {
+  border-left: 1px solid var(--black2);
+}
+.slip-table .scndrow td h1 {
+  font-size: 12px;
+  margin-top: -7px;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+.slip-table tr td {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.slip-table .scndrow td h2 {
+  font-size: 12px;
+  margin-top: -8px;
+  margin-bottom: 15px;
+}
+.slip-table .scndrow td h3 {
+  font-size: 12px;
+}
+.slip-table .scndrow td h4 {
+  font-size: 12px;
+  font-weight: 700;
+}
+.bottom-slip {
+  text-align: center;
+  margin-top: 30px;
+}
+.bottom-slip h4 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-top: -5px;
+}
+.slip-return {
+  text-align: center;
+  margin-top: 50px;
+}
+.slip-return button {
+  background-color: var(--brown);
+  color: white;
+  border-radius: 6px;
+  font-weight: 500px;
+  font-size: 12px;
+  border: 1px solid var(--brown);
+  padding: 5px 100px;
 }
 @media (max-width: 991px) {
   .navigation {

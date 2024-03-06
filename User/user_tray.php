@@ -149,8 +149,8 @@
                 }
               }else{
                 echo '
-                <div class="container text-center" style="padding: 100px;">
-                    <h1>No Product In Your Tray</h1>
+                <div class="empty-tray container text-center" ">
+                    <h1>THERE ARE NO PRODUCTS IN YOUR TRAY</h1>
                 </div>
                 ';  
               }
