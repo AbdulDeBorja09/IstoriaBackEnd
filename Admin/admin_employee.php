@@ -11,13 +11,13 @@
     $delete_id = $_GET['delete'];
     $select_delete_image = mysqli_query($conn, "SELECT image FROM `employee` WHERE eid = '$delete_id'") or die('query failed');
     $fetch_delete_image = mysqli_fetch_assoc($select_delete_image);
-    unlink('../assets/profiles' .$fetch_delete_image['image']);
+    unlink('../assets/profiles/' .$fetch_delete_image['image']);
 
     mysqli_query($conn, "DELETE FROM `user` WHERE id = '$delete_id'") or die ('query failed');
     mysqli_query($conn, "DELETE FROM `employee` WHERE eid = '$delete_id'") or die ('query failed');
     mysqli_query($conn, "DELETE FROM `attendance` WHERE eid = '$delete_id'") or die ('query failed');
     mysqli_query($conn, "UPDATE  `sales` SET eid = '0' WHERE eid = '$delete_id '") or die ('query failed');
-    header('location:admin_home.php');
+    header('location:admin_employee.php');
 }
 
 ?>

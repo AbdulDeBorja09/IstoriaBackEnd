@@ -31,38 +31,43 @@
     $contact = mysqli_real_escape_string($conn, $_POST['contact']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $date_hired = mysqli_real_escape_string($conn, $_POST['date-hired']);
-    $image = $_FILES['image']['name'];
-    $image_tmp_name = $_FILES['image']['tmp_name'];
-    $image_folder='../assets/profiles/'.$image; 
+    if(isset($_FILES['image'])) {
+      $image = $_FILES['image']['name'];
+      $image_size = $_FILES['image']['size'];
+      $image_tmp_name = $_FILES['image']['tmp_name'];
+      $image_folder='../assets/profiles/'.$image; 
+  
+      $update_employee = mysqli_query($conn, "UPDATE `employee` SET 
+      `employee_id` = '$employee_id', 
+      `rank` = '$position', 
+      `name` = '$name', 
+      `gender` = '$gender', 
+      `age` = '$age',
+      `birthdate` = '$bday', 
+      `birthplace` = '$bplace',
+      `address` = '$address',
+      `contact` = '$contact',
+      `email` = '$email',
+      `image` = '$image',
+      `hire_date` = '$date_hired' WHERE eid = '$edit_id'") or die ('query failed'); 
+  
+      $update_user = mysqli_query($conn, "UPDATE `user` SET 
+      `id` = '$edit_id',
+      `type` = '$type',
+      `email` = '$aemail', 
+      `password` = '$password'
+      WHERE id = '$edit_id'") or die ('query failed'); 
 
-    $update_employee = mysqli_query($conn, "UPDATE `employee` SET 
-    `employee_id` = '$employee_id', 
-    `rank` = '$position', 
-    `name` = '$name', 
-    `gender` = '$gender', 
-    `age` = '$age',
-    `birthdate` = '$bday', 
-    `birthplace` = '$bplace',
-    `address` = '$address',
-    `contact` = '$contact',
-    `email` = '$email',
-    `image` = '$image',
-    `hire_date` = '$date_hired' WHERE eid = '$edit_id'") or die ('query failed'); 
+      if ($image_size > 2000000) {
+        $message[] = 'Image is too large';
+      } else {
+          move_uploaded_file($image_tmp_name, $image_folder);
+          $message[] = 'Employee edited successfully';
+          header('location: admin_employee.php');
+      }
 
-    $update_user = mysqli_query($conn, "UPDATE `user` SET 
-    `id` = '$edit_id',
-    `type` = '$type',
-    `email` = '$aemail', 
-    `password` = '$password'
-    WHERE id = '$edit_id'") or die ('query failed'); 
-
-    if($update_employee){
-      move_uploaded_file($image_tmp_name, $image_folder);
-      $message[] = 'Product updated successfully'; 
-      header('location: admin_employee.php');
-    } else {
-        $message[] = 'Failed to Update Employee'; 
     }
+   
 }
   
 ?>

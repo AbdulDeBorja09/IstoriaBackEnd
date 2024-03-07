@@ -124,7 +124,7 @@
                     </div>
                     <div class="text">
                         <span>WARNING! </span>
-                        <p>* Clicking the reset button will result in the complete clearing of the database, erasing all its contents. This action will revert all settings to default, including the administrator email and password. Proceed with caution, as this action cannot be undone.</p>
+                        <p>* Clicking the reset button will result in the complete clearing of the database, erasing all its contents including images. This action will revert all settings to default, including the administrator email and password. Proceed with caution, as this action cannot be undone.</p>
                     </div>      
                     <div class="reset-btn">
                         <button id="openModalBtn">RESET DATABASE</button>

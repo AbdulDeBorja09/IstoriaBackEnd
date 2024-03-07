@@ -17,7 +17,6 @@
     $eid = $_POST['employee_id'];
     $employee_name = $_POST['name'];
     $employee_rank = $_POST['rank'];
-    date_default_timezone_set('Asia/Manila');
     $time = date('H:i:s');
     $Meridiem = date('A');
 

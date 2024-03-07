@@ -78,21 +78,3 @@ for (var i = 0; i < modalLinks.length; i++) {
     modal.style.display = "block";
   };
 }
-
-//Terms & condition Modal
-
-//NAVBAR
-let lastScrollTop = 0;
-window.addEventListener("scroll", function () {
-  let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-  if (currentScroll > lastScrollTop) {
-    document
-      .getElementById("navbarToggleExternalContent")
-      .classList.remove("show");
-  } else {
-    document
-      .getElementById("navbarToggleExternalContent")
-      .classList.add("show");
-  }
-  lastScrollTop = currentScroll;
-});

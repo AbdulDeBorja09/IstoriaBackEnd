@@ -1,42 +1,47 @@
 <?php
-    include '../connection.php';
-    
-    if(isset($_POST['create'])){
-        
-        $filter_name = filter_var($_POST['lname'].', ' .$_POST['fname'], FILTER_SANITIZE_STRING);
-        $name = mysqli_real_escape_string($conn, $filter_name);
-        
-        $filter_email = filter_var($_POST['email'], FILTER_SANITIZE_STRING);
-        $email = mysqli_real_escape_string($conn, $filter_email);
-    
-        $filter_password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
-        $password = mysqli_real_escape_string($conn, $filter_password);
-        $filter_cpassword = filter_var($_POST['cpassword'], FILTER_SANITIZE_STRING);
-        $cpassword = mysqli_real_escape_string($conn, $filter_cpassword);
-        
-        $username = mysqli_real_escape_string($conn, $_POST['username']);
-        $address = mysqli_real_escape_string($conn, $_POST['address']);
+include '../connection.php';
 
-        $date = date('m-d-y');
-        
-        $select_user = mysqli_query($conn, "SELECT * FROM `user` WHERE email = '$email'") or die ('query failed');
-        if(mysqli_num_rows($select_user)>0){
-          $message[] = 'Email Already Exist';
-    
-        }else{
-          if ($password != $cpassword){
-            $message[] = 'Password Does Not Match';
-          }else{
-            mysqli_query($conn, "INSERT INTO `user` ( `email` , `password`) 
-            VALUES ('$email','$password')") or die ('query failed');
-            $user_id = mysqli_insert_id($conn);
+if (isset($_POST['create'])) {
 
-            mysqli_query($conn, "INSERT INTO `customer` ( `uid`, `name`, `username`, `email`, `address`, `created`) 
-            VALUES ('$user_id', '$name', '$username', '$email','$address', '$date')") or die ('query failed');
-            $message[] = 'Account Created Successfully';
-          }
+    $filter_name = filter_var($_POST['lname'] . ', ' . $_POST['fname'], FILTER_SANITIZE_STRING);
+    $name = mysqli_real_escape_string($conn, $filter_name);
+
+    $filter_email = filter_var($_POST['email'], FILTER_SANITIZE_STRING);
+    $email = mysqli_real_escape_string($conn, $filter_email);
+
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
+    $cpassword = mysqli_real_escape_string($conn, $_POST['cpassword']);
+
+    $username = mysqli_real_escape_string($conn, $_POST['username']);
+    $address = mysqli_real_escape_string($conn, $_POST['address']);
+
+    $date = date('m-d-y');
+
+    if (strpos($email, '@gmail.com') === false) {
+        $message[] = 'Only Gmail addresses are allowed.';
+    } else {
+        if (!preg_match('/[A-Z]/', $password) || !preg_match('/[^a-zA-Z\d]/', $password)) {
+            $message[] = 'Password must contain at least one uppercase letter and one special character.';
+        } else {
+            $select_user = mysqli_query($conn, "SELECT * FROM `user` WHERE email = '$email'") or die('query failed');
+            if (mysqli_num_rows($select_user) > 0) {
+                $message[] = 'Email Already Exists';
+            } else {
+                if ($password != $cpassword) {
+                    $message[] = 'Password Does Not Match';
+                } else {
+                    mysqli_query($conn, "INSERT INTO `user` ( `email` , `password`) 
+                VALUES ('$email','$password')") or die('query failed');
+                    $user_id = mysqli_insert_id($conn);
+
+                    mysqli_query($conn, "INSERT INTO `customer` ( `uid`, `name`, `username`, `email`, `address`, `created`) 
+                VALUES ('$user_id', '$name', '$username', '$email','$address', '$date')") or die('query failed');
+                    $message[] = 'Account Created Successfully';
+                }
+            }
         }
-      }
+    }
+}
 ?>
 
 <!DOCTYPE html>
