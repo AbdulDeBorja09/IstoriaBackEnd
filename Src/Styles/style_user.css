@@ -5,7 +5,6 @@
   margin: 0;
   padding: 0;
   letter-spacing: 2px;
-  text-transform: uppercase;
 }
 
 :root {
@@ -226,11 +225,13 @@ footer a {
   font-weight: 700;
   text-align: center;
   font-size: 50px;
+  
 }
 .products h1 {
   text-align: center;
   font-weight: 700;
   margin-top: 80px;
+  text-transform: uppercase;
 }
 .viewall a {
   border: 1px solid var(--browncolor);
@@ -338,6 +339,7 @@ footer a {
   display: flex;
   justify-content: space-around;
   flex-flow: wrap;
+  text-transform: uppercase;
 }
 .coffe-flex .box a {
   text-decoration: none;
@@ -2216,7 +2218,8 @@ footer a {
   margin-top: 20px;
   font-size: 10px;
 }
-.forms button {
+
+.reviewform .forms .normal-btn{
   padding: 10px;
   width: 100%;
   margin-top: 40px;
@@ -2225,6 +2228,26 @@ footer a {
   border: 1px solid white;
   border-radius: 6px;
   text-decoration: none;
+  color: white;
+}
+.reviewform .forms .normal-btn:hover{
+  background-color: white;
+  border: 1px solid var(--browncolor);
+  color: var(--browncolor);
+}
+.reviewform .forms .anon-btn{
+  padding: 10px;
+  width: 100%;
+  margin-top: 10px;
+  font-size: 10px;
+  background-color: white;
+  border: 1px solid var(--browncolor);
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--browncolor);
+}
+.reviewform .forms .anon-btn:hover{
+  background-color: var(--browncolor);
   color: white;
 }
 .forms a:hover {
@@ -2266,6 +2289,7 @@ footer a {
 }
 .loginform {
   display: flex;
+  text-transform: none;
 }
 .loginform .column1 {
   width: 50%;
@@ -2532,6 +2556,7 @@ footer a {
   margin-top: 80px;
   font-size: 12px;
   font-weight: 500;
+  text-transform: uppercase;
 }
 .msg-box .sendmsg {
   display: flex;

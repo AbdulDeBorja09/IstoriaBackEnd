@@ -122,7 +122,7 @@
                     </div>
                     <div class="text2">
                         <h5><?php echo $fetch_orders['reference'] ?></h5>
-                        <h5><?php echo $fetch_orders['name'] ?></h5>
+                        <h5><?php echo $fetch_orders['lname'] ?>, <?php echo $fetch_orders['fname'] ?></h5>
                         <h5><?php echo $fetch_orders['contact'] ?></h5>
                         <h5><?php echo $info [0] ?></h5>
                         <h5><?php echo $info [1] ?></h5>

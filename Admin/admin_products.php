@@ -161,7 +161,7 @@
                       ?>
                       <tr>
                         <td colspan="8" style="padding: 150px 0px; border:0px;">
-                          <h1>NO AVAILABLE PRODUCTS</h1>
+                          <h1 style="font-size: 30px; text-align:center;">NO AVAILABLE PRODUCTS</h1>
                         </td>
                       </tr>
                       <?php  

@@ -50,7 +50,7 @@
         <div class="col-lg-5 col-md-4 col-sm-12 text-center">
           <img
             class="profile-image "
-            src="../assets/profiles/5.png"
+            src="../assets/profiles/<?php echo $fetch_employee['image'] ?>"
             style="border-radius: 50%;"
             
           />

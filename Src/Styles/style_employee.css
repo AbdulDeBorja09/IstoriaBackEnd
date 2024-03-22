@@ -17,6 +17,7 @@
   --gray2: #1b1815;
 }
 
+
 h1 {
   color: var(--brown);
 }
@@ -563,6 +564,7 @@ h1 {
 }
 .history-table {
   border-collapse: collapse;
+  text-transform: capitalize;
 }
 .titlediv {
   text-align: center;
@@ -645,6 +647,7 @@ h1 {
 }
 .orders-table {
   border-collapse: collapse;
+  text-transform: capitalize;
 }
 .orders-table tbody td {
   border: 1px solid var(--black2);

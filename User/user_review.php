@@ -53,6 +53,51 @@
             }
         }
     }
+    if (isset($_POST['anon'])) {
+        $name = "Anonymous";
+        $order= mysqli_real_escape_string($conn, $_POST['order']);
+        $comment = mysqli_real_escape_string($conn, $_POST['comment']);
+        $reference = mysqli_real_escape_string($conn, $_POST['reference']);
+        $rating= mysqli_real_escape_string($conn, $_POST['rating']);
+        $date = date('m-d-y');
+        if(isset($_FILES['image'])) {
+            $image = $_FILES['image']['name'];
+            $image_size = $_FILES['image']['size'];
+            $image_tmp_name = $_FILES['image']['tmp_name'];
+            $image_folder = '../assets/reviews/'.$image;
+            $select_product_name = mysqli_query($conn, "SELECT name FROM `review` WHERE reference = '$reference' ") or die('query failed');
+            if (mysqli_num_rows($select_product_name) > 0) {
+                $message[] = "You've already review this order";
+            } else {
+                $insert_review = mysqli_query($conn, "INSERT INTO `review` (`user_id`, `name`, `orders`, `comment`, `image`, `rating`, `reference`, `date`)
+                VALUES ('$user_id','$name', '$order', '$comment', '$image',  '$rating',  '$reference', '$date')") or die('query failed');
+                header('location: user_profile_history.php');
+                if ($insert_review ) {
+                    if ($image_size > 2000000) {
+                        $message[] = 'Image is too large';
+                    } else {
+                        move_uploaded_file($image_tmp_name, $image_folder);
+                        $message[] = 'Product added successfully';
+                        header('location: user_profile_history.php');
+                    }
+                }
+            }
+        }else{
+            $select_product_name = mysqli_query($conn, "SELECT name FROM `review` WHERE reference = '$reference' ") or die('query failed');
+            if (mysqli_num_rows($select_product_name) > 0) {
+                $message[] = "You've already review this order";
+            } else {
+                $insert_review = mysqli_query($conn, "INSERT INTO `review` (`user_id`, `name`, `orders`, `comment`, `image`, `rating`, `reference`, `date`)
+                VALUES ('$user_id','$name', '$order', '$comment', '$image',  '$rating',  '$reference', '$date')") or die('query failed');
+                header('location: user_profile_history.php');
+            }
+        }
+
+
+
+
+
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -95,11 +140,12 @@
                     <span class="rating-star" data-value="5">&#9733;</span>
                 </div>
                 <div class="forms">
-                    <input type="text" name="name" id="" value="<?php echo $fetch_orders['name'] ?>" readonly/>
+                    <input type="text" name="name" id="" value="<?php echo $fetch_orders['lname'] ?>, <?php echo $fetch_orders['fname'] ?>" readonly/>
                     <input type="text" name="order" id="" value="<?php echo $fetch_orders['product'] ?>" readonly />
                     <textarea name="comment" id="" cols="30" rows="10" placeholder="COMMENT"></textarea>
                     <input type="file" name="image" type="file" accept="image/jpg, image/png, image/webp">
-                    <button name="send" type="submit">SEND REVIEW</button>
+                    <button class="normal-btn" name="send" type="submit">SEND REVIEW</button>
+                    <button class="anon-btn" name="anon">SEND ANONYMOUS</button>
                 </div>
             </div>
         </form>

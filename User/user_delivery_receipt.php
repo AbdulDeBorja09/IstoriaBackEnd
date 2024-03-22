@@ -40,16 +40,6 @@
                     $date = substr(strstr($fetch_orders["date"], " "), 1);
                     $address = explode('|', $fetch_orders["info"]);
 
-                    $full_name = $fetch_orders["name"];
-                    $last_space_position = strrpos($full_name, " ");
-                    if ($last_space_position !== false) {
-                        $fname = substr($full_name, 0, $last_space_position);
-                        $lname = substr($full_name, $last_space_position + 1);
-                    } else {
-                        
-                        $fname = $full_name;
-                        $lname = "";
-                    }
           ?>
         <div class="maindiv">
             <div class="col1">
@@ -113,8 +103,8 @@
                 </div>
                 <div class="main">
                     <div class="row">
-                        <input type="text" placeholder="<?php echo $fname ?>" disabled />
-                        <input type="text" placeholder="<?php echo $lname ?>" disabled />
+                        <input type="text" placeholder="<?php echo $fetch_orders['lname'] ?>" disabled />
+                        <input type="text" placeholder="<?php echo $fetch_orders['fname'] ?>" disabled />
                     </div>
                     <div class="row">
                         <input type="number"  placeholder="<?php echo $fetch_orders['reference'] ?>" disabled />

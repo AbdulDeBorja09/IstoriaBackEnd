@@ -5,10 +5,6 @@
 -- - Dinero, Khylle 
 -- - Brofar, Euwayne Paulette
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+08:00";
-
 CREATE TABLE `addons` (
   `id` int(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `category` varchar(255) NOT NULL,
@@ -79,7 +75,8 @@ CREATE TABLE `message` (
 CREATE TABLE `orders` (
   `id` int(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `user_id` int(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `fname` varchar(255) NOT NULL,
+  `lname` varchar(255) NOT NULL,
   `product` varchar(255) NOT NULL,
   `size` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL,
@@ -165,3 +162,6 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `type`, `email`, `password`) VALUES
 (1, 'admin', 'admin', 'istoria123');
 
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+08:00";

@@ -78,7 +78,7 @@
                 <tr>
                   <td><?php echo $count ?></td>
                   <td><?php echo $fetch_orders['reference'] ?></td>
-                  <td><?php echo $fetch_orders['name'] ?></td>
+                  <td><?php echo $fetch_orders['lname'] ?>, <?php echo $fetch_orders['fname'] ?></td>
                   <td>₱ <?php echo $fetch_orders['total'] ?>.00</td>
                   <td><?php echo $fetch_orders['payment'] ?></td>
                   <td><?php echo $fetch_orders['transaction'] ?></td>

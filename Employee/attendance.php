@@ -72,7 +72,7 @@
     <form method="post">
       <div class="attendance-container">
         <div class="attendance-image">
-          <img src="../assets/Images/profile.png" alt="profile-image" />
+          <img src="../assets/profiles/<?php echo $fetch_employee['image'] ?>" alt="profile-image" />
         </div>
         <div class="attendance-name">
           <h1><?php echo $fetch_employee['name'] ?></h1>

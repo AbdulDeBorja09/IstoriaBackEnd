@@ -10,7 +10,8 @@
     $addons_data = isset($_SESSION['addons_data']) ? unserialize($_SESSION['addons_data']) : array();
 
     if(isset($_POST['order'])){
-        $name = mysqli_real_escape_string($conn, $_POST['lname'].' '.$_POST['fname']);
+        $lname = mysqli_real_escape_string($conn, $_POST['lname']);
+        $fname = mysqli_real_escape_string($conn, $_POST['fname']);
         $contact = mysqli_real_escape_string($conn, $_POST['contact']);
         $info= mysqli_real_escape_string($conn, $_POST['date'].' | '.$_POST['time']);
         $total = mysqli_real_escape_string($conn, $_POST['total']);
@@ -39,9 +40,9 @@
         $total_types = implode(', ', $type);
         $total_addons = implode(',  ', $addons);
         mysqli_query($conn, "INSERT INTO `orders` 
-        (`user_id`, `name`, `product`, `size`, `type`, `addons`, `info`, `contact`, `note`, `payment`, `total`, `date`,  `transaction`, `reference`) 
+        (`user_id`, `fname`, `lname`,`product`, `size`, `type`, `addons`, `info`, `contact`, `note`, `payment`, `total`, `date`,  `transaction`, `reference`) 
         VALUES 
-        ('$user_id', '$name', '$total_products', '$total_sizes', '$total_types', '$total_addons', '$info', '$contact', '$note', '$payment', '$total', '$date', '$transaction', '$reference_number')
+        ('$user_id', '$fname', '$lname','$total_products', '$total_sizes', '$total_types', '$total_addons', '$info', '$contact', '$note', '$payment', '$total', '$date', '$transaction', '$reference_number')
         ");
         mysqli_query($conn, "DELETE FROM `tray` WHERE user_id = '$user_id'");
         $message[] = 'order placed successfully';
@@ -91,7 +92,7 @@
                 <input type="radio" class="btn-check" name="payment" id="cash" value="cash" autocomplete="off" checked/>
                 <label class="btn" for="cash">CASH</label>
             </div>
-            <input name="gcashnumber" class="gcash" type="number" placeholder="G-CASH NUMBER" />
+            <input name="gcashnumber" id="gcashinput" class="gcash" type="number" placeholder="G-CASH NUMBER" />
         </div>
 
         <div class="checkout-div2">
@@ -163,41 +164,63 @@
     </div>
     </form>
     <?php include 'footer.php' ?>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-    $(document).ready(function() {
-        function updateMinimumDate() {
-            console.log("Updating minimum date...");
-            var now = new Date();
-            var selectedDate = new Date($('#pickupDate').val());
-            var selectedTime = $('#pickupTime').val();
-            var selectedHour = parseInt(selectedTime.split(':')[0]);
-            var selectedMinute = parseInt(selectedTime.split(':')[1]);
-            var selectedTimeInMinutes = selectedHour * 60 + selectedMinute;
-            if (selectedDate.toDateString() === now.toDateString() && selectedTimeInMinutes < now.getHours() * 60 + now.getMinutes()) {
-                now.setDate(now.getDate() + 1);
-            }
-            $('#pickupDate').prop('min', now.toISOString().split('T')[0]);
-        }
+    document.addEventListener('DOMContentLoaded', function() {
         function handlePaymentSelection() {
-            var gcashInput = $('.gcash');
-            var gcashRadio = $('#gcash');
-            var cashRadio = $('#cash');
-
-            if (gcashRadio.is(':checked')) {
-                gcashInput.prop('required', true);
-                gcashInput.prop('readonly', false);
+            
+            var gcashInput = document.getElementById('gcashinput');
+            var gcashRadio = document.getElementById('gcash');
+            var cashRadio = document.getElementById('cash');
+            if (gcashRadio.checked) {
+                gcashInput.required = true;
+                gcashInput.readOnly = false;
             } else {
-                gcashInput.prop('required', false);
-                gcashInput.prop('readonly', true);
-                gcashInput.val('');
+                gcashInput.required = false;
+                gcashInput.readOnly = true;
+                gcashInput.value = '';
             }
         }
-        updateMinimumDate();
-        $('#pickupTime').on('change', updateMinimumDate);
-        $('.btn-check[name="payment"]').on('change', handlePaymentSelection);
+        var elements = document.querySelectorAll('.btn-check[name="payment"]');
+        elements.forEach(function(element) {
+            element.addEventListener('change', handlePaymentSelection);
+        });
     });
-    </script>
+    var currentDate = new Date();
+    document.getElementById("pickupDate").min = currentDate.toISOString().split('T')[0];
+    function handleTimeChange() {
+    var currentDate = new Date();date_default_timezone_set('Asia/Manila');
+    var currentDate = new Date();
+    var pickupDateInput = document.getElementById("pickupDate");
+    var selectedTime = document.getElementById("pickupTime").value;
+    pickupDateInput.min = currentDate.toISOString().split('T')[0];
+
+    function handleTimeChange() {
+   
+    var selectedDate = pickupDateInput.value;
+    var selectedDateTime = new Date(selectedDate + " " + selectedTime);
+
+    if (selectedDateTime <= currentDate) {
+        selectedDateTime.setDate(selectedDateTime.getDate() + 1);
+        pickupDateInput.value = selectedDateTime.toISOString().split('T')[0];
+    }
+
+    
+    pickupDateInput.min = currentDate.toISOString().split('T')[0];
+    }
+
+    var selectedTime = document.getElementById("pickupTime").value;
+    var selectedDate = document.getElementById("pickupDate").value;
+    var selectedDateTime = new Date(selectedDate + " " + selectedTime);
+    
+    if (selectedDateTime < currentDate) {
+        selectedDateTime.setDate(selectedDateTime.getDate() + 1);
+        document.getElementById("pickupDate").value = selectedDateTime.toISOString().split('T')[0];
+    }
+    pickupDateInput.min = currentDate.toISOString().split('T')[0];
+}
+
+document.getElementById("pickupTime").addEventListener("change", handleTimeChange);
+</script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

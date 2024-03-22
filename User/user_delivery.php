@@ -10,7 +10,8 @@
     date_default_timezone_set('Asia/Manila');
 
     if(isset($_POST['order'])){
-        $name = mysqli_real_escape_string($conn, $_POST['lname'].' '.$_POST['fname']);
+        $fname = mysqli_real_escape_string($conn, $_POST['lname']);
+        $lname = mysqli_real_escape_string($conn, $_POST['fname']);
         $contact = mysqli_real_escape_string($conn, $_POST['contact']);
         $info= mysqli_real_escape_string($conn, $_POST['address'].' | '.$_POST['landmark']);
         $total = mysqli_real_escape_string($conn, $_POST['total']);
@@ -39,9 +40,9 @@
         $total_types = implode(', ', $type);
         $total_addons = implode(',  ', $addons);
         mysqli_query($conn, "INSERT INTO `orders` 
-        (`user_id`, `name`, `product`, `size`, `type`, `addons`, `info`, `contact`, `note`, `payment`, `total`, `date`, `transaction`, `reference`) 
+        (`user_id`, `fname`, `lname`, `product`, `size`, `type`, `addons`, `info`, `contact`, `note`, `payment`, `total`, `date`, `transaction`, `reference`) 
         VALUES 
-        ('$user_id', '$name', '$total_products', '$total_sizes', '$total_types', '$total_addons', '$info', '$contact', '$note', '$payment', '$total', '$date', '$transaction', '$reference_number')
+        ('$user_id', '$fname', '$lname', '$total_products', '$total_sizes', '$total_types', '$total_addons', '$info', '$contact', '$note', '$payment', '$total', '$date', '$transaction', '$reference_number')
         ");
         mysqli_query($conn, "DELETE FROM `tray` WHERE user_id = '$user_id'");
         $message[] = 'order placed successfully';
@@ -77,7 +78,7 @@
                 </div>
                 <input name="address" type="text" placeholder="COMPLETE ADDRESS" required/>
                 <input name="landmark" type="text" placeholder="LANDMARK" required/>
-                <input name="contact" type="contact" placeholder="123456789" required/>
+                <input name="contact" type="number" placeholder="09897253918" required/>
                 <textarea name="note" id="" cols="30" rows="5" placeholder="NOTE TO THE RIDER"></textarea>
             </div>
             <h3>PAY WITH:</h3>
@@ -88,7 +89,7 @@
                 <input type="radio" class="btn-check" name="payment" id="cash" value="cash" autocomplete="off" checked/>
                 <label class="btn" for="cash">CASH</label>
             </div>
-            <input name="gcashnumber" class="gcash" type="number" placeholder="G-CASH NUMBER" />
+            <input name="gcashnumber"  id="gcashinput"  class="gcash" type="number" placeholder="G-CASH NUMBER" />
         </div>
 
         <div class="checkout-div2">
@@ -165,22 +166,25 @@
     <?php include 'footer.php' ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-    $(document).ready(function() {
+    document.addEventListener('DOMContentLoaded', function() {
+    
         function handlePaymentSelection() {
-            var gcashInput = $('.gcash');
-            var gcashRadio = $('#gcash');
-            var cashRadio = $('#cash');
-
-            if (gcashRadio.is(':checked')) {
-                gcashInput.prop('required', true);
-                gcashInput.prop('readonly', false);
+            var gcashInput = document.getElementById('gcashinput');
+            var gcashRadio = document.getElementById('gcash');
+            var cashRadio = document.getElementById('cash');
+            if (gcashRadio.checked) {
+                gcashInput.required = true;
+                gcashInput.readOnly = false;
             } else {
-                gcashInput.prop('required', false);
-                gcashInput.prop('readonly', true);
-                gcashInput.val('');
+                gcashInput.required = false;
+                gcashInput.readOnly = true;
+                gcashInput.value = '';
             }
         }
-        $('.btn-check[name="payment"]').on('change', handlePaymentSelection);
+        var elements = document.querySelectorAll('.btn-check[name="payment"]');
+        elements.forEach(function(element) {
+            element.addEventListener('change', handlePaymentSelection);
+        });
     });
     </script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
@@ -188,8 +192,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
-    <script src="/Src/Javascript/index.js"></script>
-    <script src="/Src/Javascript/main.js"></script>
+    
 </body>
 
 </html>
